@@ -24,7 +24,7 @@ This is a private package so composer dependencies need to be manually added:
 
 First you need to configure the client inside your app service provider:
 
-```php
+```
 public function register()
 {
 	$this->app->bind('SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface', function () {
@@ -39,7 +39,7 @@ public function register()
 
 Then inside any of your controllers, you can inject the dependency through the constructor:
 
-```php
+```
 protected $nodeMwsClient;
 
 public function __construct(NodeMwsClientInterface $nodeMwsClient) {
