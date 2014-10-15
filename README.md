@@ -19,3 +19,37 @@ This is a private package so composer dependencies need to be manually added:
     "sellerlabs/nodemws-client": "dev-master"
 }
 ```
+
+## How to use with Laravel:
+
+First you need to configure the client inside your app service provider:
+
+```
+public function register()
+{
+	$this->app->bind('SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface', function () {
+            return new NodeMwsClient(
+            	'YourClientId',
+            	'YourClientSecret',
+            	'http://nodemws-staging.elasticbeanstalk.com'
+            );
+    });
+}
+```
+
+Then inside any of your controllers, you can inject the dependency through the constructor:
+
+```
+protected $nodeMwsClient;
+
+public function __construct(NodeMwsClientInterface $nodeMwsClient) {
+	$this->nodeMwsClient = $nodeMwsClient;
+}
+
+public function getIndex()
+{
+	return $this->nodeMwsClient->getSearch('keyword', 'testing');
+}
+```
+
+Laravel's container is smart enough to automatically add the parameter for you when initializing your controller's class
