@@ -1,0 +1,19 @@
+{
+    "name": "sellerlabs/nodemws-client",
+    "description": "PHP NodeMWS client",
+    "require": {
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Eduardo Trujillo",
+            "email": "ed@chromabits.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SellerLabs\\NodeMws\\": "src/SellerLabs/NodeMws"
+        }
+    }
+}
