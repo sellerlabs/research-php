@@ -1,3 +1,4 @@
 # Ignore common folders
 .idea
+composer.lock
 vendor
