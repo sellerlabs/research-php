@@ -4,6 +4,7 @@ namespace SellerLabs\NodeMws\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\NodeMws\Entities\SearchProduct;
+use SellerLabs\NodeMws\Exceptions\EmptyResultsException;
 use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
 use stdClass;
 
@@ -32,12 +33,18 @@ class SearchResponse
      * Construct a search response from a Guzzle client response
      *
      * @param ResponseInterface $response
+     * @throws EmptyResultsException
      * @throws InvalidFormatException
      */
     public function __construct(ResponseInterface $response)
     {
         // Attempt to parse the JSON
         $rootResponse = json_decode($response->getBody());
+
+        // Check for errors
+        if (property_exists($rootResponse, 'Error')) {
+            throw new EmptyResultsException('Got error: ' . $rootResponse->Error);
+        }
 
         // Check that the response is valid
         if (!property_exists($rootResponse, 'searchCatalogs')) {
