@@ -93,12 +93,17 @@ class NodeMwsClient implements NodeMwsClientInterface
      * @param string $asin
      * @return OffersResponse
      */
-    public function getOffers($asin)
+    public function getOffers($asin, $nopaapi=false)
     {
         // The response parser expects the pretty format
         $format = 'pretty';
+        $url = '/v1/offers/' . $asin . '?format=' . $format;
+        
+        if($nopaapi) {
+            $url .= '&nopaapi=true';
+        }
 
-        return new OffersResponse($this->client->get('/v1/offers/' . $asin . '?format=' . $format));
+        return new OffersResponse($this->client->get($url));
     }
 
     /**
