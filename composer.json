@@ -4,11 +4,14 @@
     "require": {
         "guzzlehttp/guzzle": "4.1.*"
     },
-    "license": "Proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Eduardo Trujillo",
             "email": "ed@chromabits.com"
+        },
+        {
+            "name": "Benjamin Kovach"
         }
     ],
     "autoload": {
