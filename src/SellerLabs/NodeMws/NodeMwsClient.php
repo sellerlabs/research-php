@@ -49,23 +49,23 @@ class NodeMwsClient implements NodeMwsClientInterface
      *
      * @param string $clientId
      * @param string $secret
-     * @param string $endpoint
+     * @param string $baseUrl
      */
-    public function __construct($clientId = null, $secret = null, $endpoint = null)
+    public function __construct($clientId = null, $secret = null, $baseUrl = null)
     {
         // Check that the necessary config is present
-        if (is_null($clientId) || is_null($secret) || is_null($endpoint)) {
+        if (is_null($clientId) || is_null($secret) || is_null($baseUrl)) {
             throw new InvalidArgumentException();
         }
 
         // Copy configuration to internal variables
         $this->clientId = $clientId;
         $this->secret = $secret;
-        $this->endpoint = $endpoint;
+        $this->endpoint = $baseUrl;
 
         // Create a GuzzleClient
         $this->client = new GuzzleClient([
-            'base_url' => $endpoint
+            'base_url' => $baseUrl
         ]);
 
         $this->client->setDefaultOption('headers/Authorization', $this->generateCode());
