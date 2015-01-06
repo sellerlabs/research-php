@@ -30,4 +30,15 @@ class NodeMwsClientTest extends PHPUnit_Framework_TestCase {
         $code = $this->client->generateCode(1420583425);
         $this->assertEquals("1420583425|BenjaminTest|a4f22bc411408ba1f29edb6c1c89b7d6", $code);
     }
+
+    public function testGetAsinCategories() {
+        // TODO
+        //$this->client->getAsinCategories('0452011876');
+    }
+
+    public function testGetCategoryById()
+    {
+        // TODO
+        // var_dump($this->client->getCategoryById('10399'));
+    }
 }

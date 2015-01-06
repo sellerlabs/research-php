@@ -2,11 +2,12 @@
 
 namespace SellerLabs\NodeMws;
 
-use Carbon\Carbon;
 use GuzzleHttp\Client as GuzzleClient;
 use InvalidArgumentException;
 use SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface;
 use SellerLabs\NodeMws\Responses\FeesResponse;
+use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
+use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
 use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 
@@ -78,6 +79,7 @@ class NodeMwsClient implements NodeMwsClientInterface
     /**
      * Generate an authorization code for NodeMWS
      *
+     * @param null $timestamp
      * @return string
      */
     public function generateCode($timestamp = null)
@@ -136,6 +138,20 @@ class NodeMwsClient implements NodeMwsClientInterface
     {
         return new SearchResponse(
             $this->client->get('/v1/search?' . $codeType . '=' . $code . '&format=pretty')
+        );
+    }
+
+    public function getAsinCategories($asin)
+    {
+        return new GetAsinCategoriesResponse(
+            $this->client->get('/v1/getAsinCategories/' . $asin)
+        );
+    }
+
+    public function getCategoryById($categoryId)
+    {
+        return new GetCategoryByIdResponse(
+            $this->client->get('/v1/getCategoryById/' . $categoryId)
         );
     }
 }
