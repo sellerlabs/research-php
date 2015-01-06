@@ -2,6 +2,7 @@
 
 namespace SellerLabs\NodeMws;
 
+use Carbon\Carbon;
 use GuzzleHttp\Client as GuzzleClient;
 use InvalidArgumentException;
 use SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface;
@@ -53,6 +54,9 @@ class NodeMwsClient implements NodeMwsClientInterface
      */
     public function __construct($clientId = null, $secret = null, $baseUrl = null)
     {
+
+        date_default_timezone_set('UTC');
+
         // Check that the necessary config is present
         if (is_null($clientId) || is_null($secret) || is_null($baseUrl)) {
             throw new InvalidArgumentException();
@@ -76,9 +80,12 @@ class NodeMwsClient implements NodeMwsClientInterface
      *
      * @return string
      */
-    public function generateCode()
+    public function generateCode($timestamp = null)
     {
-        $timestamp = time() + 3600 * 3; // Expires in 3 hours
+        if (is_null($timestamp)) {
+            $timestamp = time() + 3600 * 3; // Expires in 3 hours
+        }
+
         $stringToSign = $timestamp . $this->clientId . $this->secret;
         $signature = md5($stringToSign);
 

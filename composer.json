@@ -3,7 +3,8 @@
     "description": "PHP NodeMWS client",
     "require": {
         "guzzlehttp/guzzle": "4.1.*",
-        "mockery/mockery": "~0.9"
+        "mockery/mockery": "~0.9",
+        "nesbot/Carbon": "*"
     },
     "license": "MIT",
     "authors": [

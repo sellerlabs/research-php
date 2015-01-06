@@ -18,7 +18,7 @@ interface NodeMwsClientInterface
      *
      * @return string
      */
-    public function generateCode();
+    public function generateCode($timestamp = null);
 
     /**
      * Get the current offers for an ASIN from NodeMWS
