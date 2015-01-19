@@ -27,9 +27,28 @@ class CategoryMapping {
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isMainCategory()
     {
         return $this->mainCategory;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
 }

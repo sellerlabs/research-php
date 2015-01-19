@@ -5,16 +5,17 @@ use \Mockery;
 
 class GetAsinCategoriesResponseTest extends \PHPUnit_Framework_TestCase {
 
+    protected $getAsinCategoriesResponseJson;
     protected $responseInterfaceMock;
 
     public function setUp () {
         $responseInterfaceMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
 
-        $getAsinCategoriesResponseJson = file_get_contents(dirname(__FILE__) . '/Resources/GetAsinCategoriesResponse.json');
+        $this->getAsinCategoriesResponseJson = file_get_contents(dirname(__FILE__) . '/Resources/GetAsinCategoriesResponse.json');
 
         $responseInterfaceMock->
             shouldReceive('getBody')
-            ->andReturn($getAsinCategoriesResponseJson);
+            ->andReturn($this->getAsinCategoriesResponseJson);
 
         $this->responseInterfaceMock = $responseInterfaceMock;
     }
@@ -25,6 +26,17 @@ class GetAsinCategoriesResponseTest extends \PHPUnit_Framework_TestCase {
 
     public function testConstruct() {
         $getAsinCategories = new GetAsinCategoriesResponse($this->responseInterfaceMock);
-        $this->assertEquals(true, true);
+
+        // Make sure all category mappings are real category mappings
+        foreach( $getAsinCategories->getCategoryMappings() as $categoryMapping) {
+            $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\CategoryMapping', $categoryMapping);
+        }
+
+        $this->assertInstanceOf(
+            '\SellerLabs\NodeMws\Entities\CategoryMapping',
+            $getAsinCategories->getMainCategory()
+        );
+
+        $this->assertEquals('Literature & Fiction', $getAsinCategories->getMainCategory()->getCategory());
     }
 }
