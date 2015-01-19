@@ -1,13 +1,6 @@
 <?php
 use SellerLabs\NodeMws\Responses\OffersResponse;
 
-/**
- * Created by PhpStorm.
- * User: Ben
- * Date: 1/19/15
- * Time: 11:49 AM
- */
-
 class OffersResponseTest extends PHPUnit_Framework_TestCase
 {
     protected $offersResponse;
