@@ -52,8 +52,9 @@ class NodeMwsClient implements NodeMwsClientInterface
      * @param string $clientId
      * @param string $secret
      * @param string $baseUrl
+     * @param null $client
      */
-    public function __construct($clientId = null, $secret = null, $baseUrl = null)
+    public function __construct($clientId = null, $secret = null, $baseUrl = null, $client = null)
     {
 
         date_default_timezone_set('UTC');
@@ -69,9 +70,13 @@ class NodeMwsClient implements NodeMwsClientInterface
         $this->endpoint = $baseUrl;
 
         // Create a GuzzleClient
-        $this->client = new GuzzleClient([
-            'base_url' => $baseUrl
-        ]);
+        if ($client) {
+            $this->client = $client;
+        } else {
+            $this->client = new GuzzleClient([
+                'base_url' => $baseUrl
+            ]);
+        }
 
         $this->client->setDefaultOption('headers/Authorization', $this->generateCode());
     }

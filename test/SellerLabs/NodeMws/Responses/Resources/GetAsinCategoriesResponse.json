@@ -1,0 +1,105 @@
+{
+  "categoryMappings": [
+    {
+      "categoryId": "10399",
+      "category": "Classics"
+    },
+    {
+      "categoryId": "17",
+      "category": "Literature & Fiction",
+      "main": true
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "171129",
+      "category": "Political"
+    },
+    {
+      "categoryId": "10134",
+      "category": "Genre Fiction"
+    },
+    {
+      "categoryId": "17",
+      "category": "Literature & Fiction"
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "10129",
+      "category": "Contemporary"
+    },
+    {
+      "categoryId": "17",
+      "category": "Literature & Fiction"
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "10132",
+      "category": "Literary"
+    },
+    {
+      "categoryId": "17",
+      "category": "Literature & Fiction"
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "25",
+      "category": "Science Fiction & Fantasy"
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "11065",
+      "category": "Political"
+    },
+    {
+      "categoryId": "11019",
+      "category": "Philosophy"
+    },
+    {
+      "categoryId": "3377866011",
+      "category": "Politics & Social Sciences"
+    },
+    {
+      "categoryId": "1000",
+      "category": "Subjects"
+    },
+    {
+      "categoryId": "283155",
+      "category": "Subjects"
+    }
+  ]
+}

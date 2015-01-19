@@ -3,11 +3,12 @@
 use SellerLabs\NodeMws\NodeMwsClient;
 use \Mockery;
 
-class NodeMwsClientTest extends PHPUnit_Framework_TestCase {
+class NodeMwsClientTest extends \PHPUnit_Framework_TestCase {
 
     protected $clientId;
     protected $clientSecret;
     protected $baseUrl;
+    protected $guzzleClient;
     protected $client;
 
     public function setUp() {
@@ -15,15 +16,27 @@ class NodeMwsClientTest extends PHPUnit_Framework_TestCase {
         $this->clientSecret = 'MySecretKeyIsSoGood';
         $this->baseUrl = 'http://localhost:1337';
 
-        $this->client = new NodeMwsClient($this->clientId, $this->clientSecret, $this->baseUrl);
+        $guzzleMock = Mockery::mock('GuzzleHttp\Client');
+
+        $guzzleMock
+             ->shouldReceive('setDefaultOption')
+             ->withArgs([
+                 'headers/Authorization',
+                 Mockery::type('string')
+             ]);
+
+        $this->guzzleClient = $guzzleMock;
+
+        $this->client = new NodeMwsClient(
+            $this->clientId,
+            $this->clientSecret,
+            $this->baseUrl,
+            $this->guzzleClient
+        );
     }
 
     public function tearDown() {
         Mockery::close();
-    }
-
-    public function testConstruct() {
-        $this->assertInstanceOf('\SellerLabs\NodeMws\NodeMwsClient', $this->client);
     }
 
     public function testGenerateCode() {
@@ -33,12 +46,12 @@ class NodeMwsClientTest extends PHPUnit_Framework_TestCase {
 
     public function testGetAsinCategories() {
         // TODO
-        //$this->client->getAsinCategories('0452011876');
+//        $this->client->getAsinCategories('0452011876');
     }
 
     public function testGetCategoryById()
     {
         // TODO
-        // var_dump($this->client->getCategoryById('10399'));
+//         var_dump($this->client->getCategoryById('10399'));
     }
 }

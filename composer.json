@@ -6,6 +6,9 @@
         "mockery/mockery": "~0.9",
         "nesbot/Carbon": "*"
     },
+    "require-dev" : {
+        "phpunit/phpunit": "*"
+    },
     "license": "MIT",
     "authors": [
         {
