@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws;
+namespace Tests\SellerLabs\NodeMws\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
 use Mockery;
@@ -25,11 +25,11 @@ class OffersResponseTest extends PHPUnit_Framework_TestCase
     /**
      * @var ResponseInterface
      */
-    protected $responseInterfaceMock;
+    protected $responseMock;
 
     public function setUp()
     {
-        $responseInterfaceMock = Mockery::mock(
+        $responseMock = Mockery::mock(
             'GuzzleHttp\Message\ResponseInterface'
         );
 
@@ -37,11 +37,11 @@ class OffersResponseTest extends PHPUnit_Framework_TestCase
             dirname(__FILE__) . '/Resources/OffersResponse.json'
         );
 
-        $responseInterfaceMock->
-        shouldReceive('getBody')
+        $responseMock
+            ->shouldReceive('getBody')
             ->andReturn($this->offersResponse);
 
-        $this->responseInterfaceMock = $responseInterfaceMock;
+        $this->responseMock = $responseMock;
     }
 
     public function tearDown()
@@ -51,7 +51,7 @@ class OffersResponseTest extends PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        $offers = new OffersResponse($this->responseInterfaceMock);
+        $offers = new OffersResponse($this->responseMock);
 
         $results = array_merge(
             $offers->getFbaNewOffers(),

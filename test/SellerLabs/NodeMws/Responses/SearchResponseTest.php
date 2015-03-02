@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws;
+namespace Tests\SellerLabs\NodeMws\Responses;
 
+use GuzzleHttp\Message\ResponseInterface;
 use Mockery;
 use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\Responses\SearchResponse;
@@ -14,12 +15,19 @@ use SellerLabs\NodeMws\Responses\SearchResponse;
  */
 class SearchResponseTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     protected $searchResponse;
-    protected $responseInterfaceMock;
+
+    /**
+     * @var ResponseInterface
+     */
+    protected $responseMock;
 
     public function setUp()
     {
-        $responseInterfaceMock = Mockery::mock(
+        $responseMock = Mockery::mock(
             'GuzzleHttp\Message\ResponseInterface'
         );
 
@@ -27,11 +35,11 @@ class SearchResponseTest extends PHPUnit_Framework_TestCase
             dirname(__FILE__) . '/Resources/SearchResponse.json'
         );
 
-        $responseInterfaceMock->
+        $responseMock->
         shouldReceive('getBody')
             ->andReturn($this->searchResponse);
 
-        $this->responseInterfaceMock = $responseInterfaceMock;
+        $this->responseMock = $responseMock;
     }
 
     public function tearDown()
@@ -41,7 +49,7 @@ class SearchResponseTest extends PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        $search = new SearchResponse($this->responseInterfaceMock);
+        $search = new SearchResponse($this->responseMock);
 
         $this->assertFalse($search->isEmpty());
 

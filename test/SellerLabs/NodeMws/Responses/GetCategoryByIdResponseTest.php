@@ -1,30 +1,56 @@
 <?php
+
+namespace Tests\SellerLabs\NodeMws\Responses;
+
+use GuzzleHttp\Message\ResponseInterface;
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
+use Mockery;
 
+/**
+ * Class GetCategoryByIdResponseTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @package Tests\SellerLabs\NodeMws\Responses
+ */
+class GetCategoryByIdResponseTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @var string
+     */
+    protected $jsonResponse;
 
-class GetCategoryByIdResponseTest extends \PHPUnit_Framework_TestCase {
+    /**
+     * @var ResponseInterface
+     */
+    protected $responseMock;
 
-    protected $getCategoryByIdResponse;
-    protected $responseInterfaceMock;
+    public function setUp ()
+    {
+        $responseMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
 
-    public function setUp () {
-        $responseInterfaceMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
+        $this->jsonResponse = file_get_contents(
+            dirname(__FILE__) . '/Resources/GetCategoryByIdResponse.json'
+        );
 
-        $this->getCategoryByIdResponse = file_get_contents(dirname(__FILE__) . '/Resources/GetCategoryByIdResponse.json');
+        $responseMock
+            ->shouldReceive('getBody')
+            ->andReturn($this->jsonResponse);
 
-        $responseInterfaceMock->
-        shouldReceive('getBody')
-            ->andReturn($this->getCategoryByIdResponse);
-
-        $this->responseInterfaceMock = $responseInterfaceMock;
+        $this->responseMock = $responseMock;
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         Mockery::close();
     }
 
-    public function testConstruct () {
-        $getCategoryById = new GetCategoryByIdResponse($this->responseInterfaceMock);
+    public function testConstruct ()
+    {
+        $getCategoryById = new GetCategoryByIdResponse(
+            $this->responseMock
+        );
 
         $this->assertEquals('10399', $getCategoryById->getCategoryId());
         $this->assertEquals('Classics', $getCategoryById->getCategory());

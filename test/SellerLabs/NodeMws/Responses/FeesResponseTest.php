@@ -1,24 +1,46 @@
 <?php
 
+namespace Tests\SellerLabs\NodeMws\Responses;
+
+use GuzzleHttp\Message\ResponseInterface;
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\Responses\FeesResponse;
 
-class FeesResponseTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class FeesResponseTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @package Tests\SellerLabs\NodeMws\Responses
+ */
+class FeesResponseTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
+    protected $jsonResponse;
 
-    protected $responseInterfaceMock;
-    protected $feesResponse;
+    /**
+     * @var ResponseInterface
+     */
+    protected $responseMock;
 
     public function setUp()
     {
-        $responseInterfaceMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
+        $responseMock = Mockery::mock(
+            'GuzzleHttp\Message\ResponseInterface'
+        );
 
-        $this->feesResponse = file_get_contents(dirname(__FILE__) . '/Resources/FeesResponse.json');
+        $this->jsonResponse = file_get_contents(
+            dirname(__FILE__) . '/Resources/FeesResponse.json'
+        );
 
-        $responseInterfaceMock->
-        shouldReceive('getBody')
-            ->andReturn($this->feesResponse);
+        $responseMock
+            ->shouldReceive('getBody')
+            ->andReturn($this->jsonResponse);
 
-        $this->responseInterfaceMock = $responseInterfaceMock;
+        $this->responseMock = $responseMock;
     }
 
     public function tearDown()
@@ -28,10 +50,16 @@ class FeesResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        $fees = new FeesResponse($this->responseInterfaceMock);
+        $fees = new FeesResponse($this->responseMock);
 
-        $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\FeesSet', $fees->getFbaFees());
-        $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\FeesSet', $fees->getMerchantFees());
+        $this->assertInstanceOf(
+            'SellerLabs\NodeMws\Entities\FeesSet',
+            $fees->getFbaFees()
+        );
+        $this->assertInstanceOf(
+            'SellerLabs\NodeMws\Entities\FeesSet',
+            $fees->getMerchantFees()
+        );
         $this->assertEquals('large-standard', $fees->getSizeTier());
     }
 }

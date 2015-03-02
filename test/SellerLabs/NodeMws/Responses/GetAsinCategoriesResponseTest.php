@@ -1,42 +1,75 @@
 <?php
 
+namespace Tests\SellerLabs\NodeMws\Responses;
+
+use GuzzleHttp\Message\ResponseInterface;
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
-use \Mockery;
+use Mockery;
 
-class GetAsinCategoriesResponseTest extends \PHPUnit_Framework_TestCase {
+/**
+ * Class GetAsinCategoriesResponseTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @package Tests\SellerLabs\NodeMws\Responses
+ */
+class GetAsinCategoriesResponseTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @var string
+     */
+    protected $responseJson;
 
-    protected $getAsinCategoriesResponseJson;
-    protected $responseInterfaceMock;
+    /**
+     * @var ResponseInterface
+     */
+    protected $responseMock;
 
-    public function setUp () {
-        $responseInterfaceMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
+    public function setUp ()
+    {
+        $responseMock = Mockery::mock(
+            'GuzzleHttp\Message\ResponseInterface'
+        );
 
-        $this->getAsinCategoriesResponseJson = file_get_contents(dirname(__FILE__) . '/Resources/GetAsinCategoriesResponse.json');
+        $this->responseJson = file_get_contents(
+            dirname(__FILE__) . '/Resources/GetAsinCategoriesResponse.json'
+        );
 
-        $responseInterfaceMock->
-            shouldReceive('getBody')
-            ->andReturn($this->getAsinCategoriesResponseJson);
+        $responseMock
+            ->shouldReceive('getBody')
+            ->andReturn($this->responseJson);
 
-        $this->responseInterfaceMock = $responseInterfaceMock;
+        $this->responseMock = $responseMock;
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         Mockery::close();
     }
 
-    public function testConstruct() {
-        $getAsinCategories = new GetAsinCategoriesResponse($this->responseInterfaceMock);
+    public function testConstruct()
+    {
+        $getAsinCategories = new GetAsinCategoriesResponse(
+            $this->responseMock
+        );
 
         // Make sure all category mappings are real category mappings
-        foreach( $getAsinCategories->getCategoryMappings() as $categoryMapping) {
-            $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\CategoryMapping', $categoryMapping);
+        $mappings = $getAsinCategories->getCategoryMappings();
+        foreach ($mappings as $categoryMapping) {
+            $this->assertInstanceOf(
+                '\SellerLabs\NodeMws\Entities\CategoryMapping',
+                $categoryMapping
+            );
         }
 
         $this->assertInstanceOf(
             '\SellerLabs\NodeMws\Entities\CategoryMapping',
             $getAsinCategories->getMainCategory()
         );
-
-        $this->assertEquals('Literature & Fiction', $getAsinCategories->getMainCategory()->getCategory());
+        $this->assertEquals(
+            'Literature & Fiction',
+            $getAsinCategories->getMainCategory()->getCategory()
+        );
     }
 }
