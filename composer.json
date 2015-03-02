@@ -1,27 +1,28 @@
 {
-    "name": "sellerlabs/nodemws-client",
-    "description": "PHP NodeMWS client",
-    "require": {
-        "guzzlehttp/guzzle": "4.1.*",
-        "mockery/mockery": "~0.9",
-        "nesbot/Carbon": "*"
+  "name": "sellerlabs/modernmws-php",
+  "description": "PHP client for ModernMWS",
+  "require": {
+    "guzzlehttp/guzzle": "4.1.*",
+    "nesbot/Carbon": "*"
+  },
+  "require-dev": {
+    "mockery/mockery": "~0.9",
+    "phpunit/phpunit": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Eduardo Trujillo",
+      "email": "ed@chromabits.com"
     },
-    "require-dev" : {
-        "phpunit/phpunit": "*"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Eduardo Trujillo",
-            "email": "ed@chromabits.com"
-        },
-        {
-            "name": "Benjamin Kovach"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "SellerLabs\\NodeMws\\": "src/SellerLabs/NodeMws"
-        }
+    {
+      "name": "Benjamin Kovach",
+      "email": "benjamin@sellerlabs.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SellerLabs\\NodeMws\\": "src/SellerLabs/NodeMws"
+    }
+  }
 }
