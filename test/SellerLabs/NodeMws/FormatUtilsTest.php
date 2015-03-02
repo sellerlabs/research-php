@@ -1,9 +1,20 @@
 <?php
 
+namespace Tests\SellerLabs\NodeMws;
+
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\FormatUtils;
 
-class FormatUtilsTest extends PHPUnit_Framework_TestCase {
-    public function testFormatPriceDefault () {
+/**
+ * Class FormatUtilsTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\NodeMws
+ */
+class FormatUtilsTest extends PHPUnit_Framework_TestCase
+{
+    public function testFormatPriceDefault ()
+    {
         $price = 40;
 
         $price = FormatUtils::formatPrice($price);
@@ -11,14 +22,16 @@ class FormatUtilsTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($price, "$40.00");
     }
 
-    public function testFormatPriceSpecial () {
+    public function testFormatPriceSpecial ()
+    {
         $price = 40;
         $price = FormatUtils::formatPrice($price, "^");
 
         $this->assertEquals($price, "^40.00");
     }
 
-    public function testFormatPercentage () {
+    public function testFormatPercentage ()
+    {
         $percent = 0.4;
         $percent = FormatUtils::formatPercentage($percent);
 

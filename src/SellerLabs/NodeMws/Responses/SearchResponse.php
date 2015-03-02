@@ -11,6 +11,8 @@ use stdClass;
 /**
  * Class SearchResponse
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\NodeMws\Responses
  */
 class SearchResponse
@@ -33,6 +35,7 @@ class SearchResponse
      * Construct a search response from a Guzzle client response
      *
      * @param ResponseInterface $response
+     *
      * @throws EmptyResultsException
      * @throws InvalidFormatException
      */
@@ -43,7 +46,9 @@ class SearchResponse
 
         // Check for errors
         if (property_exists($rootResponse, 'Error')) {
-            throw new EmptyResultsException('Got error: ' . $rootResponse->Error);
+            throw new EmptyResultsException(
+                'Got error: ' . $rootResponse->Error
+            );
         }
 
         // Check that the response is valid

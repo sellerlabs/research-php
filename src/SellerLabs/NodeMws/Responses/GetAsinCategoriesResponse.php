@@ -6,15 +6,39 @@ use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\NodeMws\Entities\CategoryMapping;
 use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
 
-class GetAsinCategoriesResponse {
-
+/**
+ * Class GetAsinCategoriesResponse
+ *
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\NodeMws\Responses
+ */
+class GetAsinCategoriesResponse
+{
+    /**
+     * Raw JSON response
+     *
+     * @var mixed
+     */
     protected $jsonResponse;
+
+    /**
+     * Category mappings
+     *
+     * @var CategoryMapping[]
+     */
     protected $categoryMappings;
 
+    /**
+     * Main category
+     *
+     * @var CategoryMapping
+     */
     protected $mainCategory;
 
     /**
-     * Create a GetAsinCategoriesResponse from a raw getAsinCategories response from modernmws
+     * Create a GetAsinCategoriesResponse from a raw getAsinCategories response
+     * from ModernMws
      *
      * @param ResponseInterface $response
      * @throws InvalidFormatException
@@ -41,8 +65,7 @@ class GetAsinCategoriesResponse {
     {
         $this->categoryMappings = [];
 
-        foreach($this->jsonResponse->categoryMappings as $categoryMapping)
-        {
+        foreach ($this->jsonResponse->categoryMappings as $categoryMapping) {
             $mapping = new CategoryMapping($categoryMapping);
 
             // Set the main category for the Asin Categories response
@@ -73,5 +96,4 @@ class GetAsinCategoriesResponse {
     {
         return $this->mainCategory;
     }
-
 }

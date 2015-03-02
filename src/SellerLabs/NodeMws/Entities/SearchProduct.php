@@ -7,6 +7,8 @@ namespace SellerLabs\NodeMws\Entities;
  *
  * Abstraction class to hold products returned from NodeMws search response.
  *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @@author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\NodeMws\Entities
  */
 class SearchProduct
@@ -41,7 +43,6 @@ class SearchProduct
      * @var string
      */
     protected $type;
-
 
     /**
      * Search rank is per-category

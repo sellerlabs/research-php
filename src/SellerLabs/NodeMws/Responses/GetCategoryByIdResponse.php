@@ -5,12 +5,34 @@ namespace SellerLabs\NodeMws\Responses;
 use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\NodeMws\Entities\CategoryMapping;
 
-class GetCategoryByIdResponse {
-
+/**
+ * Class GetCategoryByIdResponse
+ *
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\NodeMws\Responses
+ */
+class GetCategoryByIdResponse
+{
+    /**
+     * Raw JSON response
+     *
+     * @var mixed
+     */
     protected $jsonResponse;
 
+    /**
+     * Category mapping
+     *
+     * @var CategoryMapping
+     */
     protected $categoryMapping;
 
+    /**
+     * Construct an instance of a GetCategoryByIdResponse
+     *
+     * @param \GuzzleHttp\Message\ResponseInterface $response
+     */
     public function __construct(ResponseInterface $response)
     {
         // Parse the JSON into an stdClass object
@@ -21,6 +43,9 @@ class GetCategoryByIdResponse {
         $this->parse();
     }
 
+    /**
+     * Parse JSON response
+     */
     protected function parse()
     {
         $this->categoryMapping = new CategoryMapping($this->jsonResponse);

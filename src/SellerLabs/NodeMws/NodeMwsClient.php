@@ -3,6 +3,7 @@
 namespace SellerLabs\NodeMws;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Url;
 use InvalidArgumentException;
 use SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface;
 use SellerLabs\NodeMws\Responses\FeesResponse;
@@ -14,6 +15,8 @@ use SellerLabs\NodeMws\Responses\SearchResponse;
 /**
  * Class NodeMwsClient
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\NodeMws
  */
 class NodeMwsClient implements NodeMwsClientInterface
@@ -26,21 +29,21 @@ class NodeMwsClient implements NodeMwsClientInterface
     protected $client;
 
     /**
-     * Base URL for nodemws
+     * Base URL for ModernMWS
      *
      * @var string
      */
     protected $endpoint;
 
     /**
-     * Client ID for nodemws
+     * Client ID for ModernMWS
      *
      * @var string
      */
     protected $clientId;
 
     /**
-     * Client secret for nodemws
+     * Client secret for ModernMWS
      *
      * @var string
      */
@@ -54,8 +57,12 @@ class NodeMwsClient implements NodeMwsClientInterface
      * @param string $baseUrl
      * @param null $client
      */
-    public function __construct($clientId = null, $secret = null, $baseUrl = null, $client = null)
-    {
+    public function __construct(
+        $clientId = null,
+        $secret = null,
+        $baseUrl = null,
+        $client = null
+    ) {
 
         date_default_timezone_set('UTC');
 
@@ -78,13 +85,17 @@ class NodeMwsClient implements NodeMwsClientInterface
             ]);
         }
 
-        $this->client->setDefaultOption('headers/Authorization', $this->generateCode());
+        $this->client->setDefaultOption(
+            'headers/Authorization',
+            $this->generateCode()
+        );
     }
 
     /**
      * Generate an authorization code for NodeMWS
      *
      * @param null $timestamp
+     *
      * @return string
      */
     public function generateCode($timestamp = null)
@@ -105,17 +116,19 @@ class NodeMwsClient implements NodeMwsClientInterface
      * Get the current offers for an ASIN from NodeMWS
      *
      * @param string $asin
-     * @return OffersResponse
+     * @param bool $noPaapi
+     *
+     * @return \SellerLabs\NodeMws\Responses\OffersResponse
      */
-    public function getOffers($asin, $nopaapi=false)
+    public function getOffers($asin, $noPaapi = false)
     {
         // The response parser expects the pretty format
-        $format = 'pretty';
-        $url = '/v1/offers/' . $asin . '?format=' . $format;
-        
-        if($nopaapi) {
-            $url .= '&nopaapi=true';
-        }
+        $url = Url::fromString('/v1/offers/' . $asin);
+
+        $url->setQuery([
+            'format' => 'pretty',
+            'nopaapi' => $noPaapi
+        ]);
 
         return new OffersResponse($this->client->get($url));
     }
@@ -125,11 +138,18 @@ class NodeMwsClient implements NodeMwsClientInterface
      *
      * @param $asin
      * @param $price
+     *
      * @return FeesResponse
      */
     public function getFees($asin, $price)
     {
-        return new FeesResponse($this->client->get('/v1/fees/' . $asin . '?price=' . $price));
+        $url = Url::fromString('/v1/fees/' . $asin);
+
+        $url->setQuery([
+            'price' => $price
+        ]);
+
+        return new FeesResponse($this->client->get($url));
     }
 
     /**
@@ -137,15 +157,28 @@ class NodeMwsClient implements NodeMwsClientInterface
      *
      * @param $codeType
      * @param $code
+     *
      * @return SearchResponse
      */
     public function getSearch($codeType, $code)
     {
-        return new SearchResponse(
-            $this->client->get('/v1/search?' . $codeType . '=' . $code . '&format=pretty')
-        );
+        $url = Url::fromString('/v1/search');
+
+        $url->setQuery([
+            $codeType => $code,
+            'format' => 'pretty'
+        ]);
+
+        return new SearchResponse($url);
     }
 
+    /**
+     * Get categories for an ASIN
+     *
+     * @param $asin
+     *
+     * @return \SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse
+     */
     public function getAsinCategories($asin)
     {
         return new GetAsinCategoriesResponse(
@@ -153,6 +186,13 @@ class NodeMwsClient implements NodeMwsClientInterface
         );
     }
 
+    /**
+     * Get a category by ID
+     *
+     * @param $categoryId
+     *
+     * @return \SellerLabs\NodeMws\Responses\GetCategoryByIdResponse
+     */
     public function getCategoryById($categoryId)
     {
         return new GetCategoryByIdResponse(

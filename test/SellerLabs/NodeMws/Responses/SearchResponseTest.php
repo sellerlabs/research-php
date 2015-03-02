@@ -1,17 +1,31 @@
 <?php
 
+namespace Tests\SellerLabs\NodeMws;
+
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 
-class SearchResponseTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class SearchResponseTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\NodeMws
+ */
+class SearchResponseTest extends PHPUnit_Framework_TestCase
 {
     protected $searchResponse;
     protected $responseInterfaceMock;
 
     public function setUp()
     {
-        $responseInterfaceMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
+        $responseInterfaceMock = Mockery::mock(
+            'GuzzleHttp\Message\ResponseInterface'
+        );
 
-        $this->searchResponse = file_get_contents(dirname(__FILE__) . '/Resources/SearchResponse.json');
+        $this->searchResponse = file_get_contents(
+            dirname(__FILE__) . '/Resources/SearchResponse.json'
+        );
 
         $responseInterfaceMock->
         shouldReceive('getBody')
@@ -31,10 +45,16 @@ class SearchResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($search->isEmpty());
 
-        foreach($search->getSearchProducts() as $product) {
-            $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\SearchProduct', $product);
+        foreach ($search->getSearchProducts() as $product) {
+            $this->assertInstanceOf(
+                'SellerLabs\NodeMws\Entities\SearchProduct',
+                $product
+            );
         }
 
-        $this->assertInstanceOf('\SellerLabs\NodeMws\Entities\SearchProduct', $search->first());
+        $this->assertInstanceOf(
+            'SellerLabs\NodeMws\Entities\SearchProduct',
+            $search->first()
+        );
     }
 }

@@ -9,6 +9,7 @@ use SellerLabs\NodeMws\Responses\FeesResponse;
 /**
  * Interface NodeMwsClientInterface
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\NodeMws\Interfaces
  */
 interface NodeMwsClientInterface

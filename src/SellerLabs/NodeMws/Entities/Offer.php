@@ -9,6 +9,8 @@ use stdClass;
  *
  * Represents a single offer returned from a NodeMws offers call
  *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @@author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\NodeMws\Entities
  */
 class Offer

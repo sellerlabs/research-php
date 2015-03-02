@@ -12,6 +12,7 @@ use stdClass;
  *
  * Represents a fees call response from NodeMWS
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\NodeMws\Responses
  */
 class FeesResponse
@@ -37,6 +38,8 @@ class FeesResponse
     protected $fbaFees = null;
 
     /**
+     * Construct an instance of a FeesResponse
+     *
      * @param ResponseInterface $response
      * @throws InvalidFormatException
      */
@@ -76,7 +79,10 @@ class FeesResponse
     protected function parseMerchantFees()
     {
         if (property_exists($this->jsonResponse->data, 'mfnFees')) {
-            $this->merchantFees = new FeesSet($this->jsonResponse->data->mfnFees, FeesSet::TYPE_MFN);
+            $this->merchantFees = new FeesSet(
+                $this->jsonResponse->data->mfnFees,
+                FeesSet::TYPE_MFN
+            );
         }
     }
 
@@ -86,7 +92,10 @@ class FeesResponse
     protected function parseFbaFees()
     {
         if (property_exists($this->jsonResponse->data, 'fbaFees')) {
-            $this->fbaFees = new FeesSet($this->jsonResponse->data->fbaFees, FeesSet::TYPE_FBA);
+            $this->fbaFees = new FeesSet(
+                $this->jsonResponse->data->fbaFees,
+                FeesSet::TYPE_FBA
+            );
         }
     }
 

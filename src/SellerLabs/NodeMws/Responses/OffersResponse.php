@@ -12,6 +12,8 @@ use stdClass;
  *
  * Represents an offers call response from NodeMWS
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\NodeMws\Responses
  */
 class OffersResponse
@@ -135,13 +137,17 @@ class OffersResponse
         }
 
         if (property_exists($this->jsonResponse->offers, 'merchantNew')) {
-            foreach ($this->jsonResponse->offers->merchantNew as $merchantNewOffer) {
+            $merchantNewOffers = $this->jsonResponse->offers->merchantNew;
+
+            foreach ($merchantNewOffers as $merchantNewOffer) {
                 $this->merchantNewOffers[] = new Offer($merchantNewOffer);
             }
         }
 
         if (property_exists($this->jsonResponse->offers, 'merchantUsed')) {
-            foreach ($this->jsonResponse->offers->merchantUsed as $merchantUsedOffer) {
+            $merchantUsedOffers = $this->jsonResponse->offers->merchantUsed;
+
+            foreach ($merchantUsedOffers as $merchantUsedOffer) {
                 $this->merchantUsedOffers[] = new Offer($merchantUsedOffer);
             }
         }

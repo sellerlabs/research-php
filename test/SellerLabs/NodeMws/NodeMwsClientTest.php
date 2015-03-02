@@ -1,17 +1,27 @@
 <?php
 
+namespace Tests\SellerLabs\NodeMws;
+
+use PHPUnit_Framework_TestCase;
 use SellerLabs\NodeMws\NodeMwsClient;
-use \Mockery;
+use Mockery;
 
-class NodeMwsClientTest extends \PHPUnit_Framework_TestCase {
-
+/**
+ * Class NodeMwsClientTest
+ *
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\NodeMws
+ */
+class NodeMwsClientTest extends PHPUnit_Framework_TestCase
+{
     protected $clientId;
     protected $clientSecret;
     protected $baseUrl;
     protected $guzzleClient;
     protected $client;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->clientId = 'BenjaminTest';
         $this->clientSecret = 'MySecretKeyIsSoGood';
         $this->baseUrl = 'http://localhost:1337';
@@ -35,23 +45,29 @@ class NodeMwsClientTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         Mockery::close();
     }
 
-    public function testGenerateCode() {
+    public function testGenerateCode()
+    {
         $code = $this->client->generateCode(1420583425);
-        $this->assertEquals("1420583425|BenjaminTest|a4f22bc411408ba1f29edb6c1c89b7d6", $code);
+        $this->assertEquals(
+            "1420583425|BenjaminTest|a4f22bc411408ba1f29edb6c1c89b7d6",
+            $code
+        );
     }
 
-    public function testGetAsinCategories() {
+    public function testGetAsinCategories()
+    {
         // TODO
-//        $this->client->getAsinCategories('0452011876');
+        // $this->client->getAsinCategories('0452011876');
     }
 
     public function testGetCategoryById()
     {
         // TODO
-//         var_dump($this->client->getCategoryById('10399'));
+        // var_dump($this->client->getCategoryById('10399'));
     }
 }

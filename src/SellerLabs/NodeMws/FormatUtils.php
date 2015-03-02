@@ -7,6 +7,7 @@ namespace SellerLabs\NodeMws;
  *
  * Various format utility functions
  *
+ * @author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\NodeMws
  */
 class FormatUtils
@@ -16,6 +17,7 @@ class FormatUtils
      *
      * @param $number
      * @param string $currency
+     *
      * @return string
      */
     public static function formatPrice($number, $currency = '$')
@@ -27,6 +29,7 @@ class FormatUtils
      * Format a number into a percentage with two decimals
      *
      * @param $number
+     *
      * @return string
      */
     public static function formatPercentage($number)
