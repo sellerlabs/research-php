@@ -24,5 +24,10 @@
     "psr-4": {
       "SellerLabs\\NodeMws\\": "src/SellerLabs/NodeMws"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\SellerLabs\\NodeMws\\": "tests/SellerLabs/NodeMws"
+    }
   }
 }
