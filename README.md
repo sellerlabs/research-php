@@ -1,4 +1,8 @@
-# NodeMWS PHP Client
+# ModernMWS PHP Client
+
+Previously known as NodeMWS client.
+
+This is a PHP client library for SellerLabs' research service
 
 ## Requirements:
 
@@ -6,13 +10,14 @@
 
 ## How to install:
 
-This is a private package so composer dependencies need to be manually added:
+This package is currently not in Packagist, so you need to add dependencies 
+to your `package.json` manually:
 
 ```
 "repositories": [
         {
             "type": "vcs",
-            "url": "git@bitbucket.org:roundsphere/nodemws-client.git"
+            "url": "git@github.com:sellerlabs/modernmws-php.git"
         }
     ],
 "require": {
