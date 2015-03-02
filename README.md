@@ -1,4 +1,4 @@
-# ModernMWS PHP Client
+# ModernMWS PHP Client [Build Status](https://travis-ci.org/sellerlabs/modernmws-php.svg?branch=master)
 
 Previously known as NodeMWS client.
 
