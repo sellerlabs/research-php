@@ -1,0 +1,28 @@
+{
+  "data": {
+    "mfnFees": {
+      "price": 30,
+      "revenue": 30,
+      "azComm": 4.5,
+      "azVar": 0,
+      "feesTotal": 4.5,
+      "netIncome": 25.5,
+      "category": "ToysAndGames"
+    },
+    "fbaFees": {
+      "price": 30,
+      "revenue": 30,
+      "azComm": 4.5,
+      "azVar": 0,
+      "feesTotal": 6.98,
+      "netIncome": 23.02,
+      "category": "ToysAndGames",
+      "fbaWeight": 0.46,
+      "fbaPick": 1.02,
+      "fbaOrder": 1
+    },
+    "sizeTier": "large-standard"
+  },
+  "timestamp": "2015-01-19T16:38:18.586Z",
+  "requestId": "92c2a3a1-9ff9-11e4-a2e5-8b882dc76c0d"
+}

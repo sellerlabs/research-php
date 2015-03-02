@@ -6,6 +6,8 @@ use GuzzleHttp\Client as GuzzleClient;
 use InvalidArgumentException;
 use SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface;
 use SellerLabs\NodeMws\Responses\FeesResponse;
+use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
+use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
 use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 
@@ -49,24 +51,32 @@ class NodeMwsClient implements NodeMwsClientInterface
      *
      * @param string $clientId
      * @param string $secret
-     * @param string $endpoint
+     * @param string $baseUrl
+     * @param null $client
      */
-    public function __construct($clientId = null, $secret = null, $endpoint = null)
+    public function __construct($clientId = null, $secret = null, $baseUrl = null, $client = null)
     {
+
+        date_default_timezone_set('UTC');
+
         // Check that the necessary config is present
-        if (is_null($clientId) || is_null($secret) || is_null($endpoint)) {
+        if (is_null($clientId) || is_null($secret) || is_null($baseUrl)) {
             throw new InvalidArgumentException();
         }
 
         // Copy configuration to internal variables
         $this->clientId = $clientId;
         $this->secret = $secret;
-        $this->endpoint = $endpoint;
+        $this->endpoint = $baseUrl;
 
         // Create a GuzzleClient
-        $this->client = new GuzzleClient([
-            'base_url' => $endpoint
-        ]);
+        if ($client) {
+            $this->client = $client;
+        } else {
+            $this->client = new GuzzleClient([
+                'base_url' => $baseUrl
+            ]);
+        }
 
         $this->client->setDefaultOption('headers/Authorization', $this->generateCode());
     }
@@ -74,11 +84,15 @@ class NodeMwsClient implements NodeMwsClientInterface
     /**
      * Generate an authorization code for NodeMWS
      *
+     * @param null $timestamp
      * @return string
      */
-    public function generateCode()
+    public function generateCode($timestamp = null)
     {
-        $timestamp = time() + 3600 * 3; // Expires in 3 hours
+        if (is_null($timestamp)) {
+            $timestamp = time() + 3600 * 3; // Expires in 3 hours
+        }
+
         $stringToSign = $timestamp . $this->clientId . $this->secret;
         $signature = md5($stringToSign);
 
@@ -129,6 +143,20 @@ class NodeMwsClient implements NodeMwsClientInterface
     {
         return new SearchResponse(
             $this->client->get('/v1/search?' . $codeType . '=' . $code . '&format=pretty')
+        );
+    }
+
+    public function getAsinCategories($asin)
+    {
+        return new GetAsinCategoriesResponse(
+            $this->client->get('/v1/getAsinCategories/' . $asin)
+        );
+    }
+
+    public function getCategoryById($categoryId)
+    {
+        return new GetCategoryByIdResponse(
+            $this->client->get('/v1/getCategoryById/' . $categoryId)
         );
     }
 }

@@ -2,7 +2,12 @@
     "name": "sellerlabs/nodemws-client",
     "description": "PHP NodeMWS client",
     "require": {
-        "guzzlehttp/guzzle": "4.1.*"
+        "guzzlehttp/guzzle": "4.1.*",
+        "mockery/mockery": "~0.9",
+        "nesbot/Carbon": "*"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "*"
     },
     "license": "MIT",
     "authors": [

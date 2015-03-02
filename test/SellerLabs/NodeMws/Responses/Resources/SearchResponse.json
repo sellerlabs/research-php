@@ -1,0 +1,138 @@
+{
+  "searchCatalogs": {
+    "result": [
+      {
+        "catalog": "amazon",
+        "productId": "B000BNCA4K",
+        "title": "Manhattan Toy Winkel Rattle and Sensory Teether Activity Toy",
+        "image": "http://ecx.images-amazon.com/images/I/519tFAlXsJL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 18
+        },
+        "weight": 0.1,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B000YDDF6O",
+        "title": "Baby Einstein Take Along Tunes",
+        "image": "http://ecx.images-amazon.com/images/I/41szCbN2t5L._SL240_.jpg",
+        "type": "Baby Product",
+        "rank": {
+          "ProductCategoryId": "baby_product_display_on_website",
+          "Rank": 3
+        },
+        "weight": 0.23,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B0053X62GK",
+        "title": "VTech Sit-to-Stand Learning Walker (Frustration Free Packaging)",
+        "image": "http://ecx.images-amazon.com/images/I/51TzUlAjlPL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 12
+        },
+        "weight": 6,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B007GE75HY",
+        "title": "Mega Bloks First Builders Big Building Bag, 80-Piece (Classic)",
+        "image": "http://ecx.images-amazon.com/images/I/51BpoEJ3aQL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 13
+        },
+        "weight": 2.95,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B00JYCN84A",
+        "title": "Fisher-Price See 'n Say The Farmer Says Toy",
+        "image": "http://ecx.images-amazon.com/images/I/51%2B-DUFhFmL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 2964
+        },
+        "weight": 0,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B001UF8BL4",
+        "title": "Baby Einstein Bendy Ball",
+        "image": "http://ecx.images-amazon.com/images/I/515Q8PyHFiL._SL240_.jpg",
+        "type": "Baby Product",
+        "rank": {
+          "ProductCategoryId": "baby_product_display_on_website",
+          "Rank": 32
+        },
+        "weight": 0.2,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B007XVYPS2",
+        "title": "VTech Spin and Learn Color Flashlight",
+        "image": "http://ecx.images-amazon.com/images/I/41kKXhPQVoL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 82
+        },
+        "weight": 0.75,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B0002I0O60",
+        "title": "Kyjen PP01056 Hide-A-Squirrel Squeak Toy Dog Toys 4-Piece, Large, Brown",
+        "image": "http://ecx.images-amazon.com/images/I/41FdA4OwqPL._SL240_.jpg",
+        "type": "Pet Products",
+        "rank": {
+          "ProductCategoryId": "pet_products_display_on_website",
+          "Rank": 32
+        },
+        "weight": 0,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B004NCEL4M",
+        "title": "Melissa & Doug Deluxe Pounding Bench",
+        "image": "http://ecx.images-amazon.com/images/I/41SNYnrQ2PL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 132
+        },
+        "weight": 1,
+        "ean": null
+      },
+      {
+        "catalog": "amazon",
+        "productId": "B00CQHYX08",
+        "title": "Fisher-Price Brilliant Basics Rock-a-Stack",
+        "image": "http://ecx.images-amazon.com/images/I/41tx2J7HUNL._SL240_.jpg",
+        "type": "Toy",
+        "rank": {
+          "ProductCategoryId": "toy_display_on_website",
+          "Rank": 5678
+        },
+        "weight": 0,
+        "ean": null
+      }
+    ]
+  },
+  "timestamp": "2015-01-19T16:37:11.849Z",
+  "requestId": "6afb6190-9ff9-11e4-a2e5-8b882dc76c0d"
+}
