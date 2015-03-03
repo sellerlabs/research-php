@@ -1,6 +1,6 @@
-# SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/modernmws-php.svg?branch=master)
+# SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/research-php.svg?branch=master)
 
-Previously known as NodeMWS client.
+Previously known as NodeMWS/ModernMWS client.
 
 This is a PHP client library for SellerLabs' research service
 
@@ -47,7 +47,8 @@ public function register()
 }
 ```
 
-Then inside any of your controllers, you can inject the dependency through the constructor:
+Then inside any of your controllers, you can inject the dependency through the 
+constructor:
 
 ```php
 protected $nodeMwsClient;
@@ -62,4 +63,5 @@ public function getIndex()
 }
 ```
 
-Laravel's container is smart enough to automatically add the parameter for you when initializing your controller's class
+Laravel's container is smart enough to automatically add the parameter for you 
+when initializing your controller's class
