@@ -9,6 +9,9 @@
     "mockery/mockery": "~0.9",
     "phpunit/phpunit": "*"
   },
+  "conflict": {
+    "sellerlabs/nodemws-client": "*"
+  },
   "license": "MIT",
   "authors": [
     {

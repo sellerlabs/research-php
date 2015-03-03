@@ -2,6 +2,8 @@
 
 namespace SellerLabs\NodeMws\Interfaces;
 
+use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
+use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\FeesResponse;
@@ -46,4 +48,22 @@ interface NodeMwsClientInterface
      * @return SearchResponse
      */
     public function getSearch($codeType, $code);
+
+    /**
+     * Get categories for an ASIN
+     *
+     * @param $asin
+     *
+     * @return \SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse
+     */
+    public function getAsinCategories($asin);
+
+    /**
+     * Get a category by ID
+     *
+     * @param $categoryId
+     *
+     * @return \SellerLabs\NodeMws\Responses\GetCategoryByIdResponse
+     */
+    public function getCategoryById($categoryId);
 }
