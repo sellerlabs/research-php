@@ -169,7 +169,9 @@ class NodeMwsClient implements NodeMwsClientInterface
             'format' => 'pretty'
         ]);
 
-        return new SearchResponse($url);
+        return new SearchResponse(
+            $this->client->get($url)
+        );
     }
 
     /**
