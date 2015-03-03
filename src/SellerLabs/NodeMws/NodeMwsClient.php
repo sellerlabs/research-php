@@ -125,10 +125,15 @@ class NodeMwsClient implements NodeMwsClientInterface
         // The response parser expects the pretty format
         $url = Url::fromString('/v1/offers/' . $asin);
 
-        $url->setQuery([
-            'format' => 'pretty',
-            'nopaapi' => $noPaapi
-        ]);
+        $query = [
+            'format' => 'pretty'
+        ];
+
+        if ($noPaapi) {
+            $query['nopaapi'] = true;
+        }
+
+        $url->setQuery($query);
 
         return new OffersResponse($this->client->get($url));
     }
@@ -169,9 +174,7 @@ class NodeMwsClient implements NodeMwsClientInterface
             'format' => 'pretty'
         ]);
 
-        return new SearchResponse(
-            $this->client->get($url)
-        );
+        return new SearchResponse($this->client->get($url));
     }
 
     /**
