@@ -1,4 +1,4 @@
-# ModernMWS PHP Client ![Build Status](https://travis-ci.org/sellerlabs/modernmws-php.svg?branch=master)
+# SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/modernmws-php.svg?branch=master)
 
 Previously known as NodeMWS client.
 
