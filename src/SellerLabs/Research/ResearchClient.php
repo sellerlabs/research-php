@@ -1,6 +1,6 @@
 <?php
 
-namespace SellerLabs\NodeMws;
+namespace SellerLabs\Research;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Url;
@@ -13,13 +13,13 @@ use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 
 /**
- * Class NodeMwsClient
+ * Class ResearchClient
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\NodeMws
  */
-class NodeMwsClient implements NodeMwsClientInterface
+class ResearchClient implements NodeMwsClientInterface
 {
     /**
      * HTTP Client

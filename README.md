@@ -1,8 +1,7 @@
 # SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/research-php.svg?branch=master)
 
-Previously known as NodeMWS/ModernMWS client.
-
 This is a PHP client library for SellerLabs' research service
+(Previously known as NodeMWS/ModernMWS client).
 
 ## Requirements:
 
@@ -11,7 +10,8 @@ This is a PHP client library for SellerLabs' research service
 
 ## Documentation
 
-- The API docs are available at: https://docs.sellerlabs.com/research/
+- API documentation for the Research Service is available at: 
+https://docs.sellerlabs.com/research/
 
 ## How to install:
 

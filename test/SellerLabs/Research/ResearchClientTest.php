@@ -2,17 +2,17 @@
 
 namespace Tests\SellerLabs\NodeMws;
 
-use PHPUnit_Framework_TestCase;
-use SellerLabs\NodeMws\NodeMwsClient;
 use Mockery;
+use PHPUnit_Framework_TestCase;
+use SellerLabs\Research\ResearchClient;
 
 /**
- * Class NodeMwsClientTest
+ * Class ResearchClientTest
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package Tests\SellerLabs\NodeMws
  */
-class NodeMwsClientTest extends PHPUnit_Framework_TestCase
+class ResearchClientTest extends PHPUnit_Framework_TestCase
 {
     protected $clientId;
     protected $clientSecret;
@@ -37,7 +37,7 @@ class NodeMwsClientTest extends PHPUnit_Framework_TestCase
 
         $this->guzzleClient = $guzzleMock;
 
-        $this->client = new NodeMwsClient(
+        $this->client = new ResearchClient(
             $this->clientId,
             $this->clientSecret,
             $this->baseUrl,
