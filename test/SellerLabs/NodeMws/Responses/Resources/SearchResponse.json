@@ -20,10 +20,7 @@
         "title": "Baby Einstein Take Along Tunes",
         "image": "http://ecx.images-amazon.com/images/I/41szCbN2t5L._SL240_.jpg",
         "type": "Baby Product",
-        "rank": {
-          "ProductCategoryId": "baby_product_display_on_website",
-          "Rank": 3
-        },
+        "rank": {},
         "weight": 0.23,
         "ean": null
       },

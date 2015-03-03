@@ -3,7 +3,7 @@
 namespace Tests\SellerLabs\NodeMws;
 
 use PHPUnit_Framework_TestCase;
-use SellerLabs\NodeMws\FormatUtils;
+use SellerLabs\Research\FormatUtils;
 
 /**
  * Class FormatUtilsTest
@@ -25,7 +25,7 @@ class FormatUtilsTest extends PHPUnit_Framework_TestCase
     public function testFormatPriceSpecial ()
     {
         $price = 40;
-        $price = FormatUtils::formatPrice($price, "^");
+        $price = \SellerLabs\Research\FormatUtils::formatPrice($price, "^");
 
         $this->assertEquals($price, "^40.00");
     }

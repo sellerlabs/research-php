@@ -1,6 +1,6 @@
 <?php
 
-namespace SellerLabs\NodeMws;
+namespace SellerLabs\Research;
 
 /**
  * Class FormatUtils
@@ -12,6 +12,8 @@ namespace SellerLabs\NodeMws;
  */
 class FormatUtils
 {
+    const CURRENCY_USD = '$';
+
     /**
      * Format a price to two decimals
      *
@@ -20,7 +22,7 @@ class FormatUtils
      *
      * @return string
      */
-    public static function formatPrice($number, $currency = '$')
+    public static function formatPrice($number, $currency = self::CURRENCY_USD)
     {
         return $currency . number_format($number, 2);
     }

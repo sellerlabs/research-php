@@ -64,5 +64,11 @@ class SearchResponseTest extends PHPUnit_Framework_TestCase
             'SellerLabs\NodeMws\Entities\SearchProduct',
             $search->first()
         );
+
+        // Check that empty rank data is properly handled
+        $second = $search->getSearchProducts()[1];
+
+        $this->assertNull($second->getRank());
+        $this->assertNull($second->getCategory());
     }
 }

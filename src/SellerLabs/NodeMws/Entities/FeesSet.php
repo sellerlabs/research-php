@@ -4,7 +4,7 @@ namespace SellerLabs\NodeMws\Entities;
 
 use Exception;
 use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
-use SellerLabs\NodeMws\FormatUtils;
+use SellerLabs\Research\FormatUtils;
 use stdClass;
 
 /**

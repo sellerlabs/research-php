@@ -78,8 +78,15 @@ class SearchProduct
 
         // Rankings can be empty
         if (!empty($jsonProduct->rank)) {
-            $this->rank = intVal($jsonProduct->rank->Rank);
-            $this->category = $jsonProduct->rank->ProductCategoryId;
+            $this->rank = null;
+            if (property_exists($jsonProduct, 'Rank')) {
+                $this->rank = intVal($jsonProduct->rank->Rank);
+            }
+
+            $this->category = null;
+            if (property_exists($jsonProduct, 'ProductCategoryId')) {
+                $this->category = $jsonProduct->rank->ProductCategoryId;
+            }
         }
     }
 
