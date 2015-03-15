@@ -35,15 +35,16 @@ First you need to configure the client inside your app service provider:
 ```php
 public function register()
 {
-	$this->app->bind(
-	    'SellerLabs\Research\Interfaces\ResearchClientInterface',
-	    function () {
+    $this->app->bind(
+        'SellerLabs\Research\Interfaces\ResearchClientInterface',
+        function () {
             return new ResearchClient(
-            	'YourClientId',
-            	'YourClientSecret',
-            	'http://research.api.sellerlabs.com'
-        );
-    });
+                'YourClientId',
+                'YourClientSecret',
+                'http://research.api.sellerlabs.com'
+            );
+        }
+    );
 }
 ```
 
