@@ -80,6 +80,7 @@ class OffersResponse
      * Construct an offer response from a Guzzle client response
      *
      * @param ResponseInterface $response
+     *
      * @throws InvalidFormatException
      */
     public function __construct(ResponseInterface $response)
@@ -241,6 +242,7 @@ class OffersResponse
      * Check whether there is an extra defined with the specified key
      *
      * @param $key
+     *
      * @return bool
      */
     public function hasExtra($key)
@@ -252,6 +254,7 @@ class OffersResponse
      * Get a single extra
      *
      * @param $key
+     *
      * @return mixed
      */
     public function getExtra($key)

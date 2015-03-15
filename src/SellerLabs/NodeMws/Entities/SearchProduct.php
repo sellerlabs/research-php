@@ -20,6 +20,7 @@ class SearchProduct
 
     /**
      * productId
+     *
      * @var string
      */
     protected $asin;
@@ -54,7 +55,7 @@ class SearchProduct
     /**
      * @var string
      */
-    protected $category;
+    protected $categoryId;
 
     /**
      * @var string
@@ -79,13 +80,13 @@ class SearchProduct
         // Rankings can be empty
         if (!empty($jsonProduct->rank)) {
             $this->rank = null;
-            if (property_exists($jsonProduct, 'Rank')) {
+            if (property_exists($jsonProduct->rank, 'Rank')) {
                 $this->rank = intVal($jsonProduct->rank->Rank);
             }
 
-            $this->category = null;
-            if (property_exists($jsonProduct, 'ProductCategoryId')) {
-                $this->category = $jsonProduct->rank->ProductCategoryId;
+            $this->categoryId = null;
+            if (property_exists($jsonProduct->rank, 'ProductCategoryId')) {
+                $this->categoryId = $jsonProduct->rank->ProductCategoryId;
             }
         }
     }
@@ -131,11 +132,22 @@ class SearchProduct
     }
 
     /**
+     * @deprecated
      * @return string
      */
     public function getCategory()
     {
-        return $this->category;
+        return $this->categoryId;
+    }
+
+    /**
+     * Get the Id of the main category of this product
+     *
+     * @return string
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
     }
 
     /**

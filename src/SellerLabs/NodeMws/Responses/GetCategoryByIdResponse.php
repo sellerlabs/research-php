@@ -52,16 +52,6 @@ class GetCategoryByIdResponse
     }
 
     /**
-     * Get the category mapping returned
-     *
-     * @return mixed
-     */
-    public function getCategoryMapping()
-    {
-        return $this->categoryMapping;
-    }
-
-    /**
      * Get the category id associated with this response
      *
      * @return mixed
@@ -69,6 +59,16 @@ class GetCategoryByIdResponse
     public function getCategoryId()
     {
         return $this->getCategoryMapping()->getCategoryId();
+    }
+
+    /**
+     * Get the category mapping returned
+     *
+     * @return mixed
+     */
+    public function getCategoryMapping()
+    {
+        return $this->categoryMapping;
     }
 
     /**

@@ -11,46 +11,50 @@ use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
 use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
 use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
+use SellerLabs\Research\Interfaces\ResearchClientInterface;
 
 /**
  * Class ResearchClient
+ *
+ * An implementation of a client capable of querying the SellerLabs Research
+ * API
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\NodeMws
  */
-class ResearchClient implements NodeMwsClientInterface
+class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
 {
     /**
-     * HTTP Client
+     * Internal HTTP Client
      *
      * @var \GuzzleHttp\Client
      */
     protected $client;
 
     /**
-     * Base URL for ModernMWS
+     * Endpoint (Base URL) where the research API is available
      *
      * @var string
      */
     protected $endpoint;
 
     /**
-     * Client ID for ModernMWS
+     * Client ID for API authentication
      *
      * @var string
      */
     protected $clientId;
 
     /**
-     * Client secret for ModernMWS
+     * Client secret for API authentication
      *
      * @var string
      */
     protected $secret;
 
     /**
-     * Constructor
+     * Construct an instance of a ResearchClient
      *
      * @param string $clientId
      * @param string $secret
@@ -63,9 +67,6 @@ class ResearchClient implements NodeMwsClientInterface
         $baseUrl = null,
         $client = null
     ) {
-
-        date_default_timezone_set('UTC');
-
         // Check that the necessary config is present
         if (is_null($clientId) || is_null($secret) || is_null($baseUrl)) {
             throw new InvalidArgumentException();

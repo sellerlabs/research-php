@@ -96,29 +96,29 @@ class FeesSet
         // Set the fees type
         $this->setType($type);
 
-        $this->price = (double) $parsedJsonFees->price;
+        $this->price = (double)$parsedJsonFees->price;
 
-        $this->revenue = (double) $parsedJsonFees->revenue;
+        $this->revenue = (double)$parsedJsonFees->revenue;
 
-        $this->amazonCommission = (double) $parsedJsonFees->azComm;
+        $this->amazonCommission = (double)$parsedJsonFees->azComm;
 
-        $this->amazonVar = (double) $parsedJsonFees->azVar;
+        $this->amazonVar = (double)$parsedJsonFees->azVar;
 
         if (property_exists($parsedJsonFees, 'fbaWeight')) {
-            $this->fbaWeight = (double) $parsedJsonFees->fbaWeight;
+            $this->fbaWeight = (double)$parsedJsonFees->fbaWeight;
         }
 
         if (property_exists($parsedJsonFees, 'fbaPick')) {
-            $this->fbaPick = (double) $parsedJsonFees->fbaPick;
+            $this->fbaPick = (double)$parsedJsonFees->fbaPick;
         }
 
         if (property_exists($parsedJsonFees, 'fbaOrder')) {
-            $this->fbaOrder = (double) $parsedJsonFees->fbaOrder;
+            $this->fbaOrder = (double)$parsedJsonFees->fbaOrder;
         }
 
-        $this->feesTotal = (double) $parsedJsonFees->feesTotal;
+        $this->feesTotal = (double)$parsedJsonFees->feesTotal;
 
-        $this->netIncome = (double) $parsedJsonFees->netIncome;
+        $this->netIncome = (double)$parsedJsonFees->netIncome;
 
         $this->category = $parsedJsonFees->category;
     }

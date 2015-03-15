@@ -41,6 +41,7 @@ class FeesResponse
      * Construct an instance of a FeesResponse
      *
      * @param ResponseInterface $response
+     *
      * @throws InvalidFormatException
      */
     public function __construct(ResponseInterface $response)

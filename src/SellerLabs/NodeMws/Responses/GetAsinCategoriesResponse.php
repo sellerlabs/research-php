@@ -41,6 +41,7 @@ class GetAsinCategoriesResponse
      * from ModernMws
      *
      * @param ResponseInterface $response
+     *
      * @throws InvalidFormatException
      */
     public function __construct(ResponseInterface $response)

@@ -1,21 +1,25 @@
 <?php
 
-namespace SellerLabs\NodeMws\Interfaces;
+namespace SellerLabs\Research\Interfaces;
 
 use SellerLabs\NodeMws\Responses\FeesResponse;
-use SellerLabs\NodeMws\Responses\OffersResponse;
 use SellerLabs\NodeMws\Responses\SearchResponse;
 
 /**
- * Interface NodeMwsClientInterface
+ * Interface ResearchClientInterface
+ *
+ * Represents an object capable of querying SellerLabs' Research API
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package SellerLabs\NodeMws\Interfaces
+ * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Interfaces
  */
-interface NodeMwsClientInterface
+interface ResearchClientInterface
 {
     /**
      * Generate an authorization code for NodeMWS
+     *
+     * @param null|int $timestamp
      *
      * @return string
      */
@@ -25,10 +29,11 @@ interface NodeMwsClientInterface
      * Get the current offers for an ASIN from NodeMWS
      *
      * @param string $asin
+     * @param bool $noPaapi
      *
-     * @return OffersResponse
+     * @return \SellerLabs\NodeMws\Responses\OffersResponse
      */
-    public function getOffers($asin);
+    public function getOffers($asin, $noPaapi = false);
 
     /**
      * Call the fees endpoint of NodeMWS and return the response
