@@ -1,6 +1,7 @@
 {
   "name": "sellerlabs/research-php",
   "description": "PHP client for SellerLabs' Research API",
+  "version": "0.0.11",
   "require": {
     "guzzlehttp/guzzle": "4.1.*",
     "nesbot/Carbon": "*"
