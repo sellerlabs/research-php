@@ -3,12 +3,12 @@
   "description": "PHP client for SellerLabs' Research API",
   "require": {
     "guzzlehttp/guzzle": "4.1.*",
-    "sami/sami": "~3.0",
     "nesbot/carbon": "^1.19"
   },
   "require-dev": {
     "mockery/mockery": "~0.9",
-    "phpunit/phpunit": "^4.7"
+    "phpunit/phpunit": "^4.7",
+    "sami/sami": "~3.0"
   },
   "conflict": {
     "sellerlabs/modernmws-php": "*",
