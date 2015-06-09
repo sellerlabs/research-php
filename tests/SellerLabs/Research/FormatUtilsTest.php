@@ -9,7 +9,7 @@ use Tests\SellerLabs\Support\TestCase;
  * Class FormatUtilsTest
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package Tests\SellerLabs\NodeMws
+ * @package Tests\SellerLabs\Research
  */
 class FormatUtilsTest extends TestCase
 {

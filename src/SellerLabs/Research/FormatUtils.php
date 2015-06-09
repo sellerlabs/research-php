@@ -8,7 +8,7 @@ namespace SellerLabs\Research;
  * Various format utility functions
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package SellerLabs\NodeMws
+ * @package SellerLabs\Research
  */
 class FormatUtils
 {

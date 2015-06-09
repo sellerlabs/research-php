@@ -2,8 +2,8 @@
 
 namespace SellerLabs\Research\Interfaces;
 
-use SellerLabs\NodeMws\Responses\FeesResponse;
-use SellerLabs\NodeMws\Responses\SearchResponse;
+use SellerLabs\Research\Responses\FeesResponse;
+use SellerLabs\Research\Responses\SearchResponse;
 
 /**
  * Interface ResearchClientInterface
@@ -31,7 +31,7 @@ interface ResearchClientInterface
      * @param string $asin
      * @param bool $noPaapi
      *
-     * @return \SellerLabs\NodeMws\Responses\OffersResponse
+     * @return \SellerLabs\Research\Responses\OffersResponse
      */
     public function getOffers($asin, $noPaapi = false);
 
@@ -60,7 +60,7 @@ interface ResearchClientInterface
      *
      * @param $asin
      *
-     * @return \SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse
+     * @return \SellerLabs\Research\Responses\GetAsinCategoriesResponse
      */
     public function getAsinCategories($asin);
 
@@ -69,7 +69,7 @@ interface ResearchClientInterface
      *
      * @param $categoryId
      *
-     * @return \SellerLabs\NodeMws\Responses\GetCategoryByIdResponse
+     * @return \SellerLabs\Research\Responses\GetCategoryByIdResponse
      */
     public function getCategoryById($categoryId);
 }

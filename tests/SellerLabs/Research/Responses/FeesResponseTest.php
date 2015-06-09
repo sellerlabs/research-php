@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws\Responses;
+namespace Tests\SellerLabs\Research\Responses;
 
 use Mockery;
-use SellerLabs\NodeMws\Responses\FeesResponse;
+use SellerLabs\Research\Responses\FeesResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -12,7 +12,7 @@ use Tests\SellerLabs\Support\TestCase;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package Tests\SellerLabs\NodeMws\Responses
+ * @package Tests\SellerLabs\Research\Responses
  */
 class FeesResponseTest extends TestCase
 {
@@ -25,18 +25,18 @@ class FeesResponseTest extends TestCase
         ));
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Entities\FeesSet',
+            'SellerLabs\Research\Entities\FeesSet',
             $fees->getFbaFees()
         );
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Entities\FeesSet',
+            'SellerLabs\Research\Entities\FeesSet',
             $fees->getMerchantFees()
         );
         $this->assertEquals('large-standard', $fees->getSizeTier());
     }
 
     /**
-     * @expectedException \SellerLabs\NodeMws\Exceptions\InvalidFormatException
+     * @expectedException \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function testConstructorWithInvalid()
     {

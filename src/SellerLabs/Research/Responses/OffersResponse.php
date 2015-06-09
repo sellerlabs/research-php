@@ -1,10 +1,10 @@
 <?php
 
-namespace SellerLabs\NodeMws\Responses;
+namespace SellerLabs\Research\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
-use SellerLabs\NodeMws\Entities\Offer;
-use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Entities\Offer;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
 use stdClass;
 
 /**
@@ -14,7 +14,7 @@ use stdClass;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Responses
+ * @package SellerLabs\Research\Responses
  */
 class OffersResponse
 {
@@ -35,21 +35,21 @@ class OffersResponse
     /**
      * New FBA offers
      *
-     * @var Offer[]
+     * @var \SellerLabs\Research\Entities\Offer[]
      */
     protected $fbaNewOffers = [];
 
     /**
      * Used merchant offers
      *
-     * @var Offer[]
+     * @var \SellerLabs\Research\Entities\Offer[]
      */
     protected $merchantUsedOffers = [];
 
     /**
      * New merchant offers
      *
-     * @var Offer[]
+     * @var \SellerLabs\Research\Entities\Offer[]
      */
     protected $merchantNewOffers = [];
 
@@ -167,7 +167,7 @@ class OffersResponse
     /**
      * Get new FBA offers
      *
-     * @return Offer[]
+     * @return \SellerLabs\Research\Entities\Offer[]
      */
     public function getFbaNewOffers()
     {
@@ -177,7 +177,7 @@ class OffersResponse
     /**
      * Get used FBA offers
      *
-     * @return Offer[]
+     * @return \SellerLabs\Research\Entities\Offer[]
      */
     public function getFbaUsedOffers()
     {
@@ -187,7 +187,7 @@ class OffersResponse
     /**
      * Get new merchant offers
      *
-     * @return Offer[]
+     * @return \SellerLabs\Research\Entities\Offer[]
      */
     public function getMerchantNewOffers()
     {
@@ -197,7 +197,7 @@ class OffersResponse
     /**
      * Get used merchant offers
      *
-     * @return Offer[]
+     * @return \SellerLabs\Research\Entities\Offer[]
      */
     public function getMerchantUsedOffers()
     {

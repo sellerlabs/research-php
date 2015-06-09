@@ -1,10 +1,10 @@
 <?php
 
-namespace SellerLabs\NodeMws\Responses;
+namespace SellerLabs\Research\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
-use SellerLabs\NodeMws\Entities\FeesSet;
-use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Entities\FeesSet;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
 use stdClass;
 
 /**
@@ -13,7 +13,7 @@ use stdClass;
  * Represents a fees call response from NodeMWS
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package SellerLabs\NodeMws\Responses
+ * @package SellerLabs\Research\Responses
  */
 class FeesResponse
 {
@@ -42,7 +42,7 @@ class FeesResponse
      *
      * @param ResponseInterface $response
      *
-     * @throws InvalidFormatException
+     * @throws \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function __construct(ResponseInterface $response)
     {

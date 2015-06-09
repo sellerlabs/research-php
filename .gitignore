@@ -1,6 +1,5 @@
 # Ignore common folders
 .idea
-composer.lock
 vendor
 atlassian-ide-plugin.xml
 .phpcomplete_extended

@@ -1,11 +1,11 @@
 <?php
 
-namespace SellerLabs\NodeMws\Responses;
+namespace SellerLabs\Research\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
-use SellerLabs\NodeMws\Entities\SearchProduct;
-use SellerLabs\NodeMws\Exceptions\EmptyResultsException;
-use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Entities\SearchProduct;
+use SellerLabs\Research\Exceptions\EmptyResultsException;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
 use stdClass;
 
 /**
@@ -13,7 +13,7 @@ use stdClass;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Responses
+ * @package SellerLabs\Research\Responses
  */
 class SearchResponse
 {
@@ -27,7 +27,7 @@ class SearchResponse
     /**
      * Hold each product returned from the search
      *
-     * @var SearchProduct[]
+     * @var \SellerLabs\Research\Entities\SearchProduct[]
      */
     protected $searchProducts;
 
@@ -36,8 +36,8 @@ class SearchResponse
      *
      * @param ResponseInterface $response
      *
-     * @throws EmptyResultsException
-     * @throws InvalidFormatException
+     * @throws \SellerLabs\Research\Exceptions\EmptyResultsException
+     * @throws \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function __construct(ResponseInterface $response)
     {
@@ -89,7 +89,7 @@ class SearchResponse
     /**
      * Return the first product returned from a search query.
      *
-     * @return SearchProduct
+     * @return \SellerLabs\Research\Entities\SearchProduct
      */
     public function first()
     {

@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws\Responses;
+namespace Tests\SellerLabs\Research\Responses;
 
 use Mockery;
-use SellerLabs\NodeMws\Responses\OffersResponse;
+use SellerLabs\Research\Entities\Offer;
+use SellerLabs\Research\Responses\OffersResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -11,14 +12,14 @@ use Tests\SellerLabs\Support\TestCase;
  * Class OffersResponseTest
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package Tests\SellerLabs\NodeMws
+ * @package Tests\SellerLabs\Research
  */
 class OffersResponseTest extends TestCase
 {
     use MockResponsesTrait;
 
     /**
-     * @expectedException \SellerLabs\NodeMws\Exceptions\InvalidFormatException
+     * @expectedException \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function testConstructorWithInvalid()
     {
@@ -41,10 +42,7 @@ class OffersResponseTest extends TestCase
         );
 
         foreach ($results as $offer) {
-            $this->assertInstanceOf(
-                '\SellerLabs\NodeMws\Entities\Offer',
-                $offer
-            );
+            $this->assertInstanceOf(Offer::class, $offer);
         }
 
         $this->assertEquals('B0097BEE9Q', $offers->getProductIdCode());

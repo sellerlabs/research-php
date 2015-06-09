@@ -1,6 +1,6 @@
 <?php
 
-namespace SellerLabs\NodeMws\Exceptions;
+namespace SellerLabs\Research\Exceptions;
 
 use Exception;
 
@@ -11,7 +11,7 @@ use Exception;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @@author Eduardo Trujillo <ed@chromabits.com>
- * @package SellerLabs\NodeMws\Exceptions
+ * @package SellerLabs\Research\Exceptions
  */
 class EmptyResultsException extends Exception
 {

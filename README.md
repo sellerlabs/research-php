@@ -14,6 +14,17 @@ This is a PHP client library for SellerLabs' research service
 https://docs.sellerlabs.com/research/
 - Documentation for the library is available under `docs/api` in this repo
 
+## Latest changes:
+
+### v0.1.0:
+- Moved remaining classes to the Research namespace. This introduces a BC for
+code explicitly depending on this classes.
+- The `NodeMwsClientInterface`, which was deprecated, has now been completely
+removed. Use `ResearchClientInterface` instead.
+- Some small bugs in unit tests were fixed.
+- Composer dependencies have been cleaned up and stabilized. A `composer.lock`
+file is now included as well.
+
 ## How to install:
 
 First, add the package to your `composer.json`:

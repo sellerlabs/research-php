@@ -13,7 +13,7 @@ use Tests\SellerLabs\Support\TestCase;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package Tests\SellerLabs\NodeMws
+ * @package Tests\SellerLabs\Research
  */
 class ResearchClientTest extends TestCase
 {
@@ -23,6 +23,10 @@ class ResearchClientTest extends TestCase
     protected $clientSecret;
     protected $baseUrl;
     protected $guzzleClient;
+
+    /**
+     * @var ResearchClient
+     */
     protected $client;
 
     public function setUp()
@@ -91,8 +95,8 @@ class ResearchClientTest extends TestCase
             }))
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/OffersResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/OffersResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -105,7 +109,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getOffers('0452011876');
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\OffersResponse',
+            'SellerLabs\Research\Responses\OffersResponse',
             $result
         );
     }
@@ -122,8 +126,8 @@ class ResearchClientTest extends TestCase
             }))
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/OffersResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/OffersResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -136,7 +140,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getOffers('0452011876', true);
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\OffersResponse',
+            'SellerLabs\Research\Responses\OffersResponse',
             $result
         );
     }
@@ -153,8 +157,8 @@ class ResearchClientTest extends TestCase
             }))
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/SearchResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/SearchResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -167,7 +171,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getSearch('asin', '0452011876');
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\SearchResponse',
+            'SellerLabs\Research\Responses\SearchResponse',
             $result
         );
     }
@@ -183,8 +187,8 @@ class ResearchClientTest extends TestCase
             }))
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/FeesResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/FeesResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -197,7 +201,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getFees('0452011876', 9.0);
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\FeesResponse',
+            'SellerLabs\Research\Responses\FeesResponse',
             $result
         );
     }
@@ -209,8 +213,8 @@ class ResearchClientTest extends TestCase
             ->with('/v1/getAsinCategories/0452011876')
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/GetAsinCategoriesResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/GetAsinCategoriesResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -223,7 +227,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getAsinCategories('0452011876');
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse',
+            'SellerLabs\Research\Responses\GetAsinCategoriesResponse',
             $result
         );
     }
@@ -235,8 +239,8 @@ class ResearchClientTest extends TestCase
             ->with('/v1/getCategoryById/10399')
             ->once()
             ->andReturn($this->makeResponse(
-                dirname(__FILE__) . '/../NodeMws' .
-                '/Responses/Resources/GetAsinCategoriesResponse.json'
+                dirname(__FILE__)
+                . '/Responses/Resources/GetAsinCategoriesResponse.json'
             ));
 
         $client = new ResearchClient(
@@ -249,7 +253,7 @@ class ResearchClientTest extends TestCase
         $result = $client->getCategoryById('10399');
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Responses\GetCategoryByIdResponse',
+            'SellerLabs\Research\Responses\GetCategoryByIdResponse',
             $result
         );
     }

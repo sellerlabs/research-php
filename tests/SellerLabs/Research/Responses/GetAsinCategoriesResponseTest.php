@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws\Responses;
+namespace Tests\SellerLabs\Research\Responses;
 
 use Mockery;
-use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
+use SellerLabs\Research\Entities\CategoryMapping;
+use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -12,7 +13,7 @@ use Tests\SellerLabs\Support\TestCase;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package Tests\SellerLabs\NodeMws\Responses
+ * @package Tests\SellerLabs\Research\Responses
  */
 class GetAsinCategoriesResponseTest extends TestCase
 {
@@ -29,14 +30,11 @@ class GetAsinCategoriesResponseTest extends TestCase
         // Make sure all category mappings are real category mappings
         $mappings = $getAsinCategories->getCategoryMappings();
         foreach ($mappings as $categoryMapping) {
-            $this->assertInstanceOf(
-                '\SellerLabs\NodeMws\Entities\CategoryMapping',
-                $categoryMapping
-            );
+            $this->assertInstanceOf(CategoryMapping::class, $categoryMapping);
         }
 
         $this->assertInstanceOf(
-            '\SellerLabs\NodeMws\Entities\CategoryMapping',
+            CategoryMapping::class,
             $getAsinCategories->getMainCategory()
         );
         $this->assertEquals(
@@ -46,7 +44,7 @@ class GetAsinCategoriesResponseTest extends TestCase
     }
 
     /**
-     * @expectedException \SellerLabs\NodeMws\Exceptions\InvalidFormatException
+     * @expectedException \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function testConstructorWithInvalid()
     {

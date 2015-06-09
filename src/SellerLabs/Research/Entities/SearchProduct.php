@@ -1,6 +1,6 @@
 <?php
 
-namespace SellerLabs\NodeMws\Entities;
+namespace SellerLabs\Research\Entities;
 
 /**
  * Class SearchProduct
@@ -9,7 +9,7 @@ namespace SellerLabs\NodeMws\Entities;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @@author Eduardo Trujillo <ed@chromabits.com>
- * @package SellerLabs\NodeMws\Entities
+ * @package SellerLabs\Research\Entities
  */
 class SearchProduct
 {

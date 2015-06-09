@@ -1,17 +1,17 @@
 <?php
 
-namespace SellerLabs\NodeMws\Responses;
+namespace SellerLabs\Research\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
-use SellerLabs\NodeMws\Entities\CategoryMapping;
-use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Entities\CategoryMapping;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
 
 /**
  * Class GetAsinCategoriesResponse
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Responses
+ * @package SellerLabs\Research\Responses
  */
 class GetAsinCategoriesResponse
 {
@@ -25,7 +25,7 @@ class GetAsinCategoriesResponse
     /**
      * Category mappings
      *
-     * @var CategoryMapping[]
+     * @var \SellerLabs\Research\Entities\CategoryMapping[]
      */
     protected $categoryMappings;
 

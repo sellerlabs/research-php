@@ -1,9 +1,9 @@
 <?php
 
-namespace SellerLabs\NodeMws\Entities;
+namespace SellerLabs\Research\Entities;
 
 use Exception;
-use SellerLabs\NodeMws\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
 use SellerLabs\Research\FormatUtils;
 use stdClass;
 
@@ -14,7 +14,7 @@ use stdClass;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Entities
+ * @package SellerLabs\Research\Entities
  */
 class FeesSet
 {

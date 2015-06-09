@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws\Responses;
+namespace Tests\SellerLabs\Research\Responses;
 
 use Mockery;
-use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
+use SellerLabs\Research\Responses\GetCategoryByIdResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -12,7 +12,7 @@ use Tests\SellerLabs\Support\TestCase;
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package Tests\SellerLabs\NodeMws\Responses
+ * @package Tests\SellerLabs\Research\Responses
  */
 class GetCategoryByIdResponseTest extends TestCase
 {

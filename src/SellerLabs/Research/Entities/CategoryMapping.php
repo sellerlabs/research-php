@@ -1,6 +1,6 @@
 <?php
 
-namespace SellerLabs\NodeMws\Entities;
+namespace SellerLabs\Research\Entities;
 
 use stdClass;
 
@@ -9,7 +9,7 @@ use stdClass;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Entities
+ * @package SellerLabs\Research\Entities
  */
 class CategoryMapping
 {

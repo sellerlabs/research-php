@@ -5,13 +5,12 @@ namespace SellerLabs\Research;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Url;
 use InvalidArgumentException;
-use SellerLabs\NodeMws\Interfaces\NodeMwsClientInterface;
-use SellerLabs\NodeMws\Responses\FeesResponse;
-use SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse;
-use SellerLabs\NodeMws\Responses\GetCategoryByIdResponse;
-use SellerLabs\NodeMws\Responses\OffersResponse;
-use SellerLabs\NodeMws\Responses\SearchResponse;
 use SellerLabs\Research\Interfaces\ResearchClientInterface;
+use SellerLabs\Research\Responses\FeesResponse;
+use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
+use SellerLabs\Research\Responses\GetCategoryByIdResponse;
+use SellerLabs\Research\Responses\OffersResponse;
+use SellerLabs\Research\Responses\SearchResponse;
 
 /**
  * Class ResearchClient
@@ -21,9 +20,9 @@ use SellerLabs\Research\Interfaces\ResearchClientInterface;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws
+ * @package SellerLabs\Research
  */
-class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
+class ResearchClient implements ResearchClientInterface
 {
     /**
      * Internal HTTP Client
@@ -93,7 +92,7 @@ class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
     }
 
     /**
-     * Generate an authorization code for NodeMWS
+     * Generate an authorization code for the Research API server.
      *
      * @param null $timestamp
      *
@@ -114,12 +113,12 @@ class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
     }
 
     /**
-     * Get the current offers for an ASIN from NodeMWS
+     * Get the current offers for an ASIN from the Research API.
      *
      * @param string $asin
      * @param bool $noPaapi
      *
-     * @return \SellerLabs\NodeMws\Responses\OffersResponse
+     * @return \SellerLabs\Research\Responses\OffersResponse
      */
     public function getOffers($asin, $noPaapi = false)
     {
@@ -140,12 +139,12 @@ class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
     }
 
     /**
-     * Call the fees endpoint of NodeMWS and return the response
+     * Call the fees endpoint of the Research API and return the response.
      *
      * @param $asin
      * @param $price
      *
-     * @return FeesResponse
+     * @return \SellerLabs\Research\Responses\FeesResponse
      */
     public function getFees($asin, $price)
     {
@@ -183,7 +182,7 @@ class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
      *
      * @param $asin
      *
-     * @return \SellerLabs\NodeMws\Responses\GetAsinCategoriesResponse
+     * @return \SellerLabs\Research\Responses\GetAsinCategoriesResponse
      */
     public function getAsinCategories($asin)
     {
@@ -197,7 +196,7 @@ class ResearchClient implements NodeMwsClientInterface, ResearchClientInterface
      *
      * @param $categoryId
      *
-     * @return \SellerLabs\NodeMws\Responses\GetCategoryByIdResponse
+     * @return \SellerLabs\Research\Responses\GetCategoryByIdResponse
      */
     public function getCategoryById($categoryId)
     {

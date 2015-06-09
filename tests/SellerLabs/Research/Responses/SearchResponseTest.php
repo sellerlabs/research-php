@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\SellerLabs\NodeMws\Responses;
+namespace Tests\SellerLabs\Research\Responses;
 
 use Mockery;
-use SellerLabs\NodeMws\Responses\SearchResponse;
+use SellerLabs\Research\Responses\SearchResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -12,7 +12,7 @@ use Tests\SellerLabs\Support\TestCase;
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package Tests\SellerLabs\NodeMws
+ * @package Tests\SellerLabs\Research\Responses
  */
 class SearchResponseTest extends TestCase
 {
@@ -29,27 +29,27 @@ class SearchResponseTest extends TestCase
 
         foreach ($search->getSearchProducts() as $product) {
             $this->assertInstanceOf(
-                'SellerLabs\NodeMws\Entities\SearchProduct',
+                'SellerLabs\Research\Entities\SearchProduct',
                 $product
             );
         }
 
         $this->assertInstanceOf(
-            'SellerLabs\NodeMws\Entities\SearchProduct',
+            'SellerLabs\Research\Entities\SearchProduct',
             $search->first()
         );
 
         // Check that the product got the correct data
         $this->assertEquals(
             'toy_display_on_website',
-            $search->first()->getCategory()
+            $search->first()->getCategoryId()
         );
 
         // Check that empty rank data is properly handled
         $second = $search->getSearchProducts()[1];
 
         $this->assertNull($second->getRank());
-        $this->assertNull($second->getCategory());
+        $this->assertNull($second->getCategoryId());
     }
 
     public function testFirstWithEmpty()
@@ -64,7 +64,7 @@ class SearchResponseTest extends TestCase
     }
 
     /**
-     * @expectedException \SellerLabs\NodeMws\Exceptions\InvalidFormatException
+     * @expectedException \SellerLabs\Research\Exceptions\InvalidFormatException
      */
     public function testConstructorWithInvalid()
     {

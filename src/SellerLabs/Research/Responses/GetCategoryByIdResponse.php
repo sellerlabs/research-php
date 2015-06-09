@@ -1,16 +1,16 @@
 <?php
 
-namespace SellerLabs\NodeMws\Responses;
+namespace SellerLabs\Research\Responses;
 
 use GuzzleHttp\Message\ResponseInterface;
-use SellerLabs\NodeMws\Entities\CategoryMapping;
+use SellerLabs\Research\Entities\CategoryMapping;
 
 /**
  * Class GetCategoryByIdResponse
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package SellerLabs\NodeMws\Responses
+ * @package SellerLabs\Research\Responses
  */
 class GetCategoryByIdResponse
 {
@@ -24,7 +24,7 @@ class GetCategoryByIdResponse
     /**
      * Category mapping
      *
-     * @var CategoryMapping
+     * @var \SellerLabs\Research\Entities\CategoryMapping
      */
     protected $categoryMapping;
 
