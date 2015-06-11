@@ -16,6 +16,8 @@ https://docs.sellerlabs.com/research/
 
 ## Latest changes:
 
+### v0.1.1:
+- Use Guzzle 5
 ### v0.1.0:
 - Moved remaining classes to the Research namespace. This introduces a BC for
 code explicitly depending on this classes.
