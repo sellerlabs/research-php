@@ -2,8 +2,6 @@
 
 namespace SellerLabs\Research\Entities;
 
-use stdClass;
-
 /**
  * Class Offer
  *
@@ -13,7 +11,7 @@ use stdClass;
  * @@author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\Research\Entities
  */
-class Offer
+class Offer extends BaseEntity
 {
     /**
      * @var string
@@ -76,43 +74,19 @@ class Offer
     protected $priceLanded = 0.0;
 
     /**
-     * Builds an offer object from a parse json object
-     *
-     * @param stdClass $parsedJsonOffer
-     */
-    public function __construct(stdClass $parsedJsonOffer)
-    {
-        $this->condition = $parsedJsonOffer->cond;
-
-        $this->subcondition = $parsedJsonOffer->subcond;
-
-        $this->fulfillmentCenter = $parsedJsonOffer->fc;
-
-        $this->shipdom = $parsedJsonOffer->shipdom;
-
-        $this->shipmax = $parsedJsonOffer->shipmax;
-
-        $this->rating = $parsedJsonOffer->rating;
-
-        $this->number = (int)$parsedJsonOffer->number;
-
-        $this->feedbackCount = (int)$parsedJsonOffer->fbcount;
-
-        $this->multi = $parsedJsonOffer->multi;
-
-        $this->price = (double)$parsedJsonOffer->price;
-
-        $this->priceShipping = (double)$parsedJsonOffer->priceShipping;
-
-        $this->priceLanded = (double)$parsedJsonOffer->priceLanded;
-    }
-
-    /**
      * @return string
      */
     public function getCondition()
     {
         return $this->condition;
+    }
+
+    /**
+     * @param string $condition
+     */
+    public function setCondition($condition)
+    {
+        $this->condition = $condition;
     }
 
     /**
@@ -124,11 +98,27 @@ class Offer
     }
 
     /**
+     * @param int $feedbackCount
+     */
+    public function setFeedbackCount($feedbackCount)
+    {
+        $this->feedbackCount = $feedbackCount;
+    }
+
+    /**
      * @return string
      */
     public function getFulfillmentCenter()
     {
         return $this->fulfillmentCenter;
+    }
+
+    /**
+     * @param string $fulfillmentCenter
+     */
+    public function setFulfillmentCenter($fulfillmentCenter)
+    {
+        $this->fulfillmentCenter = $fulfillmentCenter;
     }
 
     /**
@@ -140,11 +130,27 @@ class Offer
     }
 
     /**
+     * @param mixed $multi
+     */
+    public function setMulti($multi)
+    {
+        $this->multi = $multi;
+    }
+
+    /**
      * @return int
      */
     public function getNumber()
     {
         return $this->number;
+    }
+
+    /**
+     * @param int $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
     }
 
     /**
@@ -156,11 +162,27 @@ class Offer
     }
 
     /**
+     * @param float $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
      * @return float
      */
     public function getPriceLanded()
     {
         return $this->priceLanded;
+    }
+
+    /**
+     * @param float $priceLanded
+     */
+    public function setPriceLanded($priceLanded)
+    {
+        $this->priceLanded = $priceLanded;
     }
 
     /**
@@ -172,11 +194,27 @@ class Offer
     }
 
     /**
+     * @param float $priceShipping
+     */
+    public function setPriceShipping($priceShipping)
+    {
+        $this->priceShipping = $priceShipping;
+    }
+
+    /**
      * @return string
      */
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * @param string $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
     }
 
     /**
@@ -188,6 +226,14 @@ class Offer
     }
 
     /**
+     * @param mixed $shipdom
+     */
+    public function setShipdom($shipdom)
+    {
+        $this->shipdom = $shipdom;
+    }
+
+    /**
      * @return mixed
      */
     public function getShipmax()
@@ -196,10 +242,26 @@ class Offer
     }
 
     /**
+     * @param mixed $shipmax
+     */
+    public function setShipmax($shipmax)
+    {
+        $this->shipmax = $shipmax;
+    }
+
+    /**
      * @return string
      */
     public function getSubcondition()
     {
         return $this->subcondition;
+    }
+
+    /**
+     * @param string $subcondition
+     */
+    public function setSubcondition($subcondition)
+    {
+        $this->subcondition = $subcondition;
     }
 }

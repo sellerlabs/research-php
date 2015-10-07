@@ -3,9 +3,9 @@
 namespace SellerLabs\Research\Entities;
 
 use Exception;
+use SellerLabs\Research\Enum\FeesSetType;
 use SellerLabs\Research\Exceptions\InvalidFormatException;
 use SellerLabs\Research\FormatUtils;
-use stdClass;
 
 /**
  * Class FeesSet
@@ -16,18 +16,8 @@ use stdClass;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Entities
  */
-class FeesSet
+class FeesSet extends BaseEntity
 {
-    /**
-     * Merchant fulfilled fees
-     */
-    const TYPE_MFN = 'mfn';
-
-    /**
-     * FBA fulfilled fees
-     */
-    const TYPE_FBA = 'fba';
-
     /**
      * @var float
      */
@@ -86,65 +76,19 @@ class FeesSet
     protected $type;
 
     /**
-     * @param stdClass $parsedJsonFees
-     * @param $type
-     *
-     * @throws InvalidFormatException
-     */
-    public function __construct(stdClass $parsedJsonFees, $type)
-    {
-        // Set the fees type
-        $this->setType($type);
-
-        $this->price = (double)$parsedJsonFees->price;
-
-        $this->revenue = (double)$parsedJsonFees->revenue;
-
-        $this->amazonCommission = (double)$parsedJsonFees->azComm;
-
-        $this->amazonVar = (double)$parsedJsonFees->azVar;
-
-        if (property_exists($parsedJsonFees, 'fbaWeight')) {
-            $this->fbaWeight = (double)$parsedJsonFees->fbaWeight;
-        }
-
-        if (property_exists($parsedJsonFees, 'fbaPick')) {
-            $this->fbaPick = (double)$parsedJsonFees->fbaPick;
-        }
-
-        if (property_exists($parsedJsonFees, 'fbaOrder')) {
-            $this->fbaOrder = (double)$parsedJsonFees->fbaOrder;
-        }
-
-        $this->feesTotal = (double)$parsedJsonFees->feesTotal;
-
-        $this->netIncome = (double)$parsedJsonFees->netIncome;
-
-        $this->category = $parsedJsonFees->category;
-    }
-
-    /**
-     * Set the fees type
-     *
-     * @param $type
-     *
-     * @throws InvalidFormatException
-     */
-    protected function setType($type)
-    {
-        if ($type != self::TYPE_FBA && $type != self::TYPE_MFN) {
-            throw new InvalidFormatException('This fee type is not supported');
-        }
-
-        $this->type = $type;
-    }
-
-    /**
      * @return float
      */
     public function getAmazonCommission()
     {
         return $this->amazonCommission;
+    }
+
+    /**
+     * @param float $amazonCommission
+     */
+    public function setAmazonCommission($amazonCommission)
+    {
+        $this->amazonCommission = $amazonCommission;
     }
 
     /**
@@ -156,11 +100,27 @@ class FeesSet
     }
 
     /**
+     * @param float $amazonVar
+     */
+    public function setAmazonVar($amazonVar)
+    {
+        $this->amazonVar = $amazonVar;
+    }
+
+    /**
      * @return string
      */
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
     /**
@@ -177,6 +137,14 @@ class FeesSet
     }
 
     /**
+     * @param float $fbaOrder
+     */
+    public function setFbaOrder($fbaOrder)
+    {
+        $this->fbaOrder = $fbaOrder;
+    }
+
+    /**
      * @throws Exception
      * @return float
      */
@@ -187,6 +155,14 @@ class FeesSet
         }
 
         return $this->fbaPick;
+    }
+
+    /**
+     * @param float $fbaPick
+     */
+    public function setFbaPick($fbaPick)
+    {
+        $this->fbaPick = $fbaPick;
     }
 
     /**
@@ -203,11 +179,27 @@ class FeesSet
     }
 
     /**
+     * @param float $fbaWeight
+     */
+    public function setFbaWeight($fbaWeight)
+    {
+        $this->fbaWeight = $fbaWeight;
+    }
+
+    /**
      * @return float
      */
     public function getFeesTotal()
     {
         return $this->feesTotal;
+    }
+
+    /**
+     * @param float $feesTotal
+     */
+    public function setFeesTotal($feesTotal)
+    {
+        $this->feesTotal = $feesTotal;
     }
 
     /**
@@ -227,6 +219,14 @@ class FeesSet
     }
 
     /**
+     * @param float $netIncome
+     */
+    public function setNetIncome($netIncome)
+    {
+        $this->netIncome = $netIncome;
+    }
+
+    /**
      * @return string
      */
     public function getFormattedNetIncome()
@@ -243,11 +243,27 @@ class FeesSet
     }
 
     /**
+     * @param float $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
      * @return float
      */
     public function getRevenue()
     {
         return $this->revenue;
+    }
+
+    /**
+     * @param float $revenue
+     */
+    public function setRevenue($revenue)
+    {
+        $this->revenue = $revenue;
     }
 
     /**
@@ -259,13 +275,21 @@ class FeesSet
     }
 
     /**
-     * Returns profit margin in a fraction
+     * Set the fees type
      *
-     * @return float
+     * @param $type
+     *
+     * @throws InvalidFormatException
      */
-    public function getProfitMargin()
+    public function setType($type)
     {
-        return $this->netIncome / $this->revenue;
+        if ($type != FeesSetType::TYPE_FBA
+            && $type != FeesSetType::TYPE_MERCHANT_FULFILLED
+        ) {
+            throw new InvalidFormatException('This fee type is not supported');
+        }
+
+        $this->type = $type;
     }
 
     /**
@@ -276,5 +300,15 @@ class FeesSet
     public function getProfitMarginPercentage()
     {
         return FormatUtils::formatPercentage($this->getProfitMargin());
+    }
+
+    /**
+     * Returns profit margin in a fraction
+     *
+     * @return float
+     */
+    public function getProfitMargin()
+    {
+        return $this->netIncome / $this->revenue;
     }
 }

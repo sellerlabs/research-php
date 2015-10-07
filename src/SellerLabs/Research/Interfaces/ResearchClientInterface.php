@@ -48,12 +48,12 @@ interface ResearchClientInterface
     /**
      * Search the catalog and return the response
      *
-     * @param $codeType
-     * @param $code
+     * @param $idType
+     * @param $idCode
      *
      * @return SearchResponse
      */
-    public function getSearch($codeType, $code);
+    public function getSearch($idType, $idCode);
 
     /**
      * Get categories for an ASIN

@@ -1,38 +1,26 @@
 <?php
 
-namespace Tests\SellerLabs\Research\Responses;
+namespace Tests\SellerLabs\Research\Factories;
 
-use Mockery;
 use SellerLabs\Research\Entities\Offer;
-use SellerLabs\Research\Responses\OffersResponse;
-use Tests\SellerLabs\Support\MockResponsesTrait;
-use Tests\SellerLabs\Support\TestCase;
+use SellerLabs\Research\Exceptions\InvalidFormatException;
+use SellerLabs\Research\Factories\OffersResponseFactory;
 
 /**
- * Class OffersResponseTest
+ * Class OffersResponseFactoryTest
  *
- * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @package Tests\SellerLabs\Research
+ * @author Eduardo Trujillo <ed@chromabits.com>
+ * @package tests\SellerLabs\Research\Factories
  */
-class OffersResponseTest extends TestCase
+class OffersResponseFactoryTest extends ResponseFactoryTestCase
 {
-    use MockResponsesTrait;
-
-    /**
-     * @expectedException \SellerLabs\Research\Exceptions\InvalidFormatException
-     */
-    public function testConstructorWithInvalid()
-    {
-        new OffersResponse($this->makeResponse(
-            dirname(__FILE__) . '/Resources/InvalidSearchResponse.json'
-        ));
-    }
-
     public function testEverything()
     {
-        $offers = new OffersResponse($this->makeResponse(
-            dirname(__FILE__) . '/Resources/OffersResponse.json'
-        ));
+        $offers = (new OffersResponseFactory())->makeFromResponse(
+            $this->makeResponseRelative(
+                '../Responses/Resources/OffersResponse.json'
+            )
+        );
 
         $results = array_merge(
             $offers->getFbaNewOffers(),
@@ -53,5 +41,16 @@ class OffersResponseTest extends TestCase
         $this->assertFalse($offers->hasExtra('newLowestNope'));
         $this->assertFalse($offers->hasEanIdType());
         $this->assertFalse($offers->hasUpcIdType());
+    }
+
+    public function testConstructorWithInvalid()
+    {
+        $this->setExpectedException(InvalidFormatException::class);
+
+        (new OffersResponseFactory())->makeFromResponse(
+            $this->makeResponseRelative(
+                '../Responses/Resources/InvalidSearchResponse.json'
+            )
+        );
     }
 }

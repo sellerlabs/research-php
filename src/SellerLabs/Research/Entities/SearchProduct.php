@@ -11,7 +11,7 @@ namespace SellerLabs\Research\Entities;
  * @@author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\Research\Entities
  */
-class SearchProduct
+class SearchProduct extends BaseEntity
 {
     /**
      * @var string
@@ -63,40 +63,19 @@ class SearchProduct
     protected $weight;
 
     /**
-     * Construct a search product from a parsed JSON object
-     *
-     * @param $jsonProduct
-     */
-    public function __construct($jsonProduct)
-    {
-        $this->catalog = $jsonProduct->catalog;
-        $this->asin = $jsonProduct->productId;
-        $this->ean = $jsonProduct->ean;
-        $this->name = $jsonProduct->title;
-        $this->imageUrl = $jsonProduct->image;
-        $this->type = $jsonProduct->type;
-        $this->weight = $jsonProduct->weight;
-
-        // Rankings can be empty
-        if (!empty($jsonProduct->rank)) {
-            $this->rank = null;
-            if (property_exists($jsonProduct->rank, 'Rank')) {
-                $this->rank = intVal($jsonProduct->rank->Rank);
-            }
-
-            $this->categoryId = null;
-            if (property_exists($jsonProduct->rank, 'ProductCategoryId')) {
-                $this->categoryId = $jsonProduct->rank->ProductCategoryId;
-            }
-        }
-    }
-
-    /**
      * @return string
      */
     public function getAsin()
     {
         return $this->asin;
+    }
+
+    /**
+     * @param string $asin
+     */
+    public function setAsin($asin)
+    {
+        $this->asin = $asin;
     }
 
     /**
@@ -108,11 +87,27 @@ class SearchProduct
     }
 
     /**
+     * @param string $catalog
+     */
+    public function setCatalog($catalog)
+    {
+        $this->catalog = $catalog;
+    }
+
+    /**
      * @return string
      */
     public function getEan()
     {
         return $this->ean;
+    }
+
+    /**
+     * @param string $ean
+     */
+    public function setEan($ean)
+    {
+        $this->ean = $ean;
     }
 
     /**
@@ -124,11 +119,27 @@ class SearchProduct
     }
 
     /**
+     * @param string $imageUrl
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
+    /**
      * @return int
      */
     public function getRank()
     {
         return $this->rank;
+    }
+
+    /**
+     * @param int $rank
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
     }
 
     /**
@@ -151,11 +162,27 @@ class SearchProduct
     }
 
     /**
+     * @param string $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
+
+    /**
      * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -167,10 +194,26 @@ class SearchProduct
     }
 
     /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @return string
      */
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    /**
+     * @param string $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
     }
 }

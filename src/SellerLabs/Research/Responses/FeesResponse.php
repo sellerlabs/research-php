@@ -2,10 +2,7 @@
 
 namespace SellerLabs\Research\Responses;
 
-use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\Research\Entities\FeesSet;
-use SellerLabs\Research\Exceptions\InvalidFormatException;
-use stdClass;
 
 /**
  * Class FeesResponse
@@ -15,13 +12,8 @@ use stdClass;
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @package SellerLabs\Research\Responses
  */
-class FeesResponse
+class FeesResponse extends BaseResponse
 {
-    /**
-     * @var stdClass
-     */
-    protected $jsonResponse;
-
     /**
      * @var string
      */
@@ -38,69 +30,6 @@ class FeesResponse
     protected $fbaFees = null;
 
     /**
-     * Construct an instance of a FeesResponse
-     *
-     * @param ResponseInterface $response
-     *
-     * @throws \SellerLabs\Research\Exceptions\InvalidFormatException
-     */
-    public function __construct(ResponseInterface $response)
-    {
-        // Parse the JSON into an stdClass object
-        $rawResponse = json_decode($response->getBody());
-
-        // Check that the data object is present
-        if (!property_exists($rawResponse, 'data')) {
-            throw new InvalidFormatException;
-        }
-
-        $this->jsonResponse = $rawResponse;
-
-        // Parse size tier
-        $this->parseSizeTier();
-
-        // Parse fees
-        $this->parseMerchantFees();
-        $this->parseFbaFees();
-    }
-
-    /**
-     * Parse the size tier
-     */
-    protected function parseSizeTier()
-    {
-        if (property_exists($this->jsonResponse->data, 'sizeTier')) {
-            $this->sizeTier = $this->jsonResponse->data->sizeTier;
-        }
-    }
-
-    /**
-     * Parse merchant-fulfilled fees
-     */
-    protected function parseMerchantFees()
-    {
-        if (property_exists($this->jsonResponse->data, 'mfnFees')) {
-            $this->merchantFees = new FeesSet(
-                $this->jsonResponse->data->mfnFees,
-                FeesSet::TYPE_MFN
-            );
-        }
-    }
-
-    /**
-     * Parse FBA fees
-     */
-    protected function parseFbaFees()
-    {
-        if (property_exists($this->jsonResponse->data, 'fbaFees')) {
-            $this->fbaFees = new FeesSet(
-                $this->jsonResponse->data->fbaFees,
-                FeesSet::TYPE_FBA
-            );
-        }
-    }
-
-    /**
      * Get FBA fees
      *
      * @return null|FeesSet
@@ -108,6 +37,14 @@ class FeesResponse
     public function getFbaFees()
     {
         return $this->fbaFees;
+    }
+
+    /**
+     * @param FeesSet $fbaFees
+     */
+    public function setFbaFees($fbaFees)
+    {
+        $this->fbaFees = $fbaFees;
     }
 
     /**
@@ -121,6 +58,14 @@ class FeesResponse
     }
 
     /**
+     * @param FeesSet $merchantFees
+     */
+    public function setMerchantFees($merchantFees)
+    {
+        $this->merchantFees = $merchantFees;
+    }
+
+    /**
      * Get product size tier
      *
      * @return string
@@ -128,5 +73,13 @@ class FeesResponse
     public function getSizeTier()
     {
         return $this->sizeTier;
+    }
+
+    /**
+     * @param string $sizeTier
+     */
+    public function setSizeTier($sizeTier)
+    {
+        $this->sizeTier = $sizeTier;
     }
 }

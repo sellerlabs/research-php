@@ -2,9 +2,7 @@
 
 namespace SellerLabs\Research\Responses;
 
-use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\Research\Entities\CategoryMapping;
-use SellerLabs\Research\Exceptions\InvalidFormatException;
 
 /**
  * Class GetAsinCategoriesResponse
@@ -13,19 +11,12 @@ use SellerLabs\Research\Exceptions\InvalidFormatException;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */
-class GetAsinCategoriesResponse
+class GetAsinCategoriesResponse extends BaseResponse
 {
-    /**
-     * Raw JSON response
-     *
-     * @var mixed
-     */
-    protected $jsonResponse;
-
     /**
      * Category mappings
      *
-     * @var \SellerLabs\Research\Entities\CategoryMapping[]
+     * @var CategoryMapping[]
      */
     protected $categoryMappings;
 
@@ -35,48 +26,6 @@ class GetAsinCategoriesResponse
      * @var CategoryMapping
      */
     protected $mainCategory;
-
-    /**
-     * Create a GetAsinCategoriesResponse from a raw getAsinCategories response
-     * from ModernMws
-     *
-     * @param ResponseInterface $response
-     *
-     * @throws InvalidFormatException
-     */
-    public function __construct(ResponseInterface $response)
-    {
-        // Parse the JSON into an stdClass object
-        $rawResponse = json_decode($response->getBody());
-
-        // Check that the categoryMappings object is present
-        if (!property_exists($rawResponse, 'categoryMappings')) {
-            throw new InvalidFormatException;
-        }
-
-        $this->jsonResponse = $rawResponse;
-
-        $this->parseCategoryMappings();
-    }
-
-    /**
-     * Parse the raw response into a list of category mappings and save them
-     */
-    protected function parseCategoryMappings()
-    {
-        $this->categoryMappings = [];
-
-        foreach ($this->jsonResponse->categoryMappings as $categoryMapping) {
-            $mapping = new CategoryMapping($categoryMapping);
-
-            // Set the main category for the Asin Categories response
-            if ($mapping->isMainCategory()) {
-                $this->mainCategory = $mapping;
-            }
-
-            $this->categoryMappings[] = $mapping;
-        }
-    }
 
     /**
      * Get all category mappings contained in response
@@ -89,6 +38,14 @@ class GetAsinCategoriesResponse
     }
 
     /**
+     * @param CategoryMapping[] $categoryMappings
+     */
+    public function setCategoryMappings($categoryMappings)
+    {
+        $this->categoryMappings = $categoryMappings;
+    }
+
+    /**
      * Get the main category from the response
      *
      * @return mixed
@@ -96,5 +53,13 @@ class GetAsinCategoriesResponse
     public function getMainCategory()
     {
         return $this->mainCategory;
+    }
+
+    /**
+     * @param CategoryMapping $mainCategory
+     */
+    public function setMainCategory($mainCategory)
+    {
+        $this->mainCategory = $mainCategory;
     }
 }

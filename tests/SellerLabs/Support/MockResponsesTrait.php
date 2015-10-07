@@ -3,6 +3,8 @@
 namespace Tests\SellerLabs\Support;
 
 use Mockery;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Trait MockResponsesTrait
@@ -19,14 +21,17 @@ trait MockResponsesTrait
      *
      * @param $jsonFile
      *
-     * @return \Mockery\MockInterface
+     * @return ResponseInterface
      */
     protected function makeResponse($jsonFile)
     {
-        $responseMock = Mockery::mock('GuzzleHttp\Message\ResponseInterface');
+        $streamMock = Mockery::mock(StreamInterface::class);
+        $streamMock->shouldReceive('getContents')
+            ->andReturn(file_get_contents($jsonFile));;
 
-        $responseMock->shouldReceive('getBody')
-            ->andReturn(file_get_contents($jsonFile));
+        $responseMock = Mockery::mock(ResponseInterface::class);
+
+        $responseMock->shouldReceive('getBody')->andReturn($streamMock);
 
         return $responseMock;
     }

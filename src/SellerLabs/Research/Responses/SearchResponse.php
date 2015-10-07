@@ -2,11 +2,7 @@
 
 namespace SellerLabs\Research\Responses;
 
-use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\Research\Entities\SearchProduct;
-use SellerLabs\Research\Exceptions\EmptyResultsException;
-use SellerLabs\Research\Exceptions\InvalidFormatException;
-use stdClass;
 
 /**
  * Class SearchResponse
@@ -15,65 +11,31 @@ use stdClass;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */
-class SearchResponse
+class SearchResponse extends BaseResponse
 {
-    /**
-     * Hold the raw json response
-     *
-     * @var stdClass
-     */
-    protected $jsonResponse;
-
     /**
      * Hold each product returned from the search
      *
-     * @var \SellerLabs\Research\Entities\SearchProduct[]
+     * @var SearchProduct[]
      */
     protected $searchProducts;
 
     /**
-     * Construct a search response from a Guzzle client response
-     *
-     * @param ResponseInterface $response
-     *
-     * @throws \SellerLabs\Research\Exceptions\EmptyResultsException
-     * @throws \SellerLabs\Research\Exceptions\InvalidFormatException
-     */
-    public function __construct(ResponseInterface $response)
-    {
-        // Attempt to parse the JSON
-        $rootResponse = json_decode($response->getBody());
-
-        // Check for errors
-        if (property_exists($rootResponse, 'Error')) {
-            throw new EmptyResultsException(
-                'Got error: ' . $rootResponse->Error
-            );
-        }
-
-        // Check that the response is valid
-        if (!property_exists($rootResponse, 'searchCatalogs')) {
-            throw new InvalidFormatException();
-        }
-
-        // Store the JSON object internally
-        $this->jsonResponse = $rootResponse;
-
-        // Set products
-        $this->searchProducts = [];
-        foreach ($rootResponse->searchCatalogs->result as $product) {
-            $this->searchProducts[] = new SearchProduct($product);
-        }
-    }
-
-    /**
      * Get the search products from a NodeMws response.
      *
-     * @return array|SearchProduct[]
+     * @return SearchProduct[]
      */
     public function getSearchProducts()
     {
         return $this->searchProducts;
+    }
+
+    /**
+     * @param SearchProduct[] $searchProducts
+     */
+    public function setSearchProducts($searchProducts)
+    {
+        $this->searchProducts = $searchProducts;
     }
 
     /**
@@ -89,7 +51,7 @@ class SearchResponse
     /**
      * Return the first product returned from a search query.
      *
-     * @return \SellerLabs\Research\Entities\SearchProduct
+     * @return SearchProduct
      */
     public function first()
     {

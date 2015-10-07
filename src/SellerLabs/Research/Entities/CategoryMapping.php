@@ -2,8 +2,6 @@
 
 namespace SellerLabs\Research\Entities;
 
-use stdClass;
-
 /**
  * Class CategoryMapping
  *
@@ -11,12 +9,12 @@ use stdClass;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Entities
  */
-class CategoryMapping
+class CategoryMapping extends BaseEntity
 {
     /**
      * @var bool
      */
-    protected $mainCategory;
+    protected $mainCategory = false;
 
     /**
      * @var string
@@ -29,28 +27,6 @@ class CategoryMapping
     protected $category;
 
     /**
-     * Construct an instance of a CategoryMapping
-     *
-     * @param \stdClass $json
-     */
-    public function __construct(stdClass $json)
-    {
-        if (property_exists($json, 'main')) {
-            $this->mainCategory = $json->main;
-        } else {
-            $this->mainCategory = false;
-        }
-
-        if (property_exists($json, 'categoryId')) {
-            $this->categoryId = $json->categoryId;
-        }
-
-        if (property_exists($json, 'category')) {
-            $this->category = $json->category;
-        }
-    }
-
-    /**
      * Return whether or not the category is a main category
      *
      * @return bool
@@ -58,6 +34,14 @@ class CategoryMapping
     public function isMainCategory()
     {
         return $this->mainCategory;
+    }
+
+    /**
+     * @param boolean $mainCategory
+     */
+    public function setMainCategory($mainCategory)
+    {
+        $this->mainCategory = $mainCategory;
     }
 
     /**
@@ -71,6 +55,14 @@ class CategoryMapping
     }
 
     /**
+     * @param string $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
+
+    /**
      * Get the category name
      *
      * @return mixed
@@ -78,5 +70,13 @@ class CategoryMapping
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 }

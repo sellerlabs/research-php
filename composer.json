@@ -2,8 +2,9 @@
   "name": "sellerlabs/research-php",
   "description": "PHP client for SellerLabs' Research API",
   "require": {
-    "guzzlehttp/guzzle": "5.*",
-    "nesbot/carbon": "^1.19"
+    "guzzlehttp/guzzle": "~6.0",
+    "nesbot/carbon": "^1.19",
+    "chromabits/nucleus": "0.4.*"
   },
   "require-dev": {
     "mockery/mockery": "~0.9",

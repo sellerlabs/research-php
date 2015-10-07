@@ -2,9 +2,14 @@
 
 namespace Tests\SellerLabs\Research;
 
-use GuzzleHttp\Url;
+use GuzzleHttp\Client;
 use Mockery;
 use SellerLabs\Research\ResearchClient;
+use SellerLabs\Research\Responses\FeesResponse;
+use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
+use SellerLabs\Research\Responses\GetCategoryByIdResponse;
+use SellerLabs\Research\Responses\OffersResponse;
+use SellerLabs\Research\Responses\SearchResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -22,193 +27,135 @@ class ResearchClientTest extends TestCase
     protected $clientId;
     protected $clientSecret;
     protected $baseUrl;
-    protected $guzzleClient;
-
-    /**
-     * @var ResearchClient
-     */
-    protected $client;
 
     public function setUp()
     {
         $this->clientId = 'BenjaminTest';
         $this->clientSecret = 'MySecretKeyIsSoGood';
         $this->baseUrl = 'http://localhost:1337';
-
-        $guzzleMock = Mockery::mock('GuzzleHttp\Client');
-
-        $guzzleMock
-            ->shouldReceive('setDefaultOption')
-            ->withArgs([
-                'headers/Authorization',
-                Mockery::type('string')
-            ]);
-
-        $this->guzzleClient = $guzzleMock;
-
-        $this->client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $this->guzzleClient
-        );
     }
 
     public function testGenerateCode()
     {
-        $code = $this->client->generateCode(1420583425);
+
+        $code = $this->makeClient()->generateCode(1420583425);
         $this->assertEquals(
             "1420583425|BenjaminTest|a4f22bc411408ba1f29edb6c1c89b7d6",
             $code
         );
     }
 
-    public function testConstructor()
+    protected function makeClient(Client $mockClient = null)
     {
-        new ResearchClient(
+        $client = new ResearchClient(
             $this->clientId,
             $this->clientSecret,
             $this->baseUrl
         );
+
+        if ($mockClient !== null) {
+            $client->setClient($mockClient);
+        }
+
+        return $client;
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @return Mockery\MockInterface
      */
-    public function testConstructorWithInvalid()
+    protected function makeGuzzleMock()
     {
-        new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            null
-        );
+        return Mockery::mock(Client::class);
+    }
+
+    public function testConstructor()
+    {
+        $this->makeClient();
     }
 
     public function testGetOffers()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with(Mockery::on(function ($value) {
-                return $value instanceof Url &&
-                $value->getPath() == '/v1/offers/0452011876' &&
-                $value->getQuery()->get('format') == 'pretty';
-            }))
+            ->with('/v1/offers/0452011876', [
+                'query' => ['format' => 'pretty'],
+            ])
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
                 . '/Responses/Resources/OffersResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)->getOffers('0452011876');
 
-        $result = $client->getOffers('0452011876');
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\OffersResponse',
-            $result
-        );
+        $this->assertInstanceOf(OffersResponse::class, $result);
     }
 
     public function testGetOffersWithNoPaapi()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with(Mockery::on(function ($value) {
-                return $value instanceof Url &&
-                $value->getPath() == '/v1/offers/0452011876' &&
-                $value->getQuery()->get('format') == 'pretty' &&
-                $value->getQuery()->get('nopaapi') == 'true';
-            }))
+            ->with('/v1/offers/0452011876', [
+                'query' => [
+                    'format' => 'pretty',
+                    'nopaapi' => true
+                ]
+            ])
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
                 . '/Responses/Resources/OffersResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)
+            ->getOffers('0452011876', true);
 
-        $result = $client->getOffers('0452011876', true);
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\OffersResponse',
-            $result
-        );
+        $this->assertInstanceOf(OffersResponse::class, $result);
     }
 
     public function testGetSearch()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with(Mockery::on(function ($value) {
-                return $value instanceof Url &&
-                $value->getPath() == '/v1/search' &&
-                $value->getQuery()->get('asin') == '0452011876' &&
-                $value->getQuery()->get('format') == 'pretty';
-            }))
+            ->with('/v1/search', [
+                'query' => [
+                    'asin' => '0452011876',
+                    'format' => 'pretty'
+                ]
+            ])
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
                 . '/Responses/Resources/SearchResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)
+            ->getSearch('asin', '0452011876');
 
-        $result = $client->getSearch('asin', '0452011876');
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\SearchResponse',
-            $result
-        );
+        $this->assertInstanceOf(SearchResponse::class, $result);
     }
 
     public function testGetFees()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with(Mockery::on(function ($value) {
-                return $value instanceof Url &&
-                $value->getPath() == '/v1/fees/0452011876' &&
-                $value->getQuery()->get('price') == '9.0';
-            }))
+            ->with('/v1/fees/0452011876', [
+                'query' => ['price' => 9.0]
+            ])
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
                 . '/Responses/Resources/FeesResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)->getFees('0452011876', 9.0);
 
-        $result = $client->getFees('0452011876', 9.0);
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\FeesResponse',
-            $result
-        );
+        $this->assertInstanceOf(FeesResponse::class, $result);
     }
 
     public function testGetAsinCategories()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
             ->with('/v1/getAsinCategories/0452011876')
             ->once()
@@ -217,24 +164,15 @@ class ResearchClientTest extends TestCase
                 . '/Responses/Resources/GetAsinCategoriesResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)
+            ->getAsinCategories('0452011876');
 
-        $result = $client->getAsinCategories('0452011876');
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\GetAsinCategoriesResponse',
-            $result
-        );
+        $this->assertInstanceOf(GetAsinCategoriesResponse::class, $result);
     }
 
     public function testGetCategoryById()
     {
-        $guzzleMock = clone $this->guzzleClient;
+        $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
             ->with('/v1/getCategoryById/10399')
             ->once()
@@ -243,18 +181,8 @@ class ResearchClientTest extends TestCase
                 . '/Responses/Resources/GetAsinCategoriesResponse.json'
             ));
 
-        $client = new ResearchClient(
-            $this->clientId,
-            $this->clientSecret,
-            $this->baseUrl,
-            $guzzleMock
-        );
+        $result = $this->makeClient($guzzleMock)->getCategoryById('10399');
 
-        $result = $client->getCategoryById('10399');
-
-        $this->assertInstanceOf(
-            'SellerLabs\Research\Responses\GetCategoryByIdResponse',
-            $result
-        );
+        $this->assertInstanceOf(GetCategoryByIdResponse::class, $result);
     }
 }

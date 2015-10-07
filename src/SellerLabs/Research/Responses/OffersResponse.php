@@ -2,10 +2,12 @@
 
 namespace SellerLabs\Research\Responses;
 
-use GuzzleHttp\Message\ResponseInterface;
+use Chromabits\Nucleus\Meditation\Arguments;
+use Chromabits\Nucleus\Meditation\Boa;
+use Chromabits\Nucleus\Meditation\Exceptions\InvalidArgumentException;
 use SellerLabs\Research\Entities\Offer;
-use SellerLabs\Research\Exceptions\InvalidFormatException;
-use stdClass;
+use SellerLabs\Research\Enum\OfferCondition;
+use SellerLabs\Research\Enum\OfferType;
 
 /**
  * Class OffersResponse
@@ -16,15 +18,8 @@ use stdClass;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */
-class OffersResponse
+class OffersResponse extends BaseResponse
 {
-    /**
-     * Stores the raw stdClass from json_decode of the response
-     *
-     * @var stdClass
-     */
-    protected $jsonResponse;
-
     /**
      * Used FBA offers
      *
@@ -35,21 +30,21 @@ class OffersResponse
     /**
      * New FBA offers
      *
-     * @var \SellerLabs\Research\Entities\Offer[]
+     * @var Offer[]
      */
     protected $fbaNewOffers = [];
 
     /**
      * Used merchant offers
      *
-     * @var \SellerLabs\Research\Entities\Offer[]
+     * @var Offer[]
      */
     protected $merchantUsedOffers = [];
 
     /**
      * New merchant offers
      *
-     * @var \SellerLabs\Research\Entities\Offer[]
+     * @var Offer[]
      */
     protected $merchantNewOffers = [];
 
@@ -77,97 +72,41 @@ class OffersResponse
     protected $extras = [];
 
     /**
-     * Construct an offer response from a Guzzle client response
+     * Add a offer to the response.
      *
-     * @param ResponseInterface $response
+     * @param string $type
+     * @param string $condition
+     * @param Offer $offer
      *
-     * @throws InvalidFormatException
+     * @throws InvalidArgumentException
      */
-    public function __construct(ResponseInterface $response)
+    public function addOffer($type, $condition, Offer $offer)
     {
-        // Attempt to parse the JSON
-        $rootResponse = json_decode($response->getBody());
+        Arguments::contain(
+            Boa::in(OfferType::getValues()),
+            Boa::in(OfferCondition::getValues()),
+            Boa::instance(Offer::class)
+        )->check($type, $condition, $offer);
 
-        // Check that there is an offers object
-        if (!property_exists($rootResponse, 'offers')) {
-            throw new InvalidFormatException();
-        }
-
-        // Set the internal response object
-        $this->jsonResponse = $rootResponse;
-
-        // Parse ids
-        $this->parseIds();
-
-        // Parse offers
-        $this->parseOffers();
-
-        // Parse extras
-        $this->parseExtras();
-    }
-
-    /**
-     * Parse product ids from the response
-     */
-    protected function parseIds()
-    {
-        if (property_exists($this->jsonResponse, 'type')) {
-            $this->productIdType = $this->jsonResponse->type;
-        }
-
-        if (property_exists($this->jsonResponse, 'id')) {
-            $this->productIdCode = $this->jsonResponse->id;
-        }
-    }
-
-    /**
-     * Parse every kind of offer into offer entity classes
-     */
-    protected function parseOffers()
-    {
-        if (property_exists($this->jsonResponse->offers, 'fbaNew')) {
-            foreach ($this->jsonResponse->offers->fbaNew as $fbaNewOffer) {
-                $this->fbaNewOffers[] = new Offer($fbaNewOffer);
+        if ($type === OfferType::TYPE_FBA) {
+            if ($condition === OfferCondition::CONDITION_NEW) {
+                $this->fbaNewOffers[] = $offer;
+            } elseif ($condition === OfferCondition::CONDITION_USED) {
+                $this->fbaUsedOffers[] = $offer;
             }
-        }
-
-        if (property_exists($this->jsonResponse->offers, 'fbaUsed')) {
-            foreach ($this->jsonResponse->offers->fbaUsed as $fbaUsedOffer) {
-                $this->fbaUsedOffers[] = new Offer($fbaUsedOffer);
+        } elseif ($type === OfferType::TYPE_MERCHANT_FULFILLED) {
+            if ($condition === OfferCondition::CONDITION_NEW) {
+                $this->merchantNewOffers[] = $offer;
+            } elseif ($condition === OfferCondition::CONDITION_USED) {
+                $this->merchantUsedOffers[] = $offer;
             }
-        }
-
-        if (property_exists($this->jsonResponse->offers, 'merchantNew')) {
-            $merchantNewOffers = $this->jsonResponse->offers->merchantNew;
-
-            foreach ($merchantNewOffers as $merchantNewOffer) {
-                $this->merchantNewOffers[] = new Offer($merchantNewOffer);
-            }
-        }
-
-        if (property_exists($this->jsonResponse->offers, 'merchantUsed')) {
-            $merchantUsedOffers = $this->jsonResponse->offers->merchantUsed;
-
-            foreach ($merchantUsedOffers as $merchantUsedOffer) {
-                $this->merchantUsedOffers[] = new Offer($merchantUsedOffer);
-            }
-        }
-    }
-
-    /**
-     * Parse any extra properties into an array
-     */
-    protected function parseExtras()
-    {
-        if (property_exists($this->jsonResponse, 'extras')) {
-            $this->extras = get_object_vars($this->jsonResponse->extras);
         }
     }
 
     /**
      * Get new FBA offers
      *
-     * @return \SellerLabs\Research\Entities\Offer[]
+     * @return Offer[]
      */
     public function getFbaNewOffers()
     {
@@ -177,7 +116,7 @@ class OffersResponse
     /**
      * Get used FBA offers
      *
-     * @return \SellerLabs\Research\Entities\Offer[]
+     * @return Offer[]
      */
     public function getFbaUsedOffers()
     {
@@ -187,7 +126,7 @@ class OffersResponse
     /**
      * Get new merchant offers
      *
-     * @return \SellerLabs\Research\Entities\Offer[]
+     * @return Offer[]
      */
     public function getMerchantNewOffers()
     {
@@ -197,7 +136,7 @@ class OffersResponse
     /**
      * Get used merchant offers
      *
-     * @return \SellerLabs\Research\Entities\Offer[]
+     * @return Offer[]
      */
     public function getMerchantUsedOffers()
     {
@@ -217,6 +156,14 @@ class OffersResponse
     }
 
     /**
+     * @param string $productIdCode
+     */
+    public function setProductIdCode($productIdCode)
+    {
+        $this->productIdCode = $productIdCode;
+    }
+
+    /**
      * Get the product id type
      *
      * Usually just 'asin'
@@ -226,6 +173,14 @@ class OffersResponse
     public function getProductIdType()
     {
         return $this->productIdType;
+    }
+
+    /**
+     * @param string $productIdType
+     */
+    public function setProductIdType($productIdType)
+    {
+        $this->productIdType = $productIdType;
     }
 
     /**
@@ -239,15 +194,11 @@ class OffersResponse
     }
 
     /**
-     * Check whether there is an extra defined with the specified key
-     *
-     * @param $key
-     *
-     * @return bool
+     * @param array $extras
      */
-    public function hasExtra($key)
+    public function setExtras($extras)
     {
-        return array_key_exists($key, $this->extras);
+        $this->extras = $extras;
     }
 
     /**
@@ -270,6 +221,18 @@ class OffersResponse
     public function hasEanIdType()
     {
         return $this->hasExtra('ean') && !empty($this->extras['ean']);
+    }
+
+    /**
+     * Check whether there is an extra defined with the specified key
+     *
+     * @param $key
+     *
+     * @return bool
+     */
+    public function hasExtra($key)
+    {
+        return array_key_exists($key, $this->extras);
     }
 
     /**

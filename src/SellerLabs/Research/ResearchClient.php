@@ -2,9 +2,16 @@
 
 namespace SellerLabs\Research;
 
+use Chromabits\Nucleus\Meditation\Arguments;
+use Chromabits\Nucleus\Meditation\Boa;
+use Chromabits\Nucleus\Support\Std;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Url;
-use InvalidArgumentException;
+use SellerLabs\Research\Enum\CodeType;
+use SellerLabs\Research\Factories\CategoriesResponseFactory;
+use SellerLabs\Research\Factories\CategoryResponseFactory;
+use SellerLabs\Research\Factories\FeesResponseFactory;
+use SellerLabs\Research\Factories\OffersResponseFactory;
+use SellerLabs\Research\Factories\SearchResponseFactory;
 use SellerLabs\Research\Interfaces\ResearchClientInterface;
 use SellerLabs\Research\Responses\FeesResponse;
 use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
@@ -16,7 +23,7 @@ use SellerLabs\Research\Responses\SearchResponse;
  * Class ResearchClient
  *
  * An implementation of a client capable of querying the SellerLabs Research
- * API
+ * API.
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
@@ -27,7 +34,7 @@ class ResearchClient implements ResearchClientInterface
     /**
      * Internal HTTP Client
      *
-     * @var \GuzzleHttp\Client
+     * @var GuzzleClient
      */
     protected $client;
 
@@ -53,63 +60,66 @@ class ResearchClient implements ResearchClientInterface
     protected $secret;
 
     /**
+     * Overrides the internal guzzle client.
+     *
+     * Mainly used for testing.
+     *
+     * @param GuzzleClient $client
+     */
+    public function setClient(GuzzleClient $client)
+    {
+        $this->client = $client;
+    }
+
+    /**
      * Construct an instance of a ResearchClient
      *
      * @param string $clientId
      * @param string $secret
-     * @param string $baseUrl
-     * @param null $client
+     * @param string $endpoint
      */
-    public function __construct(
-        $clientId = null,
-        $secret = null,
-        $baseUrl = null,
-        $client = null
-    ) {
-        // Check that the necessary config is present
-        if (is_null($clientId) || is_null($secret) || is_null($baseUrl)) {
-            throw new InvalidArgumentException();
-        }
+    public function __construct($clientId, $secret, $endpoint)
+    {
+        Arguments::contain(Boa::string(), Boa::string(), Boa::string())
+            ->check($clientId, $secret, $endpoint);
 
         // Copy configuration to internal variables
         $this->clientId = $clientId;
         $this->secret = $secret;
-        $this->endpoint = $baseUrl;
-
-        // Create a GuzzleClient
-        if ($client) {
-            $this->client = $client;
-        } else {
-            $this->client = new GuzzleClient([
-                'base_url' => $baseUrl
-            ]);
-        }
-
-        $this->client->setDefaultOption(
-            'headers/Authorization',
-            $this->generateCode()
-        );
+        $this->endpoint = $endpoint;
+        $this->client = new GuzzleClient([
+            'base_uri' => $endpoint,
+            'headers' => [
+                'Authorization' => $this->generateCode(),
+            ],
+        ]);
     }
 
     /**
      * Generate an authorization code for the Research API server.
      *
-     * @param null $timestamp
+     * @param null|integer $timestamp
      *
      * @return string
      */
     public function generateCode($timestamp = null)
     {
-        if (is_null($timestamp)) {
-            $timestamp = time() + 3600 * 3; // Expires in 3 hours
-        }
+        Arguments::contain(Boa::either(Boa::null(), Boa::integer()))
+            ->check($timestamp);
 
-        $stringToSign = $timestamp . $this->clientId . $this->secret;
-        $signature = md5($stringToSign);
+        $signature = md5(implode('',
+            [
+                Std::coalesce($timestamp, time() + 3600 * 3),
+                $this->clientId,
+                $this->secret,
+            ]));
 
-        $code = "{$timestamp}|{$this->clientId}|{$signature}";
-
-        return $code;
+        return vsprintf('%s|%s|%s',
+            [
+                $timestamp,
+                $this->clientId,
+                $signature,
+            ]);
     }
 
     /**
@@ -118,90 +128,113 @@ class ResearchClient implements ResearchClientInterface
      * @param string $asin
      * @param bool $noPaapi
      *
-     * @return \SellerLabs\Research\Responses\OffersResponse
+     * @return OffersResponse
      */
     public function getOffers($asin, $noPaapi = false)
     {
-        // The response parser expects the pretty format
-        $url = Url::fromString('/v1/offers/' . $asin);
+        Arguments::contain(Boa::string(), Boa::boolean())
+            ->check($asin, $noPaapi);
 
         $query = [
-            'format' => 'pretty'
+            'format' => 'pretty',
         ];
 
         if ($noPaapi) {
             $query['nopaapi'] = true;
         }
 
-        $url->setQuery($query);
-
-        return new OffersResponse($this->client->get($url));
+        return (new OffersResponseFactory())->makeFromResponse(
+            $this->client->get(
+                vsprintf('/v1/offers/%s', [$asin]),
+                ['query' => $query]
+            )
+        );
     }
 
     /**
      * Call the fees endpoint of the Research API and return the response.
      *
-     * @param $asin
-     * @param $price
+     * @param string $asin
+     * @param float $price
      *
-     * @return \SellerLabs\Research\Responses\FeesResponse
+     * @return FeesResponse
      */
     public function getFees($asin, $price)
     {
-        $url = Url::fromString('/v1/fees/' . $asin);
+        Arguments::contain(Boa::string(), Boa::float())
+            ->check($asin, $price);
 
-        $url->setQuery([
-            'price' => $price
-        ]);
-
-        return new FeesResponse($this->client->get($url));
+        return (new FeesResponseFactory())->makeFromResponse(
+            $this->client->get(
+                vsprintf('/v1/fees/%s', [$asin]),
+                [
+                    'query' => [
+                        'price' => $price,
+                    ],
+                ]
+            )
+        );
     }
 
     /**
      * Search the catalog and return the response
      *
-     * @param $codeType
-     * @param $code
+     * @param string $idType
+     * @param string $idCode
      *
      * @return SearchResponse
      */
-    public function getSearch($codeType, $code)
+    public function getSearch($idType, $idCode)
     {
-        $url = Url::fromString('/v1/search');
+        Arguments::contain(Boa::in(CodeType::getValues()), Boa::string())
+            ->check($idType, $idCode);
 
-        $url->setQuery([
-            $codeType => $code,
-            'format' => 'pretty'
-        ]);
-
-        return new SearchResponse($this->client->get($url));
+        return (new SearchResponseFactory())->makeFromResponse(
+            $this->client->get(
+                '/v1/search',
+                [
+                    'query' => [
+                        $idType => $idCode,
+                        'format' => 'pretty',
+                    ],
+                ]
+            )
+        );
     }
 
     /**
      * Get categories for an ASIN
      *
-     * @param $asin
+     * @param string $asin
      *
-     * @return \SellerLabs\Research\Responses\GetAsinCategoriesResponse
+     * @return GetAsinCategoriesResponse
      */
     public function getAsinCategories($asin)
     {
-        return new GetAsinCategoriesResponse(
-            $this->client->get('/v1/getAsinCategories/' . $asin)
+        Arguments::contain(Boa::string())->check($asin);
+
+        return (new CategoriesResponseFactory())->makeFromResponse(
+            $this->client->get(
+                vsprintf('/v1/getAsinCategories/%s', [$asin])
+            )
         );
     }
 
     /**
      * Get a category by ID
      *
-     * @param $categoryId
+     * @param string $categoryId
      *
-     * @return \SellerLabs\Research\Responses\GetCategoryByIdResponse
+     * @return GetCategoryByIdResponse
      */
     public function getCategoryById($categoryId)
     {
-        return new GetCategoryByIdResponse(
-            $this->client->get('/v1/getCategoryById/' . $categoryId)
+        Arguments::contain(Boa::string())->check($categoryId);
+
+        return (new CategoryResponseFactory())->makeFromResponse(
+            $this->client->get(
+                vsprintf('/v1/getCategoryById/%s', [$categoryId])
+            )
         );
     }
 }

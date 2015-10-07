@@ -2,7 +2,6 @@
 
 namespace SellerLabs\Research\Responses;
 
-use GuzzleHttp\Message\ResponseInterface;
 use SellerLabs\Research\Entities\CategoryMapping;
 
 /**
@@ -12,44 +11,14 @@ use SellerLabs\Research\Entities\CategoryMapping;
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */
-class GetCategoryByIdResponse
+class GetCategoryByIdResponse extends BaseResponse
 {
-    /**
-     * Raw JSON response
-     *
-     * @var mixed
-     */
-    protected $jsonResponse;
-
     /**
      * Category mapping
      *
-     * @var \SellerLabs\Research\Entities\CategoryMapping
+     * @var CategoryMapping
      */
     protected $categoryMapping;
-
-    /**
-     * Construct an instance of a GetCategoryByIdResponse
-     *
-     * @param \GuzzleHttp\Message\ResponseInterface $response
-     */
-    public function __construct(ResponseInterface $response)
-    {
-        // Parse the JSON into an stdClass object
-        $rawResponse = json_decode($response->getBody());
-
-        $this->jsonResponse = $rawResponse;
-
-        $this->parse();
-    }
-
-    /**
-     * Parse JSON response
-     */
-    protected function parse()
-    {
-        $this->categoryMapping = new CategoryMapping($this->jsonResponse);
-    }
 
     /**
      * Get the category id associated with this response
@@ -69,6 +38,14 @@ class GetCategoryByIdResponse
     public function getCategoryMapping()
     {
         return $this->categoryMapping;
+    }
+
+    /**
+     * @param CategoryMapping $categoryMapping
+     */
+    public function setCategoryMapping($categoryMapping)
+    {
+        $this->categoryMapping = $categoryMapping;
     }
 
     /**
