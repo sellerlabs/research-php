@@ -1,9 +1,9 @@
-# SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/research-php.svg?branch=master)
+# research-php ![Build Status](https://travis-ci.org/sellerlabs/research-php.svg?branch=master)
 
 This is the official PHP client library for SellerLabs' research API service
 _(Previously known as NodeMWS/ModernMWS client)_.
 
-## Requirements:
+## Requirements
 
 - PHP +5.6 or HHVM +3.6.
 - Composer and `autoload.php`.
@@ -11,16 +11,14 @@ _(Previously known as NodeMWS/ModernMWS client)_.
 
 ## Documentation
 
-- API documentation for the Research Service is available at: 
+- API documentation for the Research Service is available at:
 https://docs.sellerlabs.com/research/
 - Documentation for this library is available under the `docs/api` directory in
 this repository.
 
-## Latest changes:
+## Installation & usage
 
-See (CHANGELOG.md)[CHANGELOG.md]
-
-## How to install:
+### Using composer:
 
 First, add the package to your `composer.json`:
 
@@ -34,7 +32,7 @@ First, add the package to your `composer.json`:
 
 Then run `composer update`
 
-## How to use with Laravel 5:
+### How to use with Laravel 5:
 
 First you need to configure the client inside your app service provider:
 
@@ -42,7 +40,7 @@ First you need to configure the client inside your app service provider:
 public function register()
 {
     $this->app->bind(
-        'SellerLabs\Research\Interfaces\ResearchClientInterface',
+        SellerLabs\Research\Interfaces\ResearchClientInterface::class,
         function () {
             return new ResearchClient(
                 'YourClientId',
@@ -54,7 +52,7 @@ public function register()
 }
 ```
 
-Then inside any of your controllers, you can inject the dependency through the 
+Then inside any of your controllers, you can inject the dependency through the
 constructor:
 
 ```php
@@ -63,11 +61,11 @@ class ProductsController extends Controller
 {
     /**
      * Implementation of a client for SellerLabs' research API
-     * 
-     * @var \SellerLabs\Research\Interfaces\ResearchClientInterface
+     *
+     * @var ResearchClientInterface
      */
     protected $researchClient;
-    
+
     /**
      * Construct an instance of a ProductsController
      */
@@ -75,7 +73,7 @@ class ProductsController extends Controller
     {
         $this->researchClient = $researchClient;
     }
-    
+
     /**
      * Handle GET /products/
      */
@@ -86,6 +84,6 @@ class ProductsController extends Controller
 }
 ```
 
-Laravel's container is smart enough to automatically perform dependency 
-injection, which adds the client parameter for you when initializing your 
+Laravel's container is smart enough to automatically perform dependency
+injection, which adds the client parameter for you when initializing your
 controller's class
