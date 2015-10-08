@@ -1,35 +1,24 @@
 # SellerLabs Research PHP Client ![Build Status](https://travis-ci.org/sellerlabs/research-php.svg?branch=master)
 
-This is a PHP client library for SellerLabs' research service
-(Previously known as NodeMWS/ModernMWS client).
+This is the official PHP client library for SellerLabs' research API service
+_(Previously known as NodeMWS/ModernMWS client)_.
 
 ## Requirements:
 
-- Composer and `autoload.php`
-- Credentials to the research service
+- PHP +5.6 or HHVM +3.6.
+- Composer and `autoload.php`.
+- and of course: credentials to use the research service.
 
 ## Documentation
 
 - API documentation for the Research Service is available at: 
 https://docs.sellerlabs.com/research/
-- Documentation for the library is available under `docs/api` in this repo
+- Documentation for this library is available under the `docs/api` directory in
+this repository.
 
 ## Latest changes:
 
-### v0.1.2:
-- Use Guzzle 6
-
-### v0.1.1:
-- Use Guzzle 5
-
-### v0.1.0:
-- Moved remaining classes to the Research namespace. This introduces a BC for
-code explicitly depending on this classes.
-- The `NodeMwsClientInterface`, which was deprecated, has now been completely
-removed. Use `ResearchClientInterface` instead.
-- Some small bugs in unit tests were fixed.
-- Composer dependencies have been cleaned up and stabilized. A `composer.lock`
-file is now included as well.
+See (CHANGELOG.md)[CHANGELOG.md]
 
 ## How to install:
 
