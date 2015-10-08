@@ -36,5 +36,8 @@
       "Tests\\SellerLabs\\Support\\": "tests/SellerLabs/Support",
       "Tests\\SellerLabs\\Research\\": "tests/SellerLabs/Research"
     }
+  },
+  "branch-alias": {
+    "dev-master": "0.2-dev"
   }
 }
