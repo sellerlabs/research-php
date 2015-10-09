@@ -107,19 +107,19 @@ class ResearchClient implements ResearchClientInterface
         Arguments::contain(Boa::either(Boa::null(), Boa::integer()))
             ->check($timestamp);
 
-        $signature = md5(implode('',
-            [
-                Std::coalesce($timestamp, time() + 3600 * 3),
-                $this->clientId,
-                $this->secret,
-            ]));
+        $timestamp = Std::coalesce($timestamp, time() + 3600 * 3);
 
-        return vsprintf('%s|%s|%s',
-            [
-                $timestamp,
-                $this->clientId,
-                $signature,
-            ]);
+        $signature = md5(implode('', [
+            $timestamp,
+            $this->clientId,
+            $this->secret,
+        ]));
+
+        return vsprintf('%s|%s|%s', [
+            $timestamp,
+            $this->clientId,
+            $signature,
+        ]);
     }
 
     /**
