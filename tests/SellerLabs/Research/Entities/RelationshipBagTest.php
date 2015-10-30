@@ -48,8 +48,25 @@ class RelationshipBagTest extends TestCase
         );
 
         $this->assertEquals(
+            [
+                'color' => 'Tan',
+                'size' => '34W x 30L'
+            ],
+            $bag->getChildren()[0]->getProperties()
+        );
+
+        $this->assertEquals(
             'B013RUF9IC',
             $bag->getParents()[0]->getAsin()
         );
+
+        $this->assertEquals(
+            [
+                'color' => 'Tan',
+                'size' => '38WxL32'
+            ],
+            $bag->getParents()[0]->getProperties()
+        );
+
     }
 }
