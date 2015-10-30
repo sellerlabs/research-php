@@ -38,7 +38,6 @@ class SearchProductFactory extends BaseEntityFactory
         if (Arr::has($input, 'rank')) {
             $rank = $input['rank'];
 
-            // TODO: Extend "Rank" and "relationships"
             if (Arr::has($rank, 'Rank')) {
                 $product->setRank($rank['Rank']);
 
