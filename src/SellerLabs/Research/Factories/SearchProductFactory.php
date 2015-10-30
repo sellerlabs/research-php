@@ -4,6 +4,8 @@ namespace SellerLabs\Research\Factories;
 
 use Chromabits\Nucleus\Support\Arr;
 use SellerLabs\Research\Entities\BaseEntity;
+use SellerLabs\Research\Entities\Ranking;
+use SellerLabs\Research\Entities\RelationshipBag;
 use SellerLabs\Research\Entities\SearchProduct;
 
 /**
@@ -36,8 +38,21 @@ class SearchProductFactory extends BaseEntityFactory
         if (Arr::has($input, 'rank')) {
             $rank = $input['rank'];
 
+            // TODO: Extend "Rank" and "relationships"
             if (Arr::has($rank, 'Rank')) {
                 $product->setRank($rank['Rank']);
+
+                if (Arr::has($rank, 'rankings')) {
+                    // Populate rankings
+                    $product->setRankings(
+                        array_map(
+                            function ($ranking) {
+                                return new Ranking($ranking);
+                            },
+                            $rank['rankings']
+                        )
+                    );
+                }
             } else {
                 $product->setRank(null);
             }
@@ -47,6 +62,13 @@ class SearchProductFactory extends BaseEntityFactory
             } else {
                 $product->setCategoryId(null);
             }
+
+            if (Arr::has($input, 'relationships')) {
+                $relationships = new RelationshipBag(
+                    $input['relationships']
+                );
+                $product->setRelationships($relationships);
+            };
         }
 
         return $product;

@@ -63,6 +63,11 @@ class SearchProduct extends BaseEntity
     protected $weight;
 
     /**
+     * @var RelationshipBag
+     */
+    protected $relationships;
+
+    /**
      * @return string
      */
     public function getAsin()
@@ -215,5 +220,29 @@ class SearchProduct extends BaseEntity
     public function setWeight($weight)
     {
         $this->weight = $weight;
+    }
+
+    /**
+     * @param array $rankings
+     */
+    public function setRankings(array $rankings)
+    {
+        $this->rankings = $rankings;
+    }
+
+    /**
+     * @param $relationships
+     */
+    public function setRelationships($relationships)
+    {
+        $this->relationships = $relationships;
+    }
+
+    /**
+     * @return RelationshipBag
+     */
+    public function getRelationships()
+    {
+        return $this->relationships;
     }
 }
