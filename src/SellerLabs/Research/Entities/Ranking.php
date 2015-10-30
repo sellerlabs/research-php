@@ -45,4 +45,20 @@ class Ranking
             $this->rank = $raw['Rank'];
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
 }
