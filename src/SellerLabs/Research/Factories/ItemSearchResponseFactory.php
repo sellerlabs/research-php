@@ -11,6 +11,7 @@
 
 namespace SellerLabs\Research\Factories;
 
+use Chromabits\Nucleus\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 use SellerLabs\Research\Entities\Item;
 use SellerLabs\Research\Exceptions\InvalidFormatException;
@@ -57,12 +58,10 @@ class ItemSearchResponseFactory extends BaseResponseFactory
      */
     protected function parseItems($body)
     {
+        $items = Arr::dotGet($body, 'ItemSearchResponse.Items.Item', []);
 
-        $items = $body['ItemSearchResponse']['Items']['Item'];
-        $parsed = array_map(function ($item) {
+        return array_map(function ($item) {
             return new Item($item);
         }, $items);
-
-        return $parsed;
     }
 }

@@ -32,8 +32,6 @@ class ItemAttributes extends BaseEntity
 
             $this->attributes[$key] = $val;
         }
-
-        var_dump($raw);
     }
 
     /**

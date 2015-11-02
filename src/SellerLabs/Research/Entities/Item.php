@@ -11,8 +11,8 @@
 
 namespace SellerLabs\Research\Entities;
 
-use Chromabits\Nucleus\Support\Arr;
 use SellerLabs\Research\Factories\ItemLinksFactory;
+use SellerLabs\Research\Factories\SearchOfferFactory;
 
 /**
  * Class Item
@@ -43,10 +43,11 @@ class Item extends BaseEntity
             $this->get('ItemAttributes', [])
         );
 
-        // TODO parse OfferSummary
-        $this->offerSummary = $this->get('OfferSummary', []);
-        // TODO parse Offers
-        $this->offers = $this->get('Offers', []);
+        $this->offerSummary = $this->parseOfferSummary(
+            $this->get('OfferSummary', [])
+        );
+
+        $this->offers = $this->parseOffers($this->get('Offers.Offer', []));
     }
 
     protected function parseItemLinks($itemLinks)
@@ -57,5 +58,21 @@ class Item extends BaseEntity
     protected function parseItemAttributes($itemAttributes)
     {
         return new ItemAttributes($itemAttributes);
+    }
+
+    protected function parseOfferSummary($offerSummary)
+    {
+        return new OfferSummary($offerSummary);
+    }
+
+    protected function parseOffers(array $offers)
+    {
+        // Normalize in case of non-list, which can happen due to XML->JSON
+        // conversion
+        if (!isset($offers[0])) {
+            $offers = [$offers];
+        }
+
+        return (new SearchOfferFactory())->makeFromArray($offers);
     }
 }
