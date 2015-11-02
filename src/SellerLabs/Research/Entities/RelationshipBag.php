@@ -23,12 +23,12 @@ class RelationshipBag
     /**
      * @var ProductRelationship[]
      */
-    protected $parents;
+    protected $parents = [];
 
     /**
      * @var ProductRelationship[]
      */
-    protected $children;
+    protected $children = [];
 
     /**
      * RelationshipBag constructor.
