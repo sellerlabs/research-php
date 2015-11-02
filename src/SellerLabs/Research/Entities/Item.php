@@ -39,8 +39,10 @@ class Item extends BaseEntity
         $this->itemLinks = $this->parseItemLinks(
             $this->get('ItemLinks.ItemLink', [])
         );
-        // TODO parse ItemAttributes
-        $this->itemAttributes = $this->get('ItemAttributes', []);
+        $this->itemAttributes = $this->parseItemAttributes(
+            $this->get('ItemAttributes', [])
+        );
+
         // TODO parse OfferSummary
         $this->offerSummary = $this->get('OfferSummary', []);
         // TODO parse Offers
@@ -49,8 +51,11 @@ class Item extends BaseEntity
 
     protected function parseItemLinks($itemLinks)
     {
-        $links = (new ItemLinksFactory())->makeFromArray($itemLinks);
+        return (new ItemLinksFactory())->makeFromArray($itemLinks);
+    }
 
-        return $links;
+    protected function parseItemAttributes($itemAttributes)
+    {
+        return new ItemAttributes($itemAttributes);
     }
 }
