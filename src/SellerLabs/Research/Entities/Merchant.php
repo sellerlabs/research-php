@@ -27,13 +27,13 @@ class Merchant extends BaseEntity
 
     /**
      * Merchant constructor.
-     * @param mixed $get
+     *
+     * @param array $raw
      */
     public function __construct(array $raw = [])
     {
         parent::__construct($raw);
 
         $this->name = $this->get('Name');
-        $this->raw = $raw;
     }
 }

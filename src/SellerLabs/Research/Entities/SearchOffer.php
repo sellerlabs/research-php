@@ -20,10 +20,24 @@ namespace SellerLabs\Research\Entities;
  */
 class SearchOffer extends BaseEntity
 {
+    /**
+     * @var Merchant
+     */
     public $merchant;
+
+    /**
+     * @var ItemAttributes
+     */
     public $offerAttributes;
+
+    /**
+     * @var OfferListing
+     */
     public $offerListing;
 
+    /**
+     * @param array $raw
+     */
     public function __construct(array $raw)
     {
         parent::__construct($raw);
@@ -35,8 +49,5 @@ class SearchOffer extends BaseEntity
         $this->offerListing = new OfferListing(
             $this->get('OfferListing', [])
         );
-
-        var_dump($this);
-        // TODO
     }
 }

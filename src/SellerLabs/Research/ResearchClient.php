@@ -10,6 +10,7 @@ use SellerLabs\Research\Enum\CodeType;
 use SellerLabs\Research\Factories\CategoriesResponseFactory;
 use SellerLabs\Research\Factories\CategoryResponseFactory;
 use SellerLabs\Research\Factories\FeesResponseFactory;
+use SellerLabs\Research\Factories\ItemSearchResponseFactory;
 use SellerLabs\Research\Factories\OffersResponseFactory;
 use SellerLabs\Research\Factories\SearchResponseFactory;
 use SellerLabs\Research\Interfaces\ResearchClientInterface;
@@ -234,6 +235,35 @@ class ResearchClient implements ResearchClientInterface
         return (new CategoryResponseFactory())->makeFromResponse(
             $this->client->get(
                 vsprintf('/v1/getCategoryById/%s', [$categoryId])
+            )
+        );
+    }
+
+    /**
+     * Hit the itemSearch endpoint of research-api with a given keyword
+     * phrase, page (default 1) and search index (default Blended)
+     *
+     * @param $keywords
+     * @param int $page
+     * @param string $searchIndex
+     *
+     * @return Responses\BaseResponse
+     */
+    public function getItemSearch(
+        $keywords,
+        $page = 1,
+        $searchIndex = 'Blended'
+    ) {
+        return (new ItemSearchResponseFactory())->makeFromResponse(
+            $this->client->get(
+                '/v1/itemSearch',
+                [
+                    'query' => [
+                        'keywords' => $keywords,
+                        'page' => $page,
+                        'searchIndex'=> $searchIndex,
+                    ],
+                ]
             )
         );
     }
