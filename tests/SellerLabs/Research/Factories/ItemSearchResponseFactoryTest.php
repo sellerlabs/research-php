@@ -8,7 +8,7 @@ class ItemSearchResponseFactoryTest extends ResponseFactoryTestCase
 {
     public function testConstruct()
     {
-        (new itemSearchResponseFactory())
+        (new ItemSearchResponseFactory())
             ->makeFromResponse(
                 $this->makeResponseRelative(
                     '../Responses/Resources/ItemSearchResponse.json'
