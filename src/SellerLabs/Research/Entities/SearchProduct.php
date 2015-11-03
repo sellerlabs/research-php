@@ -14,6 +14,11 @@ namespace SellerLabs\Research\Entities;
 class SearchProduct extends BaseEntity
 {
     /**
+     * @var Ranking[]
+     */
+    public $rankings;
+
+    /**
      * @var string
      */
     protected $catalog;
@@ -61,6 +66,11 @@ class SearchProduct extends BaseEntity
      * @var string
      */
     protected $weight;
+
+    /**
+     * @var RelationshipBag
+     */
+    protected $relationships;
 
     /**
      * @return string
@@ -215,5 +225,29 @@ class SearchProduct extends BaseEntity
     public function setWeight($weight)
     {
         $this->weight = $weight;
+    }
+
+    /**
+     * @param Ranking[] $rankings
+     */
+    public function setRankings(array $rankings)
+    {
+        $this->rankings = $rankings;
+    }
+
+    /**
+     * @param RelationshipBag $relationships
+     */
+    public function setRelationships(RelationshipBag $relationships)
+    {
+        $this->relationships = $relationships;
+    }
+
+    /**
+     * @return RelationshipBag
+     */
+    public function getRelationships()
+    {
+        return $this->relationships;
     }
 }

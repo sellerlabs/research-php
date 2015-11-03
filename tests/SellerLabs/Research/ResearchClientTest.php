@@ -8,6 +8,7 @@ use SellerLabs\Research\ResearchClient;
 use SellerLabs\Research\Responses\FeesResponse;
 use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
 use SellerLabs\Research\Responses\GetCategoryByIdResponse;
+use SellerLabs\Research\Responses\ItemSearchResponse;
 use SellerLabs\Research\Responses\OffersResponse;
 use SellerLabs\Research\Responses\SearchResponse;
 use Tests\SellerLabs\Support\MockResponsesTrait;
@@ -184,5 +185,35 @@ class ResearchClientTest extends TestCase
         $result = $this->makeClient($guzzleMock)->getCategoryById('10399');
 
         $this->assertInstanceOf(GetCategoryByIdResponse::class, $result);
+    }
+
+    public function testGetItemSearch()
+    {
+        $guzzleMock = $this->makeGuzzleMock();
+        $guzzleMock->shouldReceive('get')
+            ->withArgs(
+                [
+                    '/v1/itemSearch',
+                    [
+                        'query' => [
+                            'keywords' => 'some keywords',
+                            'page' => 1,
+                            'searchIndex'=> 'BogusIndex',
+                        ],
+                    ]
+                ])
+            ->once()
+            ->andReturn($this->makeResponse(
+                dirname(__FILE__)
+                . '/Responses/Resources/ItemSearchResponse.json'
+            ));
+
+        $result = $this->makeClient($guzzleMock)->getItemSearch(
+            'some keywords',
+            1,
+            'BogusIndex'
+        );
+
+        $this->assertInstanceOf(ItemSearchResponse::class, $result);
     }
 }
