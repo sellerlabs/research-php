@@ -17,6 +17,7 @@ use SellerLabs\Research\Interfaces\ResearchClientInterface;
 use SellerLabs\Research\Responses\FeesResponse;
 use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
 use SellerLabs\Research\Responses\GetCategoryByIdResponse;
+use SellerLabs\Research\Responses\ItemSearchResponse;
 use SellerLabs\Research\Responses\OffersResponse;
 use SellerLabs\Research\Responses\SearchResponse;
 
@@ -247,7 +248,7 @@ class ResearchClient implements ResearchClientInterface
      * @param int $page
      * @param string $searchIndex
      *
-     * @return Responses\BaseResponse
+     * @return ItemSearchResponse
      */
     public function getItemSearch(
         $keywords,
