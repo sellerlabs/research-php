@@ -34,6 +34,7 @@ class ItemLink extends BaseEntity
 
     /**
      * ItemLink constructor.
+     *
      * @param $link
      */
     public function __construct(array $link)

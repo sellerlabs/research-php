@@ -37,7 +37,6 @@ class ItemAttributes extends BaseEntity
         parent::__construct($raw);
 
         foreach ($raw as $key => $val) {
-
             $this->attributes[$key] = $val;
         }
     }
