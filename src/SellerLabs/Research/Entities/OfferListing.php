@@ -20,12 +20,39 @@ namespace SellerLabs\Research\Entities;
  */
 class OfferListing extends BaseEntity
 {
+    /**
+     * @var Price
+     */
     public $salePrice;
+
+    /**
+     * @var Price
+     */
     public $amountSaved;
+
+    /**
+     * @var int
+     */
     public $percentageSaved;
+
+    /**
+     * @var string
+     */
     public $availablity;
+
+    /**
+     * @var AvailabilityAttributes
+     */
     public $availabilityAttributes;
+
+    /**
+     * @var string
+     */
     public $isEligibleForSuperSaverShipping;
+
+    /**
+     * @var string
+     */
     public $isEligibleForPrime;
 
     /**

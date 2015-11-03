@@ -11,6 +11,7 @@
 
 namespace SellerLabs\Research\Entities;
 
+use SellerLabs\Research\Factories\ItemLink;
 use SellerLabs\Research\Factories\ItemLinksFactory;
 use SellerLabs\Research\Factories\SearchOfferFactory;
 
@@ -23,13 +24,41 @@ use SellerLabs\Research\Factories\SearchOfferFactory;
  */
 class Item extends BaseEntity
 {
+    /**
+     * @var string
+     */
     public $asin;
+
+    /**
+     * @var string
+     */
     public $detailPageUrl;
+
+    /**
+     * @var ItemLink[]
+     */
     public $itemLinks;
+
+    /**
+     * @var ItemAttributes
+     */
     public $itemAttributes;
+
+    /**
+     * @var OfferSummary
+     */
     public $offerSummary;
+
+    /**
+     * @var SearchOffer[]
+     */
     public $offers;
 
+    /**
+     * Item constructor.
+     *
+     * @param array $raw
+     */
     public function __construct(array $raw)
     {
         parent::__construct($raw);
@@ -52,7 +81,9 @@ class Item extends BaseEntity
 
     protected function parseItemLinks($itemLinks)
     {
-        return (new ItemLinksFactory())->makeFromArray($itemLinks);
+        return  array_map(function ($item) {
+            return new ItemLink($item);
+        }, $itemLinks);
     }
 
     protected function parseItemAttributes($itemAttributes)
@@ -73,6 +104,8 @@ class Item extends BaseEntity
             $offers = [$offers];
         }
 
-        return (new SearchOfferFactory())->makeFromArray($offers);
+        return array_map(function ($offer) {
+            return new SearchOffer($offer);
+        }, $offers);
     }
 }

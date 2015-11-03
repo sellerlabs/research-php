@@ -22,7 +22,14 @@ use SellerLabs\Research\Entities\BaseEntity;
  */
 class ItemLink extends BaseEntity
 {
+    /**
+     * @var string
+     */
     public $description;
+
+    /**
+     * @var string
+     */
     public $url;
 
     /**

@@ -22,8 +22,16 @@ use Chromabits\Nucleus\Support\Arr;
  */
 class ItemAttributes extends BaseEntity
 {
+    /**
+     * @var array
+     */
     public $attributes = [];
 
+    /**
+     * ItemAttributes constructor.
+     *
+     * @param array $raw
+     */
     public function __construct(array $raw)
     {
         parent::__construct($raw);
