@@ -46,12 +46,12 @@ class OfferListing extends BaseEntity
     public $availabilityAttributes;
 
     /**
-     * @var string
+     * @var bool
      */
     public $isEligibleForSuperSaverShipping;
 
     /**
-     * @var string
+     * @var bool
      */
     public $isEligibleForPrime;
 
@@ -77,9 +77,9 @@ class OfferListing extends BaseEntity
         );
         $this->isEligibleForSuperSaverShipping = $this->get(
             'IsEligibleForSuperSaverShipping'
-        );
+        ) != '0';
         $this->isEligibleForPrime = $this->get(
             'IsEligibleForPrime'
-        );
+        ) != '0';
     }
 }
