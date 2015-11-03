@@ -231,9 +231,9 @@ class SearchProduct extends BaseEntity
     }
 
     /**
-     * @param $relationships
+     * @param RelationshipBag $relationships
      */
-    public function setRelationships($relationships)
+    public function setRelationships(RelationshipBag $relationships)
     {
         $this->relationships = $relationships;
     }

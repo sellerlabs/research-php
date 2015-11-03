@@ -25,7 +25,7 @@ class ItemAttributes extends BaseEntity
     /**
      * @var array
      */
-    public $attributes = [];
+    protected $attributes = [];
 
     /**
      * ItemAttributes constructor.

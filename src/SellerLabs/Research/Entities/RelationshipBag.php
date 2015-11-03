@@ -11,6 +11,8 @@
 
 namespace SellerLabs\Research\Entities;
 
+use Chromabits\Nucleus\Support\Arr;
+
 /**
  * Class RelationshipBag
  *
@@ -32,18 +34,19 @@ class RelationshipBag
 
     /**
      * RelationshipBag constructor.
-     * @param $relationships
+     *
+     * @param array $relationships
      */
     public function __construct(array $relationships)
     {
-        $this->setParents($relationships['parents']);
-        $this->setChildren($relationships['children']);
+        $this->setParents(Arr::dotGet($relationships, 'parents'));
+        $this->setChildren(Arr::dotGet($relationships, 'children'));
     }
 
     /**
      * @param array $parents
      */
-    protected function setParents($parents)
+    protected function setParents(array $parents)
     {
         $this->parents = array_map(function ($parent) {
             return new ProductRelationship($parent);
@@ -53,7 +56,7 @@ class RelationshipBag
     /**
      * @param array $children
      */
-    protected function setChildren($children) {
+    protected function setChildren(array $children) {
         $this->children = array_map(function ($child) {
             return new ProductRelationship($child);
         }, $children);

@@ -32,8 +32,8 @@ class ProductRelationship
 
     /**
      * ProductRelationship constructor.
+     *
      * @param $relationship
-     * @internal param $parent
      */
     public function __construct($relationship)
     {

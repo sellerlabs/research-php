@@ -79,6 +79,11 @@ class Item extends BaseEntity
         $this->offers = $this->parseOffers($this->get('Offers.Offer', []));
     }
 
+    /**
+     * @param $itemLinks
+     *
+     * @return array
+     */
     protected function parseItemLinks($itemLinks)
     {
         return  array_map(function ($item) {
@@ -86,21 +91,36 @@ class Item extends BaseEntity
         }, $itemLinks);
     }
 
+    /**
+     * @param $itemAttributes
+     *
+     * @return ItemAttributes
+     */
     protected function parseItemAttributes($itemAttributes)
     {
         return new ItemAttributes($itemAttributes);
     }
 
+    /**
+     * @param $offerSummary
+     *
+     * @return OfferSummary
+     */
     protected function parseOfferSummary($offerSummary)
     {
         return new OfferSummary($offerSummary);
     }
 
+    /**
+     * @param array $offers
+     *
+     * @return array
+     */
     protected function parseOffers(array $offers)
     {
         // Normalize in case of non-list, which can happen due to XML->JSON
-        // conversion
-        if (!isset($offers[0])) {
+        // conversion (NB. this checks if $offers is a sequential array)
+        if (array_values($offers) !== $offers) {
             $offers = [$offers];
         }
 
