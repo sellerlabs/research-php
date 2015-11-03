@@ -38,7 +38,7 @@ class OfferListing extends BaseEntity
     /**
      * @var string
      */
-    public $availablity;
+    public $availability;
 
     /**
      * @var AvailabilityAttributes
@@ -71,7 +71,7 @@ class OfferListing extends BaseEntity
             $this->get('AmountSaved', [])
         );
         $this->percentageSaved = (int) $this->get('PercentageSaved', 0);
-        $this->availablity = $this->get('Availability');
+        $this->availability = $this->get('Availability');
         $this->availabilityAttributes = new AvailabilityAttributes(
             $this->get('AvailabilityAttributes')
         );
