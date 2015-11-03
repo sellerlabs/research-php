@@ -14,6 +14,11 @@ namespace SellerLabs\Research\Entities;
 class SearchProduct extends BaseEntity
 {
     /**
+     * @var Ranking[]
+     */
+    public $rankings;
+
+    /**
      * @var string
      */
     protected $catalog;
@@ -223,7 +228,7 @@ class SearchProduct extends BaseEntity
     }
 
     /**
-     * @param array $rankings
+     * @param Ranking[] $rankings
      */
     public function setRankings(array $rankings)
     {
