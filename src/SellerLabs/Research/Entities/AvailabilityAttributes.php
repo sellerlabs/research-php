@@ -20,8 +20,19 @@ namespace SellerLabs\Research\Entities;
  */
 class AvailabilityAttributes extends BaseEntity
 {
+    /**
+     * @var string
+     */
     public $availabilityType;
+
+    /**
+     * @var int
+     */
     public $minimumHours;
+
+    /**
+     * @var int
+     */
     public $maximumHours;
 
     /**
