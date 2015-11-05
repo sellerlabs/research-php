@@ -7,7 +7,7 @@ use Chromabits\Nucleus\Support\Enum;
 /**
  * Class FeesSetType
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Enum
  */
 class FeesSetType extends Enum

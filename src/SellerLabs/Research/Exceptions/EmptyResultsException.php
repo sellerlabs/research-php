@@ -10,7 +10,7 @@ use Exception;
  * Thrown when search results are empty
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @@author Eduardo Trujillo <ed@chromabits.com>
+ * @@author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Exceptions
  */
 class EmptyResultsException extends Exception

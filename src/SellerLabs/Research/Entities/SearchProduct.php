@@ -8,7 +8,7 @@ namespace SellerLabs\Research\Entities;
  * Abstraction class to hold products returned from NodeMws search response.
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @@author Eduardo Trujillo <ed@chromabits.com>
+ * @@author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Entities
  */
 class SearchProduct extends BaseEntity

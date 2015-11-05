@@ -10,7 +10,7 @@ use SellerLabs\Research\Responses\SearchResponse;
  *
  * Represents an object capable of querying SellerLabs' Research API
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Interfaces
  */

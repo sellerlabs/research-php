@@ -7,7 +7,7 @@ use SellerLabs\Research\Entities\CategoryMapping;
 /**
  * Class GetAsinCategoriesResponse
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */

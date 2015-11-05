@@ -7,7 +7,7 @@ namespace SellerLabs\Research;
  *
  * Various format utility functions
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research
  */
 class FormatUtils

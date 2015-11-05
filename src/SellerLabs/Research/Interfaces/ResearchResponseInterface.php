@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Interface ResearchResponseInterface
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Interfaces
  */
 interface ResearchResponseInterface

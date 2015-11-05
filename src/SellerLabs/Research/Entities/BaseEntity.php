@@ -8,7 +8,7 @@ use Chromabits\Nucleus\Support\Arr;
 /**
  * Class BaseEntity
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Entities
  */
 abstract class BaseEntity extends BaseObject

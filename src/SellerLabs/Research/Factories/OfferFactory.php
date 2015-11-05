@@ -7,7 +7,7 @@ use SellerLabs\Research\Entities\Offer;
 /**
  * Class OfferFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class OfferFactory extends BaseEntityFactory

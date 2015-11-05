@@ -8,7 +8,7 @@ namespace SellerLabs\Research\Entities;
  * Represents a single offer returned from a NodeMws offers call
  *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
- * @@author Eduardo Trujillo <ed@chromabits.com>
+ * @@author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Entities
  */
 class Offer extends BaseEntity

@@ -9,7 +9,7 @@ use SellerLabs\Research\Responses\GetCategoryByIdResponse;
 /**
  * Class CategoryResponseFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class CategoryResponseFactory extends BaseResponseFactory

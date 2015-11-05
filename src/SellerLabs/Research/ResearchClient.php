@@ -27,7 +27,7 @@ use SellerLabs\Research\Responses\SearchResponse;
  * An implementation of a client capable of querying the SellerLabs Research
  * API.
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research
  */

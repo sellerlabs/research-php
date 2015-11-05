@@ -7,7 +7,7 @@ use SellerLabs\Research\Entities\BaseEntity;
 /**
  * Interface EntityFactoryInterface
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Interfaces
  */
 interface EntityFactoryInterface

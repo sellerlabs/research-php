@@ -10,7 +10,7 @@ use SellerLabs\Research\Interfaces\ResponseFactoryInterface;
 /**
  * Class BaseResponseFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 abstract class BaseResponseFactory extends BaseObject implements

@@ -13,7 +13,7 @@ use SellerLabs\Research\Responses\SearchResponse;
 /**
  * Class SearchResponseFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class SearchResponseFactory extends BaseResponseFactory

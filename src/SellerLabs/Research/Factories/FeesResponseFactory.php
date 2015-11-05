@@ -12,7 +12,7 @@ use SellerLabs\Research\Responses\FeesResponse;
 /**
  * Class FeesResponseFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class FeesResponseFactory extends BaseResponseFactory

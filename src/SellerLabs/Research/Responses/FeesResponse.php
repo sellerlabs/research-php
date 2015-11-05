@@ -9,7 +9,7 @@ use SellerLabs\Research\Entities\FeesSet;
  *
  * Represents a fees call response from NodeMWS
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Responses
  */
 class FeesResponse extends BaseResponse

@@ -5,7 +5,7 @@ namespace SellerLabs\Research\Entities;
 /**
  * Class CategoryMapping
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Entities
  */

@@ -9,7 +9,7 @@ use SellerLabs\Research\Responses\BaseResponse;
 /**
  * Interface ResponseFactoryInterface
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Interfaces
  */
 interface ResponseFactoryInterface

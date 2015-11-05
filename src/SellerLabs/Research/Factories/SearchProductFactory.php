@@ -11,7 +11,7 @@ use SellerLabs\Research\Entities\SearchProduct;
 /**
  * Class SearchProductFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class SearchProductFactory extends BaseEntityFactory

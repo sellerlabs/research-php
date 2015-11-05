@@ -9,7 +9,7 @@ use SellerLabs\Research\Interfaces\ResearchResponseInterface;
 /**
  * Class BaseResponse
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Responses
  */
 class BaseResponse extends BaseObject implements ResearchResponseInterface

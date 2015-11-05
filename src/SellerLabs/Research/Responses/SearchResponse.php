@@ -7,7 +7,7 @@ use SellerLabs\Research\Entities\SearchProduct;
 /**
  * Class SearchResponse
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @author Benjamin Kovach <benjamin@roundsphere.com>
  * @package SellerLabs\Research\Responses
  */

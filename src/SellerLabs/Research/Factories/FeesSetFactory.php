@@ -8,7 +8,7 @@ use SellerLabs\Research\Entities\FeesSet;
 /**
  * Class FeesSetFactory
  *
- * @author Eduardo Trujillo <ed@chromabits.com>
+ * @author Eduardo Trujillo <ed@sellerlabs.com>
  * @package SellerLabs\Research\Factories
  */
 class FeesSetFactory extends BaseEntityFactory
