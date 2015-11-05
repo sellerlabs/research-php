@@ -2,7 +2,9 @@
 
 namespace SellerLabs\Research\Interfaces;
 
+use SellerLabs\Research\Factories\ItemSearchResponseFactory;
 use SellerLabs\Research\Responses\FeesResponse;
+use SellerLabs\Research\Responses\ItemSearchResponse;
 use SellerLabs\Research\Responses\SearchResponse;
 
 /**
@@ -72,4 +74,20 @@ interface ResearchClientInterface
      * @return \SellerLabs\Research\Responses\GetCategoryByIdResponse
      */
     public function getCategoryById($categoryId);
+
+    /**
+     * Hit the itemSearch endpoint of research-api with a given keyword
+     * phrase, page (default 1) and search index (default Blended)
+     *
+     * @param $keywords
+     * @param int $page
+     * @param string $searchIndex
+     *
+     * @return ItemSearchResponse
+     */
+    public function getItemSearch(
+        $keywords,
+        $page = 1,
+        $searchIndex = 'Blended'
+    );
 }
