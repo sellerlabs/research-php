@@ -21,9 +21,8 @@ use SellerLabs\Research\Responses\ItemSearchResponse;
 /**
  * Class ItemSearchResponseFactory
  *
- * @package SellerLabs\Research\Factories
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Factories
  */
 class ItemSearchResponseFactory extends BaseResponseFactory
 {
@@ -52,7 +51,7 @@ class ItemSearchResponseFactory extends BaseResponseFactory
     /**
      * Parse items out of a body
      *
-     * @param $body
+     * @param array $body
      *
      * @return array
      */

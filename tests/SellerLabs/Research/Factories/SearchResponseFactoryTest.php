@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\SellerLabs\Research\Factories;
+namespace Tests\SellerLabs\Research\Factories;
 
 use Exception;
 use SellerLabs\Research\Entities\SearchProduct;
@@ -11,7 +11,7 @@ use SellerLabs\Research\Factories\SearchResponseFactory;
  * Class SearchResponseFactoryTest
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package tests\SellerLabs\Research\Factories
+ * @package Tests\SellerLabs\Research\Factories
  */
 class SearchResponseFactoryTest extends ResponseFactoryTestCase
 {

@@ -16,9 +16,8 @@ use SellerLabs\Research\Entities\BaseEntity;
 /**
  * Class ItemLink
  *
- * @package SellerLabs\Research\Factories
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Factories
  */
 class ItemLink extends BaseEntity
 {
@@ -35,7 +34,7 @@ class ItemLink extends BaseEntity
     /**
      * ItemLink constructor.
      *
-     * @param $link
+     * @param array $link
      */
     public function __construct(array $link)
     {

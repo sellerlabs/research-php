@@ -8,7 +8,7 @@ use SellerLabs\Research\Factories\CategoryResponseFactory;
  * Class CategoryResponseFactoryTest
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package tests\SellerLabs\Research\Factories
+ * @package Tests\SellerLabs\Research\Factories
  */
 class CategoryResponseFactoryTest extends ResponseFactoryTestCase
 {

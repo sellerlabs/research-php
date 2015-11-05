@@ -8,14 +8,17 @@
  *
  * This file is part of the Snagshout package
  */
+
+namespace Tests\SellerLabs\Research\Entities;
+
 use SellerLabs\Research\Entities\Ranking;
 use Tests\SellerLabs\Support\TestCase;
 
 /**
  * Class Ranking
  *
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\Research\Entities
  */
 class RankingTest extends TestCase
 {

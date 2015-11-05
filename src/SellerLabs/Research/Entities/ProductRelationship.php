@@ -11,12 +11,13 @@
 
 namespace SellerLabs\Research\Entities;
 
+use SellerLabs\Research\Enum\CodeType;
+
 /**
  * Class ProductRelationship
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class ProductRelationship
 {
@@ -33,12 +34,12 @@ class ProductRelationship
     /**
      * ProductRelationship constructor.
      *
-     * @param $relationship
+     * @param array $relationship
      */
     public function __construct($relationship)
     {
         foreach ($relationship as $key => $rel) {
-            if ($key == 'asin') {
+            if ($key == CodeType::TYPE_ASIN) {
                 $this->asin = $rel;
             } else {
                 $this->properties[$key] = $rel;

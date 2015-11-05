@@ -204,7 +204,7 @@ class OffersResponse extends BaseResponse
     /**
      * Get a single extra
      *
-     * @param $key
+     * @param string $key
      *
      * @return mixed
      */
@@ -226,7 +226,7 @@ class OffersResponse extends BaseResponse
     /**
      * Check whether there is an extra defined with the specified key
      *
-     * @param $key
+     * @param string $key
      *
      * @return bool
      */

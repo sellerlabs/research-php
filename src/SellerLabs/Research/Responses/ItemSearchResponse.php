@@ -11,22 +11,23 @@
 
 namespace SellerLabs\Research\Responses;
 
+use SellerLabs\Research\Entities\Item;
+
 /**
  * Class ItemSearchResponse
  *
- * @package SellerLabs\Research\Responses
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Responses
  */
 class ItemSearchResponse extends BaseResponse
 {
     /**
-     * @var array
+     * @var Item[]
      */
     protected $items;
 
     /**
-     * @return array
+     * @return Item[]
      */
     public function getItems()
     {
@@ -34,7 +35,7 @@ class ItemSearchResponse extends BaseResponse
     }
 
     /**
-     * @param array $items
+     * @param Item[] $items
      */
     public function setItems($items)
     {

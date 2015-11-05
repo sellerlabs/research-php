@@ -7,9 +7,8 @@ use SellerLabs\Research\Factories\ItemSearchResponseFactory;
 /**
  * Class ItemSearchResponseFactoryTest
  *
- * @package Tests\SellerLabs\Research\Factories
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\Research\Factories
  */
 class ItemSearchResponseFactoryTest extends ResponseFactoryTestCase
 {

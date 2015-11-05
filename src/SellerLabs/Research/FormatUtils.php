@@ -17,7 +17,7 @@ class FormatUtils
     /**
      * Format a price to two decimals
      *
-     * @param $number
+     * @param integer|float $number
      * @param string $currency
      *
      * @return string
@@ -30,7 +30,7 @@ class FormatUtils
     /**
      * Format a number into a percentage with two decimals
      *
-     * @param $number
+     * @param integer|float $number
      *
      * @return string
      */

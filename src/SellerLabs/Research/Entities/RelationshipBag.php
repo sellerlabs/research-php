@@ -16,9 +16,8 @@ use Chromabits\Nucleus\Support\Arr;
 /**
  * Class RelationshipBag
  *
- * @package SellerLabs\Research\Factories
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class RelationshipBag
 {
@@ -56,7 +55,8 @@ class RelationshipBag
     /**
      * @param array $children
      */
-    protected function setChildren(array $children) {
+    protected function setChildren(array $children)
+    {
         $this->children = array_map(function ($child) {
             return new ProductRelationship($child);
         }, $children);

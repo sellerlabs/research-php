@@ -19,7 +19,7 @@ trait MockResponsesTrait
     /**
      * Build a mock HTTP response out of a JSON file
      *
-     * @param $jsonFile
+     * @param string $jsonFile
      *
      * @return ResponseInterface
      */
@@ -27,7 +27,7 @@ trait MockResponsesTrait
     {
         $streamMock = Mockery::mock(StreamInterface::class);
         $streamMock->shouldReceive('getContents')
-            ->andReturn(file_get_contents($jsonFile));;
+            ->andReturn(file_get_contents($jsonFile));
 
         $responseMock = Mockery::mock(ResponseInterface::class);
 

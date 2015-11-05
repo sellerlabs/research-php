@@ -244,7 +244,7 @@ class ResearchClient implements ResearchClientInterface
      * Hit the itemSearch endpoint of research-api with a given keyword
      * phrase, page (default 1) and search index (default Blended)
      *
-     * @param $keywords
+     * @param string $keywords
      * @param int $page
      * @param string $searchIndex
      *
@@ -262,7 +262,7 @@ class ResearchClient implements ResearchClientInterface
                     'query' => [
                         'keywords' => $keywords,
                         'page' => $page,
-                        'searchIndex'=> $searchIndex,
+                        'searchIndex' => $searchIndex,
                     ],
                 ]
             )

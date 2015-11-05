@@ -8,14 +8,17 @@
  *
  * This file is part of the Snagshout package
  */
+
+namespace Tests\SellerLabs\Research\Entities;
+
 use SellerLabs\Research\Entities\RelationshipBag;
 use Tests\SellerLabs\Support\TestCase;
 
 /**
  * Class RelationshipBagTest
  *
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package Tests\SellerLabs\Research\Entities
  */
 class RelationshipBagTest extends TestCase
 {

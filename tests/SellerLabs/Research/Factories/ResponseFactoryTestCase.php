@@ -1,7 +1,8 @@
 <?php
 
-namespace tests\SellerLabs\Research\Factories;
+namespace Tests\SellerLabs\Research\Factories;
 
+use Psr\Http\Message\ResponseInterface;
 use Tests\SellerLabs\Support\MockResponsesTrait;
 use Tests\SellerLabs\Support\TestCase;
 
@@ -9,16 +10,16 @@ use Tests\SellerLabs\Support\TestCase;
  * Class ResponseFactoryTestCase
  *
  * @author Eduardo Trujillo <ed@chromabits.com>
- * @package tests\SellerLabs\Research\Factories
+ * @package Tests\SellerLabs\Research\Factories
  */
 class ResponseFactoryTestCase extends TestCase
 {
     use MockResponsesTrait;
 
     /**
-     * @param $relativePath
+     * @param string $relativePath
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     protected function makeResponseRelative($relativePath)
     {

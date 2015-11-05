@@ -16,9 +16,8 @@ use Chromabits\Nucleus\Support\Arr;
 /**
  * Class ItemAttributes
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class ItemAttributes extends BaseEntity
 {
@@ -44,7 +43,7 @@ class ItemAttributes extends BaseEntity
     /**
      * Get an arbitrary attribute from this item attributes set.
      *
-     * @param $key
+     * @param string $key
      *
      * @return mixed
      */

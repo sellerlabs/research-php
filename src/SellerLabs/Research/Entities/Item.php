@@ -18,9 +18,8 @@ use SellerLabs\Research\Factories\SearchOfferFactory;
 /**
  * Class Item
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class Item extends BaseEntity
 {
@@ -80,19 +79,19 @@ class Item extends BaseEntity
     }
 
     /**
-     * @param $itemLinks
+     * @param array $itemLinks
      *
      * @return array
      */
     protected function parseItemLinks($itemLinks)
     {
-        return  array_map(function ($item) {
+        return array_map(function ($item) {
             return new ItemLink($item);
         }, $itemLinks);
     }
 
     /**
-     * @param $itemAttributes
+     * @param array $itemAttributes
      *
      * @return ItemAttributes
      */
@@ -102,7 +101,7 @@ class Item extends BaseEntity
     }
 
     /**
-     * @param $offerSummary
+     * @param array $offerSummary
      *
      * @return OfferSummary
      */

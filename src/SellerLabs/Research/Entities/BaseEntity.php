@@ -2,6 +2,7 @@
 
 namespace SellerLabs\Research\Entities;
 
+use Chromabits\Nucleus\Exceptions\LackOfCoffeeException;
 use Chromabits\Nucleus\Foundation\BaseObject;
 use Chromabits\Nucleus\Support\Arr;
 
@@ -25,7 +26,7 @@ abstract class BaseEntity extends BaseObject
      *
      * @param array $raw
      *
-     * @throws \Chromabits\Nucleus\Exceptions\LackOfCoffeeException
+     * @throws LackOfCoffeeException
      */
     public function __construct(array $raw = [])
     {
@@ -37,7 +38,7 @@ abstract class BaseEntity extends BaseObject
     /**
      * Safely get a key from the raw response
      *
-     * @param $key
+     * @param string $key
      * @param mixed $default
      *
      * @return mixed

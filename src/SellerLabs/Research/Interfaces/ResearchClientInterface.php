@@ -4,7 +4,10 @@ namespace SellerLabs\Research\Interfaces;
 
 use SellerLabs\Research\Factories\ItemSearchResponseFactory;
 use SellerLabs\Research\Responses\FeesResponse;
+use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
+use SellerLabs\Research\Responses\GetCategoryByIdResponse;
 use SellerLabs\Research\Responses\ItemSearchResponse;
+use SellerLabs\Research\Responses\OffersResponse;
 use SellerLabs\Research\Responses\SearchResponse;
 
 /**
@@ -33,15 +36,15 @@ interface ResearchClientInterface
      * @param string $asin
      * @param bool $noPaapi
      *
-     * @return \SellerLabs\Research\Responses\OffersResponse
+     * @return OffersResponse
      */
     public function getOffers($asin, $noPaapi = false);
 
     /**
      * Call the fees endpoint of NodeMWS and return the response
      *
-     * @param $asin
-     * @param $price
+     * @param string $asin
+     * @param float $price
      *
      * @return FeesResponse
      */
@@ -50,8 +53,8 @@ interface ResearchClientInterface
     /**
      * Search the catalog and return the response
      *
-     * @param $idType
-     * @param $idCode
+     * @param string $idType
+     * @param string $idCode
      *
      * @return SearchResponse
      */
@@ -60,18 +63,18 @@ interface ResearchClientInterface
     /**
      * Get categories for an ASIN
      *
-     * @param $asin
+     * @param string $asin
      *
-     * @return \SellerLabs\Research\Responses\GetAsinCategoriesResponse
+     * @return GetAsinCategoriesResponse
      */
     public function getAsinCategories($asin);
 
     /**
      * Get a category by ID
      *
-     * @param $categoryId
+     * @param string $categoryId
      *
-     * @return \SellerLabs\Research\Responses\GetCategoryByIdResponse
+     * @return GetCategoryByIdResponse
      */
     public function getCategoryById($categoryId);
 
@@ -79,7 +82,7 @@ interface ResearchClientInterface
      * Hit the itemSearch endpoint of research-api with a given keyword
      * phrase, page (default 1) and search index (default Blended)
      *
-     * @param $keywords
+     * @param string $keywords
      * @param int $page
      * @param string $searchIndex
      *

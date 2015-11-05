@@ -14,9 +14,8 @@ namespace SellerLabs\Research\Entities;
 /**
  * Class OfferListing
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class OfferListing extends BaseEntity
 {

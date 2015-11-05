@@ -277,7 +277,7 @@ class FeesSet extends BaseEntity
     /**
      * Set the fees type
      *
-     * @param $type
+     * @param string $type
      *
      * @throws InvalidFormatException
      */

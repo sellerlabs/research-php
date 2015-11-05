@@ -14,14 +14,24 @@ namespace SellerLabs\Research\Entities;
 /**
  * Class Price
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class Price extends BaseEntity
 {
+    /**
+     * @var null|int
+     */
     public $amount;
+
+    /**
+     * @var string
+     */
     public $currencyCode;
+
+    /**
+     * @var string
+     */
     public $formattedPrice;
 
     /**

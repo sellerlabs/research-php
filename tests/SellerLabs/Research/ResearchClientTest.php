@@ -4,6 +4,7 @@ namespace Tests\SellerLabs\Research;
 
 use GuzzleHttp\Client;
 use Mockery;
+use Mockery\MockInterface;
 use SellerLabs\Research\ResearchClient;
 use SellerLabs\Research\Responses\FeesResponse;
 use SellerLabs\Research\Responses\GetAsinCategoriesResponse;
@@ -25,12 +26,28 @@ class ResearchClientTest extends TestCase
 {
     use MockResponsesTrait;
 
+    /**
+     * @var string
+     */
     protected $clientId;
+
+    /**
+     * @var string
+     */
     protected $clientSecret;
+
+    /**
+     * @var string
+     */
     protected $baseUrl;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
+        parent::setUp();
+
         $this->clientId = 'BenjaminTest';
         $this->clientSecret = 'MySecretKeyIsSoGood';
         $this->baseUrl = 'http://localhost:1337';
@@ -46,6 +63,13 @@ class ResearchClientTest extends TestCase
         );
     }
 
+    /**
+     * Make an instance of the ResearchClient.
+     *
+     * @param Client|null $mockClient
+     *
+     * @return ResearchClient
+     */
     protected function makeClient(Client $mockClient = null)
     {
         $client = new ResearchClient(
@@ -61,14 +85,6 @@ class ResearchClientTest extends TestCase
         return $client;
     }
 
-    /**
-     * @return Mockery\MockInterface
-     */
-    protected function makeGuzzleMock()
-    {
-        return Mockery::mock(Client::class);
-    }
-
     public function testConstructor()
     {
         $this->makeClient();
@@ -78,9 +94,11 @@ class ResearchClientTest extends TestCase
     {
         $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with('/v1/offers/0452011876', [
-                'query' => ['format' => 'pretty'],
-            ])
+            ->with('/v1/offers/0452011876',
+                [
+                    'query' => ['format' => 'pretty'],
+                ]
+            )
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
@@ -92,16 +110,26 @@ class ResearchClientTest extends TestCase
         $this->assertInstanceOf(OffersResponse::class, $result);
     }
 
+    /**
+     * @return MockInterface
+     */
+    protected function makeGuzzleMock()
+    {
+        return Mockery::mock(Client::class);
+    }
+
     public function testGetOffersWithNoPaapi()
     {
         $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with('/v1/offers/0452011876', [
-                'query' => [
-                    'format' => 'pretty',
-                    'nopaapi' => true
+            ->with('/v1/offers/0452011876',
+                [
+                    'query' => [
+                        'format' => 'pretty',
+                        'nopaapi' => true,
+                    ],
                 ]
-            ])
+            )
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
@@ -118,12 +146,14 @@ class ResearchClientTest extends TestCase
     {
         $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with('/v1/search', [
-                'query' => [
-                    'asin' => '0452011876',
-                    'format' => 'pretty'
+            ->with('/v1/search',
+                [
+                    'query' => [
+                        'asin' => '0452011876',
+                        'format' => 'pretty',
+                    ],
                 ]
-            ])
+            )
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
@@ -140,9 +170,11 @@ class ResearchClientTest extends TestCase
     {
         $guzzleMock = $this->makeGuzzleMock();
         $guzzleMock->shouldReceive('get')
-            ->with('/v1/fees/0452011876', [
-                'query' => ['price' => 9.0]
-            ])
+            ->with('/v1/fees/0452011876',
+                [
+                    'query' => ['price' => 9.0],
+                ]
+            )
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)
@@ -198,10 +230,11 @@ class ResearchClientTest extends TestCase
                         'query' => [
                             'keywords' => 'some keywords',
                             'page' => 1,
-                            'searchIndex'=> 'BogusIndex',
+                            'searchIndex' => 'BogusIndex',
                         ],
-                    ]
-                ])
+                    ],
+                ]
+            )
             ->once()
             ->andReturn($this->makeResponse(
                 dirname(__FILE__)

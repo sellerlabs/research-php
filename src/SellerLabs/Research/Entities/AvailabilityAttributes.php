@@ -14,9 +14,8 @@ namespace SellerLabs\Research\Entities;
 /**
  * Class AvailabilityAttributes
  *
- * @package SellerLabs\Research\Entities
- *
  * @author Benjamin Kovach <benjamin@roundsphere.com>
+ * @package SellerLabs\Research\Entities
  */
 class AvailabilityAttributes extends BaseEntity
 {
