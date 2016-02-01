@@ -22,6 +22,54 @@ use Tests\SellerLabs\Support\TestCase;
  */
 class RelationshipBagTest extends TestCase
 {
+    /**
+     * Invalid parents relationships.
+     *
+     * The array returned by accessing the key `parents` is
+     * an associative array (not sequential).
+     *
+     * @return array
+     */
+    protected function invalidParentsRelationships()
+    {
+        return [
+            "parents" => [
+                "Identifiers" => [
+                    "asin" => null,
+                    "marketplaceasin" => [
+                        "MarketplaceId" => "ATVPDKIKX0DER",
+                        "ASIN" => "B00S16RNNC",
+                    ]
+                ],
+                "ns2:Color" => "Pink"
+            ]
+        ];
+    }
+
+    /**
+     * Invalid children relationships.
+     *
+     * The array returned by accessing the key `children` is
+     * associative array (not sequential).
+     *
+     * @return array
+     */
+    protected function invalidChildrenRelationships()
+    {
+        return [
+            "children" => [
+                "Identifiers" => [
+                    "asin" => null,
+                    "marketplaceasin" => [
+                        "MarketplaceId" => "ATVPDKIKX0DER",
+                        "ASIN" => "B00S16RNNC",
+                    ]
+                ],
+                "ns2:Color" => "Pink"
+            ]
+        ];
+    }
+
     public function testConstruct()
     {
         $relationships = "{
@@ -71,5 +119,57 @@ class RelationshipBagTest extends TestCase
             $bag->getParents()[0]->getProperties()
         );
 
+    }
+
+    public function testChildrenWhenMalformed()
+    {
+        $bag = new RelationshipBag(
+            $this->invalidChildrenRelationships()
+        );
+
+        $this->assertEquals(
+            [],
+            $bag->getChildren()
+        );
+    }
+
+    public function testParentsWhenMalformed()
+    {
+        $bag = new RelationshipBag(
+            $this->invalidParentsRelationships()
+        );
+
+        $this->assertEquals(
+            [],
+            $bag->getParents()
+        );
+    }
+
+    public function testChildrenWhenMalformedNotArray()
+    {
+        $bag = new RelationshipBag(
+            [
+                "children" => 'notAnArray'
+            ]
+        );
+
+        $this->assertEquals(
+            [],
+            $bag->getParents()
+        );
+    }
+
+    public function testParentWhenMalformedNotArray()
+    {
+        $bag = new RelationshipBag(
+            [
+                "parents" => 'notAnArray'
+            ]
+        );
+
+        $this->assertEquals(
+            [],
+            $bag->getParents()
+        );
     }
 }
