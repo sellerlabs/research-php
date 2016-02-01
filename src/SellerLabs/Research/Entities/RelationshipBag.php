@@ -38,8 +38,16 @@ class RelationshipBag
      */
     public function __construct(array $relationships)
     {
-        $this->setParents(Arr::dotGet($relationships, 'parents'));
-        $this->setChildren(Arr::dotGet($relationships, 'children'));
+        $parents = Arr::dotGet($relationships, 'parents', []);
+        $children = Arr::dotGet($relationships, 'children', []);
+
+        if (is_array($parents) && !$this->isAssoc($parents)) {
+            $this->setParents($parents);
+        }
+
+        if (is_array($children) && !$this->isAssoc($children)) {
+            $this->setChildren($children);
+        }
     }
 
     /**
@@ -76,5 +84,22 @@ class RelationshipBag
     public function getParents()
     {
         return $this->parents;
+    }
+
+    /**
+     * Determines if an array is an associative array.
+     *
+     * @param $array
+     *
+     * @return bool
+     */
+    public function isAssoc(array $array)
+    {
+        return count(
+            array_filter(
+                array_keys($array),
+                'is_string'
+            )
+        ) > 0;
     }
 }
