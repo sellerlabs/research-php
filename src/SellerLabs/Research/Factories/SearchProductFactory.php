@@ -27,13 +27,13 @@ class SearchProductFactory extends BaseEntityFactory
     {
         $product = new SearchProduct();
 
-        $product->setCatalog($input['catalog']);
-        $product->setAsin($input['productId']);
-        $product->setEan($input['ean']);
-        $product->setName($input['title']);
-        $product->setImageUrl($input['image']);
-        $product->setType($input['type']);
-        $product->setWeight($input['weight']);
+        $product->setCatalog(Arr::dotGet($input, 'catalog'));
+        $product->setAsin(Arr::dotGet($input, 'productId'));
+        $product->setEan(Arr::dotGet($input, 'ean'));
+        $product->setName(Arr::dotGet($input, 'title'));
+        $product->setImageUrl(Arr::dotGet($input, 'image'));
+        $product->setType(Arr::dotGet($input, 'type'));
+        $product->setWeight(Arr::dotGet($input, 'weight'));
 
         if (Arr::has($input, 'rank')) {
             $rank = $input['rank'];
