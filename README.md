@@ -13,8 +13,9 @@ _(Previously known as NodeMWS/ModernMWS client)_.
 
 - API documentation for the Research Service is available at:
 https://docs.sellerlabs.com/research/
-- Documentation for this library is available under the `docs/api` directory in
-this repository.
+- Documentation for this library is available under the `docs` directory in this
+  repository, and can be viewed online at
+  [http://sellerlabs.github.io/research-php/](http://sellerlabs.github.io/research-php/)
 
 ## Installation & usage
 
