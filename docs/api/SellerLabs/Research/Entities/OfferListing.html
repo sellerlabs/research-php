@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>SellerLabs\Research\Interfaces\ResponseFactoryInterface | SellerLabs Research API PHP Client</title>
+    <title>SellerLabs\Research\Entities\OfferListing | SellerLabs Research API PHP Client</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:SellerLabs_Research_Interfaces_ResponseFactoryInterface" data-root-path="../../../">
+    <body id="class" data-name="class:SellerLabs_Research_Entities_OfferListing" data-root-path="../../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -62,47 +62,108 @@
 
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
-                <li><span class="label label-default">interface</span></li>
+                <li><span class="label label-default">class</span></li>
                                                             <li><a href="../../../SellerLabs.html">SellerLabs</a></li>
                                         <li><a href="../../../SellerLabs/Research.html">Research</a></li>
-                                        <li><a href="../../../SellerLabs/Research/Interfaces.html">Interfaces</a></li>
+                                        <li><a href="../../../SellerLabs/Research/Entities.html">Entities</a></li>
     
-                <li>ResponseFactoryInterface</li>
+                <li>OfferListing</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            ResponseFactoryInterface
+            OfferListing
                 
         </h1>
     </div>
 
-    <p>    interface
-    <strong>ResponseFactoryInterface</strong>
+    <p>    class
+    <strong>OfferListing</strong>        extends <a href="../../../SellerLabs/Research/Entities/BaseEntity.html"><abbr title="SellerLabs\Research\Entities\BaseEntity">BaseEntity</abbr></a>
 </p>
 
         
     
 
             <div class="description">
-            <p>Interface ResponseFactoryInterface</p>                    </div>
+            <p>Class OfferListing</p>                    </div>
     
     
     
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_salePrice">
+                                                                                <a href="../../../SellerLabs/Research/Entities/Price.html"><abbr title="SellerLabs\Research\Entities\Price">Price</abbr></a>
+                </td>
+                <td>$salePrice</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_amountSaved">
+                                                                                <a href="../../../SellerLabs/Research/Entities/Price.html"><abbr title="SellerLabs\Research\Entities\Price">Price</abbr></a>
+                </td>
+                <td>$amountSaved</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_percentageSaved">
+                                                                                int
+                </td>
+                <td>$percentageSaved</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_availability">
+                                                                                string
+                </td>
+                <td>$availability</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_availabilityAttributes">
+                                                                                <a href="../../../SellerLabs/Research/Entities/AvailabilityAttributes.html"><abbr title="SellerLabs\Research\Entities\AvailabilityAttributes">AvailabilityAttributes</abbr></a>
+                </td>
+                <td>$availabilityAttributes</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_isEligibleForSuperSaverShipping">
+                                                                                bool
+                </td>
+                <td>$isEligibleForSuperSaverShipping</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_isEligibleForPrime">
+                                                                                bool
+                </td>
+                <td>$isEligibleForPrime</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
     
             <h2>Methods</h2>
 
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    <a href="../../../SellerLabs/Research/Responses/BaseResponse.html"><abbr title="SellerLabs\Research\Responses\BaseResponse">BaseResponse</abbr></a>
+                    
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_makeFromResponse">makeFromResponse</a>(<abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr> $response)
+                    <a href="#method___construct">__construct</a>(array $raw = array())
         
-                                            <p>Parse and build a rich response object from an HTTP response.</p>                </div>
+                                            <p>OfferListing constructor.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -112,10 +173,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_makeFromResponse">
-        <div class="location">at line         line 25</div>
-        <code>                    <a href="../../../SellerLabs/Research/Responses/BaseResponse.html"><abbr title="SellerLabs\Research\Responses\BaseResponse">BaseResponse</abbr></a>
-    <strong>makeFromResponse</strong>(<abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr> $response)
+                    <h3 id="method___construct">
+        <div class="location">at line         line 62</div>
+        <code>                    
+    <strong>__construct</strong>(array $raw = array())
         </code>
     </h3>
     <div class="details">
@@ -123,38 +184,20 @@
     
 
                     <div class="method-description">
-                                    <p>Parse and build a rich response object from an HTTP response.</p>                                </div>
+                                    <p>OfferListing constructor.</p>                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></td>
-                <td>$response</td>
+                <td>array</td>
+                <td>$raw</td>
                 <td></td>
             </tr>
             </table>
 
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td><a href="../../../SellerLabs/Research/Responses/BaseResponse.html"><abbr title="SellerLabs\Research\Responses\BaseResponse">BaseResponse</abbr></a></td>
-            <td></td>
-        </tr>
-    </table>
-
             
-                            <h4>Exceptions</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td><a href="../../../SellerLabs/Research/Exceptions/InvalidFormatException.html"><abbr title="SellerLabs\Research\Exceptions\InvalidFormatException">InvalidFormatException</abbr></a></td>
-                <td></td>
-            </tr>
-            </table>
-
             
                     </div>
     </div>

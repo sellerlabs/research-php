@@ -73,12 +73,18 @@
                 <div id="page-content">
                 
     <div class="page-header">
-        <h1>ResearchClientInterface</h1>
+        <h1>
+            ResearchClientInterface
+                
+        </h1>
     </div>
 
     <p>    interface
     <strong>ResearchClientInterface</strong>
 </p>
+
+        
+    
 
             <div class="description">
             <p>Interface ResearchClientInterface</p>            <p>Represents an object capable of querying SellerLabs' Research API</p>        </div>
@@ -91,65 +97,73 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    string
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_generateCode">generateCode</a>(
-    null|int $timestamp = null)
+                    <a href="#method_generateCode">generateCode</a>(null|int $timestamp = null)
+        
                                             <p>Generate an authorization code for NodeMWS</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    <a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a>
+                    <a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getOffers">getOffers</a>(
-    string $asin, 
-    bool $noPaapi = false)
+                    <a href="#method_getOffers">getOffers</a>(string $asin, bool $noPaapi = false)
+        
                                             <p>Get the current offers for an ASIN from NodeMWS</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    <a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a>
+                    <a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getFees">getFees</a>($asin, $price)
+                    <a href="#method_getFees">getFees</a>(string $asin, float $price)
+        
                                             <p>Call the fees endpoint of NodeMWS and return the response</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    <a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a>
+                    <a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getSearch">getSearch</a>($idType, $idCode)
+                    <a href="#method_getSearch">getSearch</a>(string $idType, string $idCode)
+        
                                             <p>Search the catalog and return the response</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    <a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a>
+                    <a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getAsinCategories">getAsinCategories</a>($asin)
+                    <a href="#method_getAsinCategories">getAsinCategories</a>(string $asin)
+        
                                             <p>Get categories for an ASIN</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
-    <a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a>
+                    <a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getCategoryById">getCategoryById</a>($categoryId)
+                    <a href="#method_getCategoryById">getCategoryById</a>(string $categoryId)
+        
                                             <p>Get a category by ID</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../SellerLabs/Research/Responses/ItemSearchResponse.html"><abbr title="SellerLabs\Research\Responses\ItemSearchResponse">ItemSearchResponse</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getItemSearch">getItemSearch</a>(string $keywords, int $page = 1, string $searchIndex = &#039;Blended&#039;)
+        
+                                            <p>Hit the itemSearch endpoint of research-api with a given keyword
+phrase, page (default 1) and search index (default Blended)</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -160,13 +174,15 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_generateCode">
-        <div class="location">at line 26</div>
-        <code>                    
-    string
-    <strong>generateCode</strong>(
-    null|int $timestamp = null)</code>
+        <div class="location">at line         line 31</div>
+        <code>                    string
+    <strong>generateCode</strong>(null|int $timestamp = null)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Generate an authorization code for NodeMWS</p>                                </div>
                 <div class="tags">
@@ -174,11 +190,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>
-    null|int</td>
+                <td>null|int</td>
                 <td>$timestamp</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -187,10 +201,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    string</td>
-            <td>
-</td>
+            <td>string</td>
+            <td></td>
         </tr>
     </table>
 
@@ -202,14 +214,15 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getOffers">
-        <div class="location">at line 36</div>
-        <code>                    
-    <a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a>
-    <strong>getOffers</strong>(
-    string $asin, 
-    bool $noPaapi = false)</code>
+        <div class="location">at line         line 41</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a>
+    <strong>getOffers</strong>(string $asin, bool $noPaapi = false)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Get the current offers for an ASIN from NodeMWS</p>                                </div>
                 <div class="tags">
@@ -217,18 +230,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>
-    string</td>
+                <td>string</td>
                 <td>$asin</td>
-                <td>
-</td>
+                <td></td>
             </tr>
                     <tr>
-                <td>
-    bool</td>
+                <td>bool</td>
                 <td>$noPaapi</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -237,10 +246,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    <a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a></td>
-            <td>
-</td>
+            <td><a href="../../../SellerLabs/Research/Responses/OffersResponse.html"><abbr title="SellerLabs\Research\Responses\OffersResponse">OffersResponse</abbr></a></td>
+            <td></td>
         </tr>
     </table>
 
@@ -252,12 +259,15 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getFees">
-        <div class="location">at line 46</div>
-        <code>                    
-    <a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a>
-    <strong>getFees</strong>($asin, $price)</code>
+        <div class="location">at line         line 51</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a>
+    <strong>getFees</strong>(string $asin, float $price)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Call the fees endpoint of NodeMWS and return the response</p>                                </div>
                 <div class="tags">
@@ -265,16 +275,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$asin</td>
-                <td>
-</td>
+                <td></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>float</td>
                 <td>$price</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -283,10 +291,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    <a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a></td>
-            <td>
-</td>
+            <td><a href="../../../SellerLabs/Research/Responses/FeesResponse.html"><abbr title="SellerLabs\Research\Responses\FeesResponse">FeesResponse</abbr></a></td>
+            <td></td>
         </tr>
     </table>
 
@@ -298,12 +304,15 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getSearch">
-        <div class="location">at line 56</div>
-        <code>                    
-    <a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a>
-    <strong>getSearch</strong>($idType, $idCode)</code>
+        <div class="location">at line         line 61</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a>
+    <strong>getSearch</strong>(string $idType, string $idCode)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Search the catalog and return the response</p>                                </div>
                 <div class="tags">
@@ -311,16 +320,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$idType</td>
-                <td>
-</td>
+                <td></td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$idCode</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -329,10 +336,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    <a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a></td>
-            <td>
-</td>
+            <td><a href="../../../SellerLabs/Research/Responses/SearchResponse.html"><abbr title="SellerLabs\Research\Responses\SearchResponse">SearchResponse</abbr></a></td>
+            <td></td>
         </tr>
     </table>
 
@@ -344,12 +349,15 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getAsinCategories">
-        <div class="location">at line 65</div>
-        <code>                    
-    <a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a>
-    <strong>getAsinCategories</strong>($asin)</code>
+        <div class="location">at line         line 70</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a>
+    <strong>getAsinCategories</strong>(string $asin)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Get categories for an ASIN</p>                                </div>
                 <div class="tags">
@@ -357,10 +365,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$asin</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -369,10 +376,8 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    <a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a></td>
-            <td>
-</td>
+            <td><a href="../../../SellerLabs/Research/Responses/GetAsinCategoriesResponse.html"><abbr title="SellerLabs\Research\Responses\GetAsinCategoriesResponse">GetAsinCategoriesResponse</abbr></a></td>
+            <td></td>
         </tr>
     </table>
 
@@ -384,12 +389,15 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getCategoryById">
-        <div class="location">at line 74</div>
-        <code>                    
-    <a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a>
-    <strong>getCategoryById</strong>($categoryId)</code>
+        <div class="location">at line         line 79</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a>
+    <strong>getCategoryById</strong>(string $categoryId)
+        </code>
     </h3>
     <div class="details">
+            
+    
+
                     <div class="method-description">
                                     <p>Get a category by ID</p>                                </div>
                 <div class="tags">
@@ -397,10 +405,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$categoryId</td>
-                <td>
-</td>
+                <td></td>
             </tr>
             </table>
 
@@ -409,10 +416,59 @@
 
                     <table class="table table-condensed">
         <tr>
-            <td>
-    <a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a></td>
-            <td>
-</td>
+            <td><a href="../../../SellerLabs/Research/Responses/GetCategoryByIdResponse.html"><abbr title="SellerLabs\Research\Responses\GetCategoryByIdResponse">GetCategoryByIdResponse</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getItemSearch">
+        <div class="location">at line         line 91</div>
+        <code>                    <a href="../../../SellerLabs/Research/Responses/ItemSearchResponse.html"><abbr title="SellerLabs\Research\Responses\ItemSearchResponse">ItemSearchResponse</abbr></a>
+    <strong>getItemSearch</strong>(string $keywords, int $page = 1, string $searchIndex = &#039;Blended&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Hit the itemSearch endpoint of research-api with a given keyword
+phrase, page (default 1) and search index (default Blended)</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$keywords</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$page</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$searchIndex</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../SellerLabs/Research/Responses/ItemSearchResponse.html"><abbr title="SellerLabs\Research\Responses\ItemSearchResponse">ItemSearchResponse</abbr></a></td>
+            <td></td>
         </tr>
     </table>
 
