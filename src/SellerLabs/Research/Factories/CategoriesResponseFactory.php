@@ -2,8 +2,8 @@
 
 namespace SellerLabs\Research\Factories;
 
-use Chromabits\Nucleus\Support\Arr;
-use Chromabits\Nucleus\Support\Std;
+use SellerLabs\Nucleus\Support\Arr;
+use SellerLabs\Nucleus\Support\Std;
 use Psr\Http\Message\ResponseInterface;
 use SellerLabs\Research\Exceptions\InvalidFormatException;
 use SellerLabs\Research\Responses\BaseResponse;

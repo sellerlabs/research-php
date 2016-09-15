@@ -2,9 +2,9 @@
 
 namespace SellerLabs\Research\Entities;
 
-use Chromabits\Nucleus\Exceptions\LackOfCoffeeException;
-use Chromabits\Nucleus\Foundation\BaseObject;
-use Chromabits\Nucleus\Support\Arr;
+use SellerLabs\Nucleus\Exceptions\LackOfCoffeeException;
+use SellerLabs\Nucleus\Foundation\BaseObject;
+use SellerLabs\Nucleus\Support\Arr;
 
 /**
  * Class BaseEntity

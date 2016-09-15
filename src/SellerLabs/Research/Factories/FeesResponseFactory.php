@@ -2,7 +2,7 @@
 
 namespace SellerLabs\Research\Factories;
 
-use Chromabits\Nucleus\Support\Arr;
+use SellerLabs\Nucleus\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 use SellerLabs\Research\Enum\FeesSetType;
 use SellerLabs\Research\Exceptions\InvalidFormatException;

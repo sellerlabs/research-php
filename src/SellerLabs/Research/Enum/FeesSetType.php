@@ -2,7 +2,7 @@
 
 namespace SellerLabs\Research\Enum;
 
-use Chromabits\Nucleus\Support\Enum;
+use SellerLabs\Nucleus\Support\Enum;
 
 /**
  * Class FeesSetType

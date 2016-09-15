@@ -11,7 +11,7 @@
 
 namespace SellerLabs\Research\Entities;
 
-use Chromabits\Nucleus\Support\Arr;
+use SellerLabs\Nucleus\Support\Arr;
 
 /**
  * Class RelationshipBag

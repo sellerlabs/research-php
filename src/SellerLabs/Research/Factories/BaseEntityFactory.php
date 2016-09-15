@@ -2,7 +2,7 @@
 
 namespace SellerLabs\Research\Factories;
 
-use Chromabits\Nucleus\Foundation\BaseObject;
+use SellerLabs\Nucleus\Foundation\BaseObject;
 use SellerLabs\Research\Interfaces\EntityFactoryInterface;
 
 /**

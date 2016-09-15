@@ -2,9 +2,9 @@
 
 namespace SellerLabs\Research;
 
-use Chromabits\Nucleus\Meditation\Arguments;
-use Chromabits\Nucleus\Meditation\Boa;
-use Chromabits\Nucleus\Support\Std;
+use SellerLabs\Nucleus\Meditation\Arguments;
+use SellerLabs\Nucleus\Meditation\Boa;
+use SellerLabs\Nucleus\Support\Std;
 use GuzzleHttp\Client as GuzzleClient;
 use SellerLabs\Research\Enum\CodeType;
 use SellerLabs\Research\Factories\CategoriesResponseFactory;

@@ -2,7 +2,7 @@
 
 namespace SellerLabs\Research\Responses;
 
-use Chromabits\Nucleus\Foundation\BaseObject;
+use SellerLabs\Nucleus\Foundation\BaseObject;
 use Psr\Http\Message\ResponseInterface;
 use SellerLabs\Research\Interfaces\ResearchResponseInterface;
 

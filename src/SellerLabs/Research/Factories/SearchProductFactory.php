@@ -2,7 +2,7 @@
 
 namespace SellerLabs\Research\Factories;
 
-use Chromabits\Nucleus\Support\Arr;
+use SellerLabs\Nucleus\Support\Arr;
 use SellerLabs\Research\Entities\BaseEntity;
 use SellerLabs\Research\Entities\Ranking;
 use SellerLabs\Research\Entities\RelationshipBag;

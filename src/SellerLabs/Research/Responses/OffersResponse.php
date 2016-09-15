@@ -2,9 +2,9 @@
 
 namespace SellerLabs\Research\Responses;
 
-use Chromabits\Nucleus\Meditation\Arguments;
-use Chromabits\Nucleus\Meditation\Boa;
-use Chromabits\Nucleus\Meditation\Exceptions\InvalidArgumentException;
+use SellerLabs\Nucleus\Meditation\Arguments;
+use SellerLabs\Nucleus\Meditation\Boa;
+use SellerLabs\Nucleus\Meditation\Exceptions\InvalidArgumentException;
 use SellerLabs\Research\Entities\Offer;
 use SellerLabs\Research\Enum\OfferCondition;
 use SellerLabs\Research\Enum\OfferType;
